@@ -84,10 +84,15 @@ if c == "+":
     result = plus(a, b)
 elif c == "-":
     reult = minus(a, b)
+    if a < b:
+       result = plus(a, -b)
 elif c == "*":
     result = multiply(a, b)
 elif c == "/":
-    result = divide(a,b)
+    if b == 0:
+        result = "분모는 0이 될 수 없습니다."
+    else:
+        result = divide(a,b)
 else:
-    print("정확하게 입력해주세요!")
-print("계산값 : {:+5.0f}".format(result))
+    result = "정확하게 입력해주세요!"
+print("계산값 : {}".format(result))
