@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # def fn():
 # 	print("fn called")
 
@@ -97,7 +96,7 @@ elif c == "/":
 else:
     result = "정확하게 입력해주세요!"
 print("계산값 : {}".format(result))
-=======
+
 # def fn():
 # 	print("fn called")
 
@@ -134,18 +133,18 @@ print("계산값 : {}".format(result))
 
 
 # 사칙 연산의 종류.
-def plus(a, b):
-    result = a + b
-    return result
-def minus(a, b):
-    result = a - b
-    return result
-def multiply(a, b):
-    result = a * b
-    return result
-def divide(a, b):
-    result = a / b
-    return result
+# def plus(a, b):
+#     result = a + b
+#     return result
+# def minus(a, b):
+#     result = a - b
+#     return result
+# def multiply(a, b):
+#     result = a * b
+#     return result
+# def divide(a, b):
+#     result = a / b
+#     return result
     
 # 입력값이 정확하지 않으면 다시 입력.
 
@@ -173,22 +172,21 @@ def divide(a, b):
 
 # print("계산값 : {:5.0f}".format(result))
 
-user_input = input("계산할 값들을 넣으세요. : ")
-user_input_list = user_input.split(" ")
+# user_input = input("계산할 값들을 넣으세요. : ")
+# user_input_list = user_input.split(" ")
 
-a = int(user_input_list[0])
-b = int(user_input_list[2])
-c = user_input_list[1]
+# a = int(user_input_list[0])
+# b = int(user_input_list[2])
+# c = user_input_list[1]
 
-if c == "+":
-    result = plus(a, b)
-elif c == "-":
-    reult = minus(a, b)
-elif c == "*":
-    result = multiply(a, b)
-elif c == "/":
-    result = divide(a,b)
-else:
-    print("정확하게 입력해주세요!")
-print("계산값 : {:+5.0f}".format(result))
->>>>>>> 03342810760defa1fb0e3c58512007e1172ad4b7
+# if c == "+":
+#     result = plus(a, b)
+# elif c == "-":
+#     reult = minus(a, b)
+# elif c == "*":
+#     result = multiply(a, b)
+# elif c == "/":
+#     result = divide(a,b)
+# else:
+#     print("정확하게 입력해주세요!")
+# print("계산값 : {:+5.0f}".format(result))

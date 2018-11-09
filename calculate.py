@@ -117,60 +117,60 @@
 #             print("Answer is {:f}".format(r))
 
 
-##===========================
+# ##===========================
 
-def plus(a, b):
-    return a + b
+# def plus(a, b):
+#     return a + b
 
-def minus(a, b):
-    return a - b
+# def minus(a, b):
+#     return a - b
 
-def mul(a, b):
-    return a * b
+# def mul(a, b):
+#     return a * b
 
-def div(a, b):
-    if b == 0:
-        return a
+# def div(a, b):
+#     if b == 0:
+#         return a
 
-    return a / b
-
-
-def input_calc():
-    cmd = input("수식을 입력하세요(usage: 2 + 3)> ")
-    print("cmd = ", cmd)
-    cmds = cmd.split(' ')
-    print("cmds = ", cmds)
-
-    if cmd == 'q':
-        print("계산기를 종료합니다.")
-        break
-
-    else:
-        # @Try cmds 하나만으로 set해보기
-        # a, op, b = int(cmds[0]), cmds[1], int(cmds[2])
-        a, op, b = cmds
-        # print("a= ", a, "op= ", op, "b= ", b)
-        a, op, b = int(cmds[0]), cmds[1], int(cmds[2])
-        a, b = int(a), int(b)
+#     return a / b
 
 
-        if op == '+':       #가장 많이 쓸 만한 것으로 먼저 쓴다.
-            r = plus(a, b)  #테스트할 때는 쉬운 것부터.
+# def input_calc():
+#     cmd = input("수식을 입력하세요(usage: 2 + 3)> ")
+#     print("cmd = ", cmd)
+#     cmds = cmd.split(' ')
+#     print("cmds = ", cmds)
 
-        elif op == '-':
-            r = minus(a, b)
+#     if cmd == 'q':
+#         print("계산기를 종료합니다.")
+#         break
 
-        elif op == '*':
-            r = mul(a, b)
+#     else:
+#         # @Try cmds 하나만으로 set해보기
+#         # a, op, b = int(cmds[0]), cmds[1], int(cmds[2])
+#         a, op, b = cmds
+#         # print("a= ", a, "op= ", op, "b= ", b)
+#         a, op, b = int(cmds[0]), cmds[1], int(cmds[2])
+#         a, b = int(a), int(b)
 
-        else:
-            r = div(a, b)
 
-        if op in '+-*':
-            print("Answer is {:d}".format(r))
-        else:
-            print("Answer is {:f}".format(r))
+#         if op == '+':       #가장 많이 쓸 만한 것으로 먼저 쓴다.
+#             r = plus(a, b)  #테스트할 때는 쉬운 것부터.
 
-while(True):
-    cmds = user_input()
-    input_calc(cmds)
+#         elif op == '-':
+#             r = minus(a, b)
+
+#         elif op == '*':
+#             r = mul(a, b)
+
+#         else:
+#             r = div(a, b)
+
+#         if op in '+-*':
+#             print("Answer is {:d}".format(r))
+#         else:
+#             print("Answer is {:f}".format(r))
+
+# while(True):
+#     cmds = user_input()
+#     input_calc(cmds)
