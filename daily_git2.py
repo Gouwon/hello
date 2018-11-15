@@ -21,5 +21,6 @@ else:
 os.system('git push')
 
 print("커밋이 완료되었습니다. \n 수고하셨습니다.")
+print("Branch 연습용 문구~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 time.sleep(5)
 exit()
