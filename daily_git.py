@@ -1,32 +1,4 @@
 #coding=utf-8
-# import os
-# import sys
-# import datetime
-
-# def mysis():
-#     if os.name == 'nt':
-#         os.system('CLS')
-#     else:  # posix
-#         os.system('clear')
-
-# now = datetime.datetime.now()
-#  ## sys.argv[0] :  sys.argv[1]:msg
-# os.system('git add -all')
-
-
-# sa = sys.argv
-# sa[1] = user_msg
-
-# if sa[1] != "n": #if len(sa) < 2:===> git.bash에서 실행할 때
-#     msg_default = now.strftime('%Y-%m-%d lecture')
-#     os.system('git commit -am {}'.format(msg_default))
-
-# else:
-#     sa[1] = input("Write Massage : ")
-#     sa[1] = str(sa[1])
-#     os.system('git commit -am {}'.format(sa[1]))
-
-# os.system('git push')
 
 import sys
 import os
