@@ -10,7 +10,7 @@ with open('students.csv', 'r', encoding='utf8') as file:
         students.append( Student(line) )
 
 students.sort(key = lambda stu: stu.score, reverse = True)
-m = map(lambda stu: stu.make_grade(), students)ㅓㅓㅓㅓㅓㅓ  ㅕㅕㅠㅜㅝㅕ
+m = map(lambda stu: stu.make_grade(), students)
 list(m)
 
 def sumfn(x, y):
