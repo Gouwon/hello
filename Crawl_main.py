@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
+from Crawl_game import Game
+
 
 url = "https://play.google.com/store/apps/collection/topselling_paid"
 res = requests.get(url) ## get은 엽서(간단한 내용과 주소)를 보내는 것, post라는 함수는 편지라고 생각하면 된다. ## 서버에서 정보를 받아오는 것.
@@ -9,12 +11,14 @@ card_list = soup.select('div.card-list')        ## soup.select(selector) ## (태
 # print(card_list)      
 
 print(">>>>> ", len(card_list), card_list[0].get('class'))      ## card_list에도 html <tag>가 들어가 있으니까 이를 다시 한 번 여과한다. ## tag에서 get은 attribute를 받아오는 함수. 리스트 안에는 지금 tag들이 있다.
+
+games = list()
+
 for i in card_list:
     cards = i.select('.card')
     print("LLL>>> ", len(cards))
     for c in cards:         ## parsing 부분.
-        title = c.select('a.title')[0].text.strip()
-        # subtitle = c.select('a.subtitle')[0].text
-        subtitle = c.select('a.subtitle')[0].get('.title')
-        print(">>", c.get('class'), {title, subtitle} )
-        
+        games.append(Game(c))
+
+for i in games:
+    print(i)
