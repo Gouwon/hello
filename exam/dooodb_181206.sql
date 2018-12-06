@@ -1,7 +1,7 @@
 -- 2. 수강내역(Enroll)에 의미 있는 데이터 입력하기
 
 -- 1000명이 1과목씩 수강 (1)
-insert into Enroll
+insert into Enroll(student, subject)
 select st.id, (select id from Subject order by rand() limit 1) from Student st;
 
 -- Mapping Table인 Enroll에 들어가는 학생과 과목을 하나의 unique index로 묶어줘 있어야 한다.
