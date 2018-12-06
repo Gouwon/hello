@@ -4,6 +4,11 @@
 insert into Enroll
 select st.id, (select id from Subject order by rand() limit 1) from Student st;
 
+-- Mapping Table인 Enroll에 들어가는 학생과 과목을 하나의 unique index로 묶어줘 있어야 한다.
+ALTER TABLE `dooodb`.`Enroll` 
+ADD UNIQUE INDEX `uk_enroll` (`subject` ASC, `student` ASC);
+;
+
 -- 500명이 1과목을 추가 수강 (2)
 insert into Enroll(student, subject)
  select id, (select id from Subject order by rand() limit 1) sid from Student order by rand() limit 500
