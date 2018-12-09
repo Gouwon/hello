@@ -31,7 +31,7 @@ def mk_addr():
         return municipality + " " + borough + " " + dong + " " + street_addr
 
 def mk_birth():
-    year = random.choice(range(1960, 2016))
+    year = random.choice(range(1960, 1999))
     month_list = ["01","02","03","04","05","06","07","08","09","10","11","12"]
     month = random.choice(month_list)
     long_month = ["04", "06", "09", "11"]
@@ -60,10 +60,10 @@ def mk_info():
 def insert_db(data):
     conn = pymysql.connect(
         host='localhost', 
-        user='dooo', 
+        user='gouwon', 
         password='root1!', 
         port=3306, 
-        db='dooodb', 
+        db='study', 
         charset='utf8')
 
 
