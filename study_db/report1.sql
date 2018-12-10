@@ -78,4 +78,4 @@ select *, (case when report1.avg_score = 100 then 'A+'
 ) sub_rp1
 order by sub_rp1.sbj_name, sub_rp1.avg_score desc, sub_rp1.stu_name;
  
- 
+commit;
