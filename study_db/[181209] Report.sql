@@ -93,7 +93,7 @@ select g.*, sbj.name as sbj_name, stu.name as stu_name, (g.midterm + g.finalterm
 -- 최고 득점자만 뽑은 면 된다.
 
 
-select report.sbj_name, max(report.avg_score), (if(report.avg_score = max(report.avg_score), report.stud  count(*)
+select report.sbj_name, avg(report.avg_score), count(*)
 from
 (
 select g.*, sbj.name as sbj_name, stu.name as stu_name, (g.midterm + g.finalterm) total_score, 
@@ -126,10 +126,28 @@ order by report.sbj_name asc, report.avg_score desc
 ;
 
 
+select sub.sbj_name, avg(sub.avg_score) avg_point, count(*) cnt, sub2.stu_name
+ from
+	(select g.*, sbj.name as sbj_name, stu.name as stu_name, (g.midterm + g.finalterm) total_score, 
+							((g.midterm + g.finalterm) / 2) avg_score
+				from Grade g inner join Subject sbj on g.subject = sbj.id
+							 inner join Student stu on g.student = stu.id) sub,
+	(select g.*, sbj.name as sbj_name, stu.name as stu_name, (g.midterm + g.finalterm) total_score, 
+							((g.midterm + g.finalterm) / 2) avg_score
+				from (Grade g inner join Subject sbj on g.subject = sbj.id
+							 inner join Student stu on g.student = stu.id) sub1
+                             where sub1.subject = 1
+							 order by sub1.sbj_name, sub1.avg_score desc limit 1) sub2
+  where sub.subject = 1
+  order by sub.sbj_name, sub.avg_score desc
+;
 
 
-
-
+create temporary table t_table(
+	id int not null auto_increment,
+    sbj_name varchar(31),
+    avg_score mediumint,
+    
 
 
 commit;
@@ -167,7 +185,7 @@ select g.*, sbj.name as sbj_name, stu.name as stu_name, (g.midterm + g.finalterm
                                 else 'F' end) rating
    from
 (           
-select  report.stu_name, count(*), sum(report.total_score) total_point, avg(report.avg_score) avg_point
+select  report.stu_name, count(*) subjects, sum(report.total_score) total_point, avg(report.avg_score) avg_point
 from 
 (
 select g.*, sbj.name as sbj_name, stu.name as stu_name, (g.midterm + g.finalterm) total_score, 
