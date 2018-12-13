@@ -39,28 +39,31 @@ select * from Jobs;
 select * from Jobs_history;
 
 
--- 1������) �μ��� ������
+-- 1번문제) 부서별 직원수
+
 select emp.department_id, max(dept.department_name) department_name, count(distinct emp.employee_id) emp_cnt
   from Employees emp inner join Departments dept on emp.department_id = dept.department_id
   group by emp.department_id
   order by emp_cnt desc
   ;
 
--- 2������) �μ��� ��� �޿�(salary)
+-- 2번문제) 부서별 평균 급여(salary)
+
 select max(dept.department_name), round(avg(emp.salary), -1) as avg_salary
   from Employees emp inner join Departments dept on emp.department_id = dept.department_id
   group by emp.department_id
   order by avg_salary desc
   ;
 
--- 3������) ��å�� ��� �޿�
+-- 3번문제) 직책별 평균 급여 (평균급여 기준 상위 7개 직책만) 
+
 select max(emp.job_id), round(avg(emp.salary), 1) as avg_salary
   from Employees emp inner join Jobs jbs on emp.job_id = jbs.job_id
   group by emp.job_id
   ;
 
 
--- 4������) �ڽ��� �Ŵ������� �� ���� �޿��� �޴� ��� ��� *********************
+-- 4번문제) 자신의 매니저 보다 더 많은 급여를 받는 사람 목록
 select * from Employees;
 
 select employee_id, manager_id
@@ -90,7 +93,8 @@ select e.employee_id, e.salary, e.manager_id,
 
 
 
--- 5������) job title�� sales represntative�� ���� �߿���, �޿��� 9,000 ~ 10,000�� �������� �̸��� �޿��� ����Ͻÿ�. **************
+/* 5번문제) Job title이 Sales Representative인 직원 중에서,
+급여가 9,000 ~ 10,000 인 직원들의 이름과 급여를 출력하시오. */
 select * from Employees;
 select * from Jobs;
 select (first_name || ' ' || last_name) name, salary
@@ -108,7 +112,9 @@ select concat(concat(e.first_name, ' '), e.last_name) as "���� �̸�"
 from Employees e  where e.job_id = 'SA_REP' and e.salary between 9000 and 10000 order by salary desc;
 
 
--- 6������) �� ���޺��� �޿��� ������ ���ϰ��� �Ѵ�.�޿� ������ ���� ���� ���޼����� �޿� ������ ����Ͻÿ�. (��, �޿������� 30,000 �̻��� ���޸� ����� ��)
+/* 6번문제) 각 직급별로 급여의 총합을 구하고자 한다.
+급여 총합이 가장 높은 직급순으로 급여 총합을 출력하시오.
+(단, 급여총합이 30,000 이상인 직급만 출력할 것) */
 
 select *
 from
@@ -127,7 +133,7 @@ select max(j.job_title), sum(e.salary)
 
 
 
--- 7������) �� ���ú� ��� ����(�޿�)�� ���������� ���� 3�� ���ø� ����Ͻÿ�.
+-- 7번문제) 각 도시별 평균 연봉(급여)가 높은순으로 상위 3개 도시를 출력하시오.
 select * from locations;
 
 select rownum, sub.*
@@ -144,7 +150,8 @@ where rownum < 4
 
 
 
--- 8������) ��å(Job Title)�� Sales Manager�� ������� �Ի�⵵(hire_date)�� ��� �޿��� ����Ͻÿ�. (��� �� �⵵�� �������� �������� �����Ͻÿ�.)
+/* 8번문제) 직책(Job Title)이 'Sales Manager'인 사원들의 입사년도(hire_date)별 평균 급여를 출력하시오. 
+	출력 시 년도를 기준으로 오름차순 정렬하시오. */
 select *
   from Employees;
 
@@ -155,10 +162,10 @@ select concat('20', min(to_char(e.hire_date, 'YY'))) year, avg(e.salary) avg_sal
   order by to_char(e.hire_date, 'YY')
   ;
 
-/* 9������) �� ����(city)�� �ִ� ��� �μ� �������� ��ձ޿��� ��ȸ�ϰ��� �Ѵ�. 
-	��ձ޿��� ���� ���� ���ú��� ���ø�(city)�� ��տ���, �ش� ������ �������� 
-	����Ͻÿ�. 
-	��, ���ÿ� �ٹ��ϴ� ������ 10�� �̻��� ���� �����ϰ� ��ȸ�Ͻÿ�. */
+/* 9번문제) 각 도시(city)에 있는 모든 부서 직원들의 평균급여를 조회하고자 한다. 
+	평균급여가 가장 낮은 도시부터 도시명(city)과 평균연봉, 해당 도시의 직원수를 
+	출력하시오. 
+	단, 도시에 근무하는 직원이 10명 이상인 곳은 제외하고 조회하시오.. */
 
 
 select sub.city, sub.avg_salary, sub.cnt
@@ -175,10 +182,10 @@ where sub.cnt < 10
 
 
 
-/* 10������) Public  Accountant���� ��å(job_title)���� ���ſ� �ٹ��� ���� �ִ� ���
-	����� ����� �̸��� ����Ͻÿ�. 
-	(���� ��Public Accountant���� ��å(job_title)���� �ٹ��ϴ� ����� ��� ����
-	 �ʴ´�) */
+/* 10번문제) ‘Public Accountant’의 직책(job_title)으로 과거에 근무한 적이 있는 모든
+	사원의 사번과 이름을 출력하시오. 
+	(현재 ‘Public Accountant’의 직책(job_title)으로 근무하는 사원은 고려 하지
+	 않는다)) */
 
 select * from Jobs;
 
@@ -188,10 +195,10 @@ select e.employee_id, (e.first_name || ' ' || e.last_name) name
   where j.job_title = 'Public Accountant' and e.job_id <> j.job_id;
   
 
-/* 11)	2007�⿡ �Ի�(hire_date)�� �������� ���(employee_id),
-	�̸�(first_name), ��(last_name), 
-	�μ���(department_name)�� ��ȸ�մϴ�.  
-	�̶�, �μ��� ��ġ���� ���� ������ ���, ��<Not Assigned>���� ����Ͻÿ�.*/
+/* 11번문제)	2007년에 입사(hire_date)한 직원들의 사번(employee_id),
+	이름(first_name), 성(last_name), 
+	부서명(department_name)을 조회합니다.  
+	이때, 부서에 배치되지 않은 직원의 경우, ‘<Not Assigned>’로 출력하시오.�.*/
 desc departments;
 
 select concat('20', to_char(e.hire_date, 'YY')) year, e.employee_id, e.first_name, e.last_name, 
@@ -203,9 +210,9 @@ select concat('20', to_char(e.hire_date, 'YY')) year, e.employee_id, e.first_nam
 
 
 
-/* 12)	�μ����� ���� ���� �޿��� �ް� �ִ� ������ �̸�, �μ��̸�, �޿��� ����Ͻÿ�. 
-	�̸��� last_name�� ����ϸ�, �μ��̸����� �������� �����ϰ�, 
-	�μ��� ���� ��� �̸��� ���� ���� �������� �����Ͽ� ����մϴ�. */
+/* 12번문제)	부서별로 가장 적은 급여를 받고 있는 직원의 이름, 부서이름, 급여를 출력하시오. 
+	이름은 last_name만 출력하며, 부서이름으로 오름차순 정렬하고, 
+	부서가 같은 경우 이름을 기준 으로 오름차순 정렬하여 출력합니다.. */
     
 select last_name, sub.department_name, sub.salary  
 from
@@ -221,9 +228,9 @@ order by sub.department_name, e.last_name
 
 
 
-/* 13������) EMPLOYEES ���̺��� �޿��� ���� �޴� ������� ��ȸ���� ��
-   6��°���� 10 ��°���� 5���� last_name, first_name, salary�� ��ȸ�ϴ�
-   sql������ �ۼ��Ͻÿ�. */
+/* 13번문제) EMPLOYEES 테이블에서 급여를 많이 받는 순서대로 조회했을 때
+   6번째부터 10 번째까지 직원의 last_name, first_name, salary를 조회하는
+   sql문장을 작성하시오. */
 select sub1.last_name, sub1.first_name, sub1.salary
 from 
     (
@@ -251,9 +258,9 @@ where sub.ranking between 6 and 10
 
    
 
-/* 14������) ��Sales�� �μ��� ���� ������ �̸�(first_name), �޿�(salary), 
-	�μ��̸�(department_name)�� ��ȸ�Ͻÿ�. 
-	��, �޿��� 100�� �μ��� ��պ��� ���� �޴� ���� ������ ��µǾ�� �Ѵ�. */
+/* 14번문제) ‘Sales’ 부서에 속한 직원의 이름(first_name), 급여(salary), 
+	부서이름(department_name)을 조회하시오. 
+	단, 급여는 100번 부서의 평균보다 적게 받는 직원 정보만 출력되어야 한다. */
 
 select *
   from Employees e inner join Departments d on d.department_id = e.department_id
@@ -272,8 +279,8 @@ select round(avg(ee.salary), -1) salary
                   group by ee.department_id;
 
 
-/* 15������) �μ��� �Ի���� �������� ����Ͻÿ�. 
-	��, �������� 5�� �̻��� �μ��� ��µǾ�� �ϸ� ��°���� �μ��̸� ������ �Ѵ�. */
+/* 15번문제) 부서별 입사월별 직원수를 출력하시오. 
+	단, 직원수가 5명 이상인 부서만 출력되어야 하며 출력결과는 부서이름 순으로 한다.Ѵ�. */
     
 select sub.department_name, sub.hire_month, sub.cnt
 from
@@ -305,11 +312,11 @@ order by  max(sub.department_name), to_char(sub.hire_date, 'MM')
 
 
 
-/* 16������) Ŀ�̼�(commission_pct)�� ���� ���� ���� ���� 4���� 
-	�μ���(department_name), ������ (first_name), �޿�(salary),
-	Ŀ�̼�(commission_pct) ������ ��ȸ�Ͻÿ�. 
-	��°���� Ŀ�̼��� ���� �޴� ������ ����ϵ� ������ Ŀ�̼ǿ� ���ؼ��� �޿��� ����
- 	������ ���� ��� �ǰ� �Ѵ�. */
+/* 16번문제) 커미션(commission_pct)을 가장 많이 받은 상위 4명의 
+	부서명(department_name), 직원명 (first_name), 급여(salary),
+	커미션(commission_pct) 정보를 조회하시오. 
+	출력결과는 커미션을 많이 받는 순서로 출력하되 동일한 커미션에 대해서는 급여가 높은
+ 	직원이 먼저 출력 되게 한다.. */
     
 select *
   from Employees;
