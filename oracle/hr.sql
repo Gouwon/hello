@@ -101,14 +101,12 @@ select (first_name || ' ' || last_name) name, salary
   from Employees
   where job_id = 'SA_REP' and salary between 9000 and 10000
   ;
-select e.first_name  "����" , e.salary "�����޿�", es.first_name "�Ŵ��� �̸�" , es.salary "�Ŵ��� �޿�" ,
-(e.first_name || '_' || e.last_name) as "����Ǯ����"
+
+select e.first_name  "직원" , e.salary "직원급여", es.first_name "매니저 이름" , es.salary "매니저 급여" ,
+(e.first_name || '_' || e.last_name) as "직원풀네임"
 from Employees e inner join Employees es on e.manager_id = es.employee_id where e.salary > es.salary ;
 
-select (e.first_name || '_' || e.last_name) as "���� �̸�" , e.salary "�޿�"
-from Employees e  where e.job_id = 'SA_REP' and e.salary between 9000 and 10000 order by salary desc;
-
-select concat(concat(e.first_name, ' '), e.last_name) as "���� �̸�" , e.salary "�޿�"
+select (e.first_name || '_' || e.last_name) as "직원 이름" , e.salary "급여"
 from Employees e  where e.job_id = 'SA_REP' and e.salary between 9000 and 10000 order by salary desc;
 
 
@@ -118,9 +116,9 @@ from Employees e  where e.job_id = 'SA_REP' and e.salary between 9000 and 10000 
 
 select *
 from
-(select  sum(salary)"���޺� �޿� ����"
+(select  sum(salary)"직급별 급여 총합"
 from employees e inner join Jobs j on e.job_id = j.job_id group by e.Job_id  order by sum(salary) desc) sub
-where sub."���޺� �޿� ����" > 30000;
+where sub."직급별 급여 총합" > 30000;
 
 
 select max(j.job_title), sum(e.salary)
@@ -130,8 +128,26 @@ select max(j.job_title), sum(e.salary)
   order by sum(e.salary) desc
   ;
 
+-- =============================================================
+select max(j.job_title) job_title, sum(e.salary) sum_sal
+  from Employees e inner join Jobs j on e.job_id = j.job_id
+  group by e.job_id
+  having sum(e.salary) >= 30000
+  order by sum(e.salary) desc
+;
 
+select sub.*
+  from 
+  (
+    select max(j.job_title) job_title, sum(e.salary) sum_sal
+      from Employees e inner join Jobs j on e.job_id = j.job_id
+      group by e.job_id
+   ) sub
+   where sub.sum_sal >= 30000
+   order by sub.sum_sal desc
+   ;
 
+-- =======================================================================
 
 -- 7번문제) 각 도시별 평균 연봉(급여)가 높은순으로 상위 3개 도시를 출력하시오.
 select * from locations;
@@ -148,7 +164,20 @@ select  max(l.city) city, round(avg(salary), -1) avg_salary
 where rownum < 4
        ;
 
+-- =======================================================================
+select sub.*
+    from
+    (
+        select l.city, avg(e.salary) avg_sal
+            from Employees e inner join Departments d on d.department_id = e.department_id
+                             inner join Locations l on l.location_id = d.location_id
+            group by l.city
+            order by avg_sal
+    ) sub
+where rownum <= 3
+;
 
+-- =======================================================================
 
 /* 8번문제) 직책(Job Title)이 'Sales Manager'인 사원들의 입사년도(hire_date)별 평균 급여를 출력하시오. 
 	출력 시 년도를 기준으로 오름차순 정렬하시오. */
@@ -161,6 +190,17 @@ select concat('20', min(to_char(e.hire_date, 'YY'))) year, avg(e.salary) avg_sal
   group by to_char(e.hire_date, 'YY')
   order by to_char(e.hire_date, 'YY')
   ;
+
+-- =======================================================================
+
+select to_char(e.hire_date, 'YYYY') hire_year, round(avg(e.salary)) avg_sal
+    from Employees e inner join Jobs j on j.job_id = e.job_id
+    where j.job_title = 'Sales Manager'
+    group by to_char(e.hire_date, 'YYYY')
+    order by to_char(e.hire_date, 'YYYY')
+;
+
+-- =======================================================================
 
 /* 9번문제) 각 도시(city)에 있는 모든 부서 직원들의 평균급여를 조회하고자 한다. 
 	평균급여가 가장 낮은 도시부터 도시명(city)과 평균연봉, 해당 도시의 직원수를 
@@ -179,8 +219,18 @@ select max(l.city) city, avg(e.salary) avg_salary, count(*) cnt
 ) sub
 where sub.cnt < 10
   ;
+  
+-- =======================================================================
 
+select l.city, avg(e.salary) avg_sal, count(*) emp_cnt
+    from Locations l inner join Departments d on l.location_id = d.location_id
+                     inner join Employees e on d.department_id = e.department_id
+    group by l.city
+    having count(*) < 10
+    order by avg_sal
+    ;
 
+-- =======================================================================
 
 /* 10번문제) ‘Public Accountant’의 직책(job_title)으로 과거에 근무한 적이 있는 모든
 	사원의 사번과 이름을 출력하시오. 
@@ -193,7 +243,17 @@ select e.employee_id, (e.first_name || ' ' || e.last_name) name
   from Job_history jh inner join Jobs j on jh.job_id = j.job_id
                       inner join Employees e on jh.employee_id = e.employee_id
   where j.job_title = 'Public Accountant' and e.job_id <> j.job_id;
-  
+
+-- =======================================================================
+
+select e.employee_id, e.last_name
+    from Jobs j inner join Job_history jh on j.job_id = jh.job_id
+                inner join Employees e on jh.employee_id = e.employee_id
+    where j.job_title = 'Public Accountant'
+            and e.job_id <> j.job_id
+;
+
+-- =======================================================================
 
 /* 11번문제)	2007년에 입사(hire_date)한 직원들의 사번(employee_id),
 	이름(first_name), 성(last_name), 
@@ -207,30 +267,56 @@ select concat('20', to_char(e.hire_date, 'YY')) year, e.employee_id, e.first_nam
   where to_char(e.hire_date, 'YY') = '07'
   ;
   
+-- =======================================================================
 
+select e.*, nvl(d.department_name, e.first_name, e.last_name, '<Not Assigned>') department_name
+    from Employees e left outer join Departments d on e.dapartment_id = d.department_id
+    where to_char(hire_date, 'YYYY') = '2007'
+;
 
+-- =======================================================================
 
 /* 12번문제)	부서별로 가장 적은 급여를 받고 있는 직원의 이름, 부서이름, 급여를 출력하시오. 
 	이름은 last_name만 출력하며, 부서이름으로 오름차순 정렬하고, 
 	부서가 같은 경우 이름을 기준 으로 오름차순 정렬하여 출력합니다.. */
     
-select last_name, sub.department_name, sub.salary  
+select last_name, sub.department_name, sub.salary c_salary, e.salary e_salary
 from
 Employees e,
 (
-select d.department_id, max(d.department_name) department_name, min(e.salary) salary
-  from Employees e inner join Departments d on d.department_id = e.department_id
+select d.department_id, max(d.department_name) department_name, min(ee.salary) salary
+  from Employees ee inner join Departments d on d.department_id = ee.department_id
   group by d.department_id
 ) sub  
-where e.salary = sub.salary
+where e.salary = sub.salary and e.department_id = sub.department_id
 order by sub.department_name, e.last_name
+; -- 카테시안 조인(크로스 조인) =====> 서브쿼리에서 찾은 놈과 Employees에서 온 놈들이 n * n이 되기 때문에 좋지 않은 상황이다.
+
+
+-- =======================================================================
+
+/* 각 부서별로 나눠서 가장 작은 사람만 추출함면 됨. */ 
+
+select ee.*
+    from (select e.department_id, min(e.salary) min_sal
+            from Employees e 
+            where e.department_id is not null
+            group by e.department_id) sub 
+                                      inner join Employees ee
+                                      on sub.department_id = ee.department_id
+                                      and ee.salary = sub.min_sal
+                                      inner join Departments dd
+                                      on dd.department_id = ee.department_id
+    where ee.salary = sub.min_sal
+    order by ee.deaprtment_id, ee.last_name
 ;
 
-
+-- =======================================================================
 
 /* 13번문제) EMPLOYEES 테이블에서 급여를 많이 받는 순서대로 조회했을 때
    6번째부터 10 번째까지 직원의 last_name, first_name, salary를 조회하는
    sql문장을 작성하시오. */
+
 select sub1.last_name, sub1.first_name, sub1.salary
 from 
     (
@@ -255,7 +341,32 @@ select e.last_name last_name, e.first_name first_name, e.salary salary,
 where sub.ranking between 6 and 10
 ;
 
+-- =======================================================================
 
+select subsub.*
+    from
+        (
+           select rownum rn, sub.*
+                from(
+                    select e.last_name, e.first_name, e.salary
+                        from Employees e
+                        order by e.salary desc
+                    ) sub
+        ) subsub
+  where rn between 6 and 10
+;
+
+select sub.*
+    from 
+    (
+        select e.last_name, e.first_name, e.salary, rank() over(order by e.salary desc) ranking
+            from Employees e
+    ) sub
+where sub.ranking between 6 and 10
+;
+
+
+-- =======================================================================
    
 
 /* 14번문제) ‘Sales’ 부서에 속한 직원의 이름(first_name), 급여(salary), 
@@ -272,11 +383,15 @@ select *
                   group by ee.department_id
         );
         
+-- =======================================================================
 
-select round(avg(ee.salary), -1) salary
-                  from Employees ee
-                  where ee.department_id = 100
-                  group by ee.department_id;
+select e.first_name, e.salary, d.department_name
+    from Employees e inner join Departments d on d.department_id = e.department_id
+    where d.department_name = 'Sales'
+        and e.salary < (select avg(salary) from Employees where department_id =100)
+;
+
+-- =======================================================================
 
 
 /* 15번문제) 부서별 입사월별 직원수를 출력하시오. 
@@ -305,9 +420,24 @@ select ee.department_id department_id, count(*) cnt
 where sub.department_id =sub1.department_id
 group by sub.department_id, to_char(sub.hire_date, 'MM')
 order by  max(sub.department_name), to_char(sub.hire_date, 'MM')
-  ;
+  ; -- 카테시안 조인
 
+-- =======================================================================
 
+select max(d.department_name) department_name, e.department_id, to_char(e.hire_date, 'Mon'), count(*) emp_cnt
+    from Employees e inner join Departments d on e.department_id = d.department_id
+    group by e.department_id, to_char(e.hire_date, 'Mon')
+    having count(*) >= 5
+    order by department_name;
+    
+    
+select max(d.department_name) department_name, e.department_id, to_char(e.hire_date, 'Mon'), count(*) emp_cnt
+    from Employees e inner join Departments d on e.department_id = d.department_id
+    where e.department_id in (select department_id from Employees group by department_id having count(*) >= 5)
+    group by e.department_id, to_char(e.hire_date, 'Mon')
+    order by department_name;
+
+-- =======================================================================
 
 
 
@@ -357,4 +487,15 @@ select d.department_name as department_name,
               where e.commission_pct is not null
  ) sub
  where ranking < 5
-              ;
+;
+
+-- =======================================================================
+select sub.*
+ from (select d.department_name, e.salary, e.first_name, e.last_name, e.commission_pct
+        from Employees e inner join Departments d on e.department_id = d.department_id
+        order by e.commission_pct desc nulls last) sub
+ where rownum <= 4
+ order by sub.salary desc
+    ;
+
+-- =======================================================================
