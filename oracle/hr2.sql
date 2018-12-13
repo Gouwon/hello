@@ -1,0 +1,1 @@
+select e.employee_id '회원번호' from Employees e;
