@@ -281,21 +281,23 @@ from
 select d.department_id department_id, max(d.department_name) department_name, to_char(e.hire_date, 'MM') hire_month, count(*) cnt
   from Employees e inner join Departments d on d.department_id = e.department_id
   group by d.department_id, to_char(e.hire_date, 'MM')
-  order by d.department_id, to_char(e.hire_date, 'MM')
+  order by max(d.department_name), to_char(e.hire_date, 'MM')
 ) sub
 where sub.cnt >= 5
 ;
 
-select sub.department_id
+select max(sub.department_name) department_name, to_char(sub.hire_date, 'MM') hire_month, count(*) cnt
 from
-Employees e inner join
+(select d.department_id, d.department_name, e.hire_date   from Employees e inner join Departments d on d.department_id = e.department_id) sub,
 (
 select ee.department_id department_id, count(*) cnt
   from Employees ee
   group by ee.department_id
   having count(*) >= 5
-) sub
-group by sub.department_id, 
+) sub1
+where sub.department_id =sub1.department_id
+group by sub.department_id, to_char(sub.hire_date, 'MM')
+order by  max(sub.department_name), to_char(sub.hire_date, 'MM')
   ;
 
 
