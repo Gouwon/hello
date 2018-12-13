@@ -284,8 +284,20 @@ select d.department_id department_id, max(d.department_name) department_name, to
   order by d.department_id, to_char(e.hire_date, 'MM')
 ) sub
 where sub.cnt >= 5
-
 ;
+
+select sub.department_id
+from
+Employees e inner join
+(
+select ee.department_id department_id, count(*) cnt
+  from Employees ee
+  group by ee.department_id
+  having count(*) >= 5
+) sub
+group by sub.department_id, 
+  ;
+
 
 
 
