@@ -11,8 +11,8 @@ create table Prof(
   constraint pk_id primary key (id)
 );
 
-comment on column Prof.name is '±³¼ö¸í';
-comment on column Prof.likecnt is 'ÁÁ¾Æ¿ä¼ö';
+comment on column Prof.name is 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
+comment on column Prof.likecnt is 'ï¿½ï¿½ï¿½Æ¿ï¿½ï¿½';
 
 
 create table Subject(
@@ -39,28 +39,28 @@ select * from Jobs;
 select * from Jobs_history;
 
 
--- 1¹ø¹®Á¦) ºÎ¼­º° Á÷¿ø¼ö
+-- 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 select emp.department_id, max(dept.department_name) department_name, count(distinct emp.employee_id) emp_cnt
   from Employees emp inner join Departments dept on emp.department_id = dept.department_id
   group by emp.department_id
   order by emp_cnt desc
   ;
 
--- 2¹ø¹®Á¦) ºÎ¼­º° Æò±Õ ±Þ¿©(salary)
+-- 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¿ï¿½(salary)
 select max(dept.department_name), round(avg(emp.salary), -1) as avg_salary
   from Employees emp inner join Departments dept on emp.department_id = dept.department_id
   group by emp.department_id
   order by avg_salary desc
   ;
 
--- 3¹ø¹®Á¦) Á÷Ã¥º° Æò±Õ ±Þ¿©
+-- 3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½Ã¥ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¿ï¿½
 select max(emp.job_id), round(avg(emp.salary), 1) as avg_salary
   from Employees emp inner join Jobs jbs on emp.job_id = jbs.job_id
   group by emp.job_id
   ;
 
 
--- 4¹ø¹®Á¦) ÀÚ½ÅÀÇ ¸Å´ÏÀúº¸´Ù ´õ ¸¹Àº ±Þ¿©¸¦ ¹Þ´Â »ç¶÷ ¸ñ·Ï *********************
+-- 4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¿ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ *********************
 select * from Employees;
 
 select employee_id, manager_id
@@ -90,31 +90,31 @@ select e.employee_id, e.salary, e.manager_id,
 
 
 
--- 5¹ø¹®Á¦) job titleÀÌ sales represntativeÀÎ Á÷¿ø Áß¿¡¼­, ±Þ¿©°¡ 9,000 ~ 10,000ÀÎ Á÷¿øµéÀÇ ÀÌ¸§°ú ±Þ¿©¸¦ Ãâ·ÂÇÏ½Ã¿À. **************
+-- 5ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) job titleï¿½ï¿½ sales represntativeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß¿ï¿½ï¿½ï¿½, ï¿½Þ¿ï¿½ï¿½ï¿½ 9,000 ~ 10,000ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Þ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½. **************
 select * from Employees;
 select * from Jobs;
 select (first_name || ' ' || last_name) name, salary
   from Employees
   where job_id = 'SA_REP' and salary between 9000 and 10000
   ;
-select e.first_name  "Á÷¿ø" , e.salary "Á÷¿ø±Þ¿©", es.first_name "¸Å´ÏÀú ÀÌ¸§" , es.salary "¸Å´ÏÀú ±Þ¿©" ,
-(e.first_name || '_' || e.last_name) as "Á÷¿øÇ®³×ÀÓ"
+select e.first_name  "ï¿½ï¿½ï¿½ï¿½" , e.salary "ï¿½ï¿½ï¿½ï¿½ï¿½Þ¿ï¿½", es.first_name "ï¿½Å´ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½" , es.salary "ï¿½Å´ï¿½ï¿½ï¿½ ï¿½Þ¿ï¿½" ,
+(e.first_name || '_' || e.last_name) as "ï¿½ï¿½ï¿½ï¿½Ç®ï¿½ï¿½ï¿½ï¿½"
 from Employees e inner join Employees es on e.manager_id = es.employee_id where e.salary > es.salary ;
 
-select (e.first_name || '_' || e.last_name) as "Á÷¿ø ÀÌ¸§" , e.salary "±Þ¿©"
+select (e.first_name || '_' || e.last_name) as "ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½" , e.salary "ï¿½Þ¿ï¿½"
 from Employees e  where e.job_id = 'SA_REP' and e.salary between 9000 and 10000 order by salary desc;
 
-select concat(concat(e.first_name, ' '), e.last_name) as "Á÷¿ø ÀÌ¸§" , e.salary "±Þ¿©"
+select concat(concat(e.first_name, ' '), e.last_name) as "ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½" , e.salary "ï¿½Þ¿ï¿½"
 from Employees e  where e.job_id = 'SA_REP' and e.salary between 9000 and 10000 order by salary desc;
 
 
--- 6¹ø¹®Á¦) °¢ Á÷±Þº°·Î ±Þ¿©ÀÇ ÃÑÇÕÀ» ±¸ÇÏ°íÀÚ ÇÑ´Ù.±Þ¿© ÃÑÇÕÀÌ °¡Àå ³ôÀº Á÷±Þ¼øÀ¸·Î ±Þ¿© ÃÑÇÕÀ» Ãâ·ÂÇÏ½Ã¿À. (´Ü, ±Þ¿©ÃÑÇÕÀÌ 30,000 ÀÌ»óÀÎ Á÷±Þ¸¸ Ãâ·ÂÇÒ °Í)
+-- 6ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ ï¿½ï¿½ï¿½Þºï¿½ï¿½ï¿½ ï¿½Þ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.ï¿½Þ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½. (ï¿½ï¿½, ï¿½Þ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 30,000 ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Þ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
 
 select *
 from
-(select  sum(salary)"Á÷±Þº° ±Þ¿© ÃÑÇÕ"
+(select  sum(salary)"ï¿½ï¿½ï¿½Þºï¿½ ï¿½Þ¿ï¿½ ï¿½ï¿½ï¿½ï¿½"
 from employees e inner join Jobs j on e.job_id = j.job_id group by e.Job_id  order by sum(salary) desc) sub
-where sub."Á÷±Þº° ±Þ¿© ÃÑÇÕ" > 30000;
+where sub."ï¿½ï¿½ï¿½Þºï¿½ ï¿½Þ¿ï¿½ ï¿½ï¿½ï¿½ï¿½" > 30000;
 
 
 select max(j.job_title), sum(e.salary)
@@ -127,13 +127,13 @@ select max(j.job_title), sum(e.salary)
 
 
 
--- 7¹ø¹®Á¦) °¢ µµ½Ãº° Æò±Õ ¿¬ºÀ(±Þ¿©)°¡ ³ôÀº¼øÀ¸·Î »óÀ§ 3°³ µµ½Ã¸¸ Ãâ·ÂÇÏ½Ã¿À.
+-- 7ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ ï¿½ï¿½ï¿½Ãºï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½Þ¿ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½.
 select * from locations;
 
 select rownum, sub.*
   from
 (
-select  max(l.city) city, round(avg(salary), -1) avg_salary, max(rownum), min(rownum)
+select  max(l.city) city, round(avg(salary), -1) avg_salary
   from Employees e inner join Departments d on e.department_id = d.department_id
                    inner join locations l on l.location_id = d.location_id
        group by l.location_id
@@ -144,21 +144,21 @@ where rownum < 4
 
 
 
--- 8¹ø¹®Á¦) Á÷Ã¥(Job Title)ÀÌ Sales ManagerÀÎ »ç¿øµéÀÇ ÀÔ»ç³âµµ(hire_date)º° Æò±Õ ±Þ¿©¸¦ Ãâ·ÂÇÏ½Ã¿À. (Ãâ·Â ½Ã ³âµµ¸¦ ±âÁØÀ¸·Î ¿À¸§Â÷¼ø Á¤·ÄÇÏ½Ã¿À.)
+-- 8ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½Ã¥(Job Title)ï¿½ï¿½ Sales Managerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô»ï¿½âµµ(hire_date)ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½. (ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½âµµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½.)
 select *
   from Employees;
 
-select concat('20', min(to_char(e.hire_date, 'YY'))) year, avg(e.salary)
+select concat('20', min(to_char(e.hire_date, 'YY'))) year, avg(e.salary) avg_salary
   from Employees e inner join Jobs j on e.job_id = j.job_id
   where j.job_title = 'Sales Manager'
   group by to_char(e.hire_date, 'YY')
   order by to_char(e.hire_date, 'YY')
   ;
 
-/* 9¹ø¹®Á¦) °¢ µµ½Ã(city)¿¡ ÀÖ´Â ¸ðµç ºÎ¼­ Á÷¿øµéÀÇ Æò±Õ±Þ¿©¸¦ Á¶È¸ÇÏ°íÀÚ ÇÑ´Ù. 
-	Æò±Õ±Þ¿©°¡ °¡Àå ³·Àº µµ½ÃºÎÅÍ µµ½Ã¸í(city)°ú Æò±Õ¿¬ºÀ, ÇØ´ç µµ½ÃÀÇ Á÷¿ø¼ö¸¦ 
-	Ãâ·ÂÇÏ½Ã¿À. 
-	´Ü, µµ½Ã¿¡ ±Ù¹«ÇÏ´Â Á÷¿øÀÌ 10¸í ÀÌ»óÀÎ °÷Àº Á¦¿ÜÇÏ°í Á¶È¸ÇÏ½Ã¿À. */
+/* 9ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(city)ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½Î¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Õ±Þ¿ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½. 
+	ï¿½ï¿½Õ±Þ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¸ï¿½(city)ï¿½ï¿½ ï¿½ï¿½Õ¿ï¿½ï¿½ï¿½, ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½. 
+	ï¿½ï¿½, ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½Ù¹ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 10ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½È¸ï¿½Ï½Ã¿ï¿½. */
 
 
 select sub.city, sub.avg_salary, sub.cnt
@@ -168,16 +168,17 @@ select max(l.city) city, avg(e.salary) avg_salary, count(*) cnt
   from Employees e inner join Departments d on e.department_id = d.department_id
                    inner join Locations l on l.location_id = d.location_id
         group by l.location_id
+        order by avg_salary
 ) sub
 where sub.cnt < 10
   ;
 
 
 
-/* 10¹ø¹®Á¦) Public  Accountant¡¯ÀÇ Á÷Ã¥(job_title)À¸·Î °ú°Å¿¡ ±Ù¹«ÇÑ ÀûÀÌ ÀÖ´Â ¸ðµç
-	»ç¿øÀÇ »ç¹ø°ú ÀÌ¸§À» Ãâ·ÂÇÏ½Ã¿À. 
-	(ÇöÀç ¡®Public Accountant¡¯ÀÇ Á÷Ã¥(job_title)À¸·Î ±Ù¹«ÇÏ´Â »ç¿øÀº °í·Á ÇÏÁö
-	 ¾Ê´Â´Ù) */
+/* 10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) Public  Accountantï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¥(job_title)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å¿ï¿½ ï¿½Ù¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½
+	ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½. 
+	(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Public Accountantï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¥(job_title)ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¹ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	 ï¿½Ê´Â´ï¿½) */
 
 select * from Jobs;
 
@@ -187,13 +188,13 @@ select e.employee_id, (e.first_name || ' ' || e.last_name) name
   where j.job_title = 'Public Accountant' and e.job_id <> j.job_id;
   
 
-/* 11)	2007³â¿¡ ÀÔ»ç(hire_date)ÇÑ Á÷¿øµéÀÇ »ç¹ø(employee_id),
-	ÀÌ¸§(first_name), ¼º(last_name), 
-	ºÎ¼­¸í(department_name)À» Á¶È¸ÇÕ´Ï´Ù.  
-	ÀÌ¶§, ºÎ¼­¿¡ ¹èÄ¡µÇÁö ¾ÊÀº Á÷¿øÀÇ °æ¿ì, ¡®<Not Assigned>¡¯·Î Ãâ·ÂÇÏ½Ã¿À.*/
+/* 11)	2007ï¿½â¿¡ ï¿½Ô»ï¿½(hire_date)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½(employee_id),
+	ï¿½Ì¸ï¿½(first_name), ï¿½ï¿½(last_name), 
+	ï¿½Î¼ï¿½ï¿½ï¿½(department_name)ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Õ´Ï´ï¿½.  
+	ï¿½Ì¶ï¿½, ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½ï¿½<Not Assigned>ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½.*/
 desc departments;
 
-select concat('20', to_char(e.hire_date, 'YY')) year, e.first_name, e.last_name, 
+select concat('20', to_char(e.hire_date, 'YY')) year, e.employee_id, e.first_name, e.last_name, 
        nvl(department_name, '<Not Assigned>') department_name
   from Employees e left outer join Departments d on d.department_id = e.department_id
   where to_char(e.hire_date, 'YY') = '07'
@@ -202,9 +203,9 @@ select concat('20', to_char(e.hire_date, 'YY')) year, e.first_name, e.last_name,
 
 
 
-/* 12)	ºÎ¼­º°·Î °¡Àå ÀûÀº ±Þ¿©¸¦ ¹Þ°í ÀÖ´Â Á÷¿øÀÇ ÀÌ¸§, ºÎ¼­ÀÌ¸§, ±Þ¿©¸¦ Ãâ·ÂÇÏ½Ã¿À. 
-	ÀÌ¸§Àº last_name¸¸ Ãâ·ÂÇÏ¸ç, ºÎ¼­ÀÌ¸§À¸·Î ¿À¸§Â÷¼ø Á¤·ÄÇÏ°í, 
-	ºÎ¼­°¡ °°Àº °æ¿ì ÀÌ¸§À» ±âÁØ À¸·Î ¿À¸§Â÷¼ø Á¤·ÄÇÏ¿© Ãâ·ÂÇÕ´Ï´Ù. */
+/* 12)	ï¿½Î¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¿ï¿½ï¿½ï¿½ ï¿½Þ°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½, ï¿½Î¼ï¿½ï¿½Ì¸ï¿½, ï¿½Þ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½. 
+	ï¿½Ì¸ï¿½ï¿½ï¿½ last_nameï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½, ï¿½Î¼ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, 
+	ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. */
     
 select last_name, sub.department_name, sub.salary  
 from
@@ -220,9 +221,9 @@ order by sub.department_name, e.last_name
 
 
 
-/* 13¹ø¹®Á¦) EMPLOYEES Å×ÀÌºí¿¡¼­ ±Þ¿©¸¦ ¸¹ÀÌ ¹Þ´Â ¼ø¼­´ë·Î Á¶È¸ÇßÀ» ¶§
-   6¹øÂ°ºÎÅÍ 10 ¹øÂ°±îÁö 5¸íÀÇ last_name, first_name, salary¸¦ Á¶È¸ÇÏ´Â
-   sql¹®ÀåÀ» ÀÛ¼ºÇÏ½Ã¿À. */
+/* 13ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) EMPLOYEES ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½Þ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+   6ï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½ 10 ï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½ 5ï¿½ï¿½ï¿½ï¿½ last_name, first_name, salaryï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ï´ï¿½
+   sqlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï½Ã¿ï¿½. */
 select sub1.last_name, sub1.first_name, sub1.salary
 from 
     (
@@ -237,7 +238,7 @@ from
 where sub1.rn between 6 and 10
 ;
 
-selet sub.last_name, sub.first_name, sub.salary
+select sub.last_name, sub.first_name, sub.salary
 from
 (
 select e.last_name last_name, e.first_name first_name, e.salary salary,
@@ -250,45 +251,51 @@ where sub.ranking between 6 and 10
 
    
 
-/* 14¹ø¹®Á¦) ¡®Sales¡¯ ºÎ¼­¿¡ ¼ÓÇÑ Á÷¿øÀÇ ÀÌ¸§(first_name), ±Þ¿©(salary), 
-	ºÎ¼­ÀÌ¸§(department_name)À» Á¶È¸ÇÏ½Ã¿À. 
-	´Ü, ±Þ¿©´Â 100¹ø ºÎ¼­ÀÇ Æò±Õº¸´Ù Àû°Ô ¹Þ´Â Á÷¿ø Á¤º¸¸¸ Ãâ·ÂµÇ¾î¾ß ÇÑ´Ù. */
+/* 14ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½Salesï¿½ï¿½ ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½(first_name), ï¿½Þ¿ï¿½(salary), 
+	ï¿½Î¼ï¿½ï¿½Ì¸ï¿½(department_name)ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ï½Ã¿ï¿½. 
+	ï¿½ï¿½, ï¿½Þ¿ï¿½ï¿½ï¿½ 100ï¿½ï¿½ ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½Õºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÂµÇ¾ï¿½ï¿½ ï¿½Ñ´ï¿½. */
 
 select *
   from Employees e inner join Departments d on d.department_id = e.department_id
   where d.department_name = 'Sales'
         and e.salary < (
-                select round(avg(ee.salary), -1) salary
+                select round(avg(ee.salary), 0) salary
                   from Employees ee
                   where ee.department_id = 100
                   group by ee.department_id
         );
         
 
+select round(avg(ee.salary), -1) salary
+                  from Employees ee
+                  where ee.department_id = 100
+                  group by ee.department_id;
 
-/* 15¹ø¹®Á¦) ºÎ¼­º° ÀÔ»ç¿ùº° Á÷¿ø¼ö¸¦ Ãâ·ÂÇÏ½Ã¿À. 
-	´Ü, Á÷¿ø¼ö°¡ 5¸í ÀÌ»óÀÎ ºÎ¼­¸¸ Ãâ·ÂµÇ¾î¾ß ÇÏ¸ç Ãâ·Â°á°ú´Â ºÎ¼­ÀÌ¸§ ¼øÀ¸·Î ÇÑ´Ù. */
+
+/* 15ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½Ã¿ï¿½. 
+	ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 5ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ÂµÇ¾ï¿½ï¿½ ï¿½Ï¸ï¿½ ï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½ ï¿½Î¼ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½. */
     
-select sub.*
+select sub.department_name, sub.hire_month, sub.cnt
 from
 (
-select e.department_id department_id, to_char(e.hire_date, 'MM') hire_month, count(*) cnt
-  from Employees e
-  group by e.department_id, to_char(e.hire_date, 'MM')
-  order by e.department_id, to_char(e.hire_date, 'MM')
+select d.department_id department_id, max(d.department_name) department_name, to_char(e.hire_date, 'MM') hire_month, count(*) cnt
+  from Employees e inner join Departments d on d.department_id = e.department_id
+  group by d.department_id, to_char(e.hire_date, 'MM')
+  order by d.department_id, to_char(e.hire_date, 'MM')
 ) sub
 where sub.cnt >= 5
+
 ;
 
 
 
 
 
-/* 16¹ø¹®Á¦) Ä¿¹Ì¼Ç(commission_pct)À» °¡Àå ¸¹ÀÌ ¹ÞÀº »óÀ§ 4¸íÀÇ 
-	ºÎ¼­¸í(department_name), Á÷¿ø¸í (first_name), ±Þ¿©(salary),
-	Ä¿¹Ì¼Ç(commission_pct) Á¤º¸¸¦ Á¶È¸ÇÏ½Ã¿À. 
-	Ãâ·Â°á°ú´Â Ä¿¹Ì¼ÇÀ» ¸¹ÀÌ ¹Þ´Â ¼ø¼­·Î Ãâ·ÂÇÏµÇ µ¿ÀÏÇÑ Ä¿¹Ì¼Ç¿¡ ´ëÇØ¼­´Â ±Þ¿©°¡ ³ôÀº
- 	Á÷¿øÀÌ ¸ÕÀú Ãâ·Â µÇ°Ô ÇÑ´Ù. */
+/* 16ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) Ä¿ï¿½Ì¼ï¿½(commission_pct)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 4ï¿½ï¿½ï¿½ï¿½ 
+	ï¿½Î¼ï¿½ï¿½ï¿½(department_name), ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (first_name), ï¿½Þ¿ï¿½(salary),
+	Ä¿ï¿½Ì¼ï¿½(commission_pct) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ï½Ã¿ï¿½. 
+	ï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½Ì¼Ç¿ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½Þ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ 	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ç°ï¿½ ï¿½Ñ´ï¿½. */
     
 select *
   from Employees;
@@ -317,5 +324,16 @@ from
 where sub1.rn < 5
   ;
 
-
-select * from Jobs;
+select sub.department_name, sub.first_name, sub.salary, sub.commission_pct
+from
+(
+select d.department_name as department_name, 
+                   e.first_name as first_name, 
+                   e.salary as salary, 
+                   e.commission_pct as commission_pct,
+                   rank() over ( order by e.commission_pct desc ) ranking
+              from Employees e inner join Departments d on d.department_id = e.department_id
+              where e.commission_pct is not null
+ ) sub
+ where ranking < 5
+              ;
