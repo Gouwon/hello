@@ -13,6 +13,8 @@ create table Grade(
 select * from Grade;
 desc Grade;
 
+desc Enroll;
+
 insert into Grade(student, subject) select student, subject from Enroll;
 
 update Grade set midterm = ceil((0.5 + rand() / 2) * 100) where id > 0;
