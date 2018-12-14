@@ -98,3 +98,7 @@ create procedure sp_popular_prof
             
         end //
 delimiter ;
+
+
+
+call sp_club_memberinfo2('요트부');
