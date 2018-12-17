@@ -91,14 +91,90 @@ select sbj.id as sbj_id, max(sbj.name) as sbj_name, max(pr.name) as prof_name,
 ;
 
 delimiter //
-create procedure sp_popular_prof
-		
+create procedure sp_popular_prof()
         begin
-			
+			select sbj.id as sbj_id, max(sbj.name) as sbj_name, max(pr.name) as prof_name, 
+				   count(*) as stu_cnt, avg((g.midterm + g.finalterm) / 2) as avg_score, avg(pr.likecnt) prof_likecnt
+				from Enroll e inner join Subject sbj on sbj.id = e.subject
+							  inner join Prof pr on pr.id = sbj.prof
+							  inner join Grade g on e.id = g.enroll
+				group by sbj.id
+				order by count(*) desc, avg((g.midterm + g.finalterm) / 2) desc, avg(pr.likecnt) desc;
             
         end //
 delimiter ;
 
 
-
 call sp_club_memberinfo2('요트부');
+
+
+-- 과목명을 입력받아, 성적의 분포를 Stem-and-Leaf display로 표현하는 프로시저를 작성하시오.
+-- 결과 화면
+-- 5 | 1257
+-- 6 | 359
+-- 7 | 45578
+select * from v_grade_enroll;
+
+
+delimiter //
+create procedure sp_grade_stem_leaf(arg_subject_name varchar(31))
+	begin 
+		declare _isdone boolean default false;
+        declare _avr tinyint;
+        declare _stem tinyint;
+        declare _leaf tinyint;
+        
+		declare cur_avrs cursor for
+			select avr
+				from v_grade_enroll
+                where subject = (select id from Subject where name = arg_subject_name)
+                order by avr;
+		declare continue handler
+			for not found set _isdone := True;
+            
+		drop table if exists t_grade;
+		create temporary table t_grade(
+			stem tinyint default 0,
+            leaf varchar(1024) default '',
+            cnt smallint default 0,
+            primary key(stem)
+            );
+            
+		open cur_avrs;
+			loop1 : loop
+				fetch cur_avrs into _avr;
+				
+                set _stem = floor(_avr / 10);
+                set _leaf = mod(_avr,10);
+                
+                if exists(select * from t_grade where stem = _stem) 
+					then update t_grade set leaf = concat(leaf, _leaf),
+							cnt = cnt + 1
+							where stem = _stem;
+					
+				else
+					insert into t_grade(stem, leaf, cnt) value(_stem, _leaf, 1);
+                    
+                end if;
+                
+                if _isdone then
+					leave loop1;
+				end if;
+                
+            end loop loop1;
+        close cur_avrs;
+		select * from t_grade;
+    end //
+delimiter ;
+
+select * from t_grade;
+select * from v_grade_enroll;
+call sp_grade_stem_leaf('역사');
+
+
+select * from v_grade_enroll order by subject, avr desc;
+
+select instr('123,456,789', ',');
+
+
+
