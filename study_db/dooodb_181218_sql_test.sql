@@ -90,7 +90,7 @@ create trigger tr_club_leader
 		insert into ClubMember(club, student, level)
 			values ((select id from Club where name = new.name), 
 					(select stu.id from Student as stu
-						where stu.id not in (select cm.student from ClubMember as cm where level = 1 or level = 2)
+						where stu.id not in (select cm.student from ClubMember as cm where level <> 0)
 						order by rand() limit 1), 
 					2)    
 ;
