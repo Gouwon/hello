@@ -106,3 +106,8 @@ select substring_index('a,b,c', ',', 1);
 */
 
  call sp_subject_ranking();
+ 
+ select * from Subject;
+ show create table Subject;
+ 
+ select * from Prof;
