@@ -82,13 +82,31 @@ select * from Prof;
 -- 학생수, 성적, likecnt 을 이용하여 가장 인기있는 교수(=과목)를 구하라. --프로시저
 
 select sbj.id as sbj_id, max(sbj.name) as sbj_name, max(pr.name) as prof_name, 
-       count(*) as stu_cnt, avg((g.midterm + g.finalterm) / 2) as avg_score, avg(pr.likecnt) prof_likecnt
+       count(*) as stu_cnt, avg(g.midterm + g.finalterm) as avg_score, 
+       avg(pr.likecnt) prof_likecnt
 	from Enroll e inner join Subject sbj on sbj.id = e.subject
 				  inner join Prof pr on pr.id = sbj.prof
                   inner join Grade g on e.id = g.enroll
 	group by sbj.id
     order by count(*) desc, avg((g.midterm + g.finalterm) / 2) desc, avg(pr.likecnt) desc
 ;
+
+
+select count(distinct ee.student) from Enroll ee ;
+
+select sbj.id as sbj_id, max(sbj.name) as sbj_name, max(pr.name) as prof_name, 
+       (count(*)) as stu_cnt, (avg((g.midterm + g.finalterm) / 2)) as avg_score, 
+       (avg(pr.likecnt))  prof_likecnt,
+       ( (count(*)/(select count(distinct ee.student) from Enroll ee) * 50) + 
+         (avg((g.midterm + g.finalterm) / 200) * 30) +
+		(avg(pr.likecnt) * 0.2)) estimation
+	from Enroll e inner join Subject sbj on sbj.id = e.subject
+				  inner join Prof pr on pr.id = sbj.prof
+                  inner join Grade g on e.id = g.enroll
+	group by sbj.id
+    order by estimation desc limit 3
+;
+
 
 delimiter //
 create procedure sp_popular_prof()

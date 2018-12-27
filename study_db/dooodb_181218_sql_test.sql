@@ -263,3 +263,9 @@ create procedure sp_subject_ranking()
 delimiter ;
 
 call sp_subject_ranking();
+
+
+select subject_name, student_name, max(avr)
+		from v_grade_enroll 
+		group by subject_name, student_name 
+		order by 1, 3 desc;
