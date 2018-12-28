@@ -24,6 +24,19 @@ def get_count(conn, tbl, where = ''):
     cur.execute(sql)
     return cur.fetchone()[0]
 
+def get_count1(conn, tbl, columns, where = ''):
+    cur = conn.cursor()
+    sql = "select " + columns + " from " + tbl
+    if where != '':
+        sql = sql + " where " + where
+
+    # print("get_count.sql=", sql)
+    print("@@@@@@@@@@@@@@@@@@@@@", sql)
+    cur.execute(sql)
+    return cur.fetchone()[0]
+
+
+
 def trunc_table(conn, tbl):
     cur = conn.cursor()
     cur.execute('truncate table ' + tbl)
@@ -45,3 +58,20 @@ def get_sample_verify(conn, tbl, smpls):
         rows.append(cur.fetchone()) 
     return rows
         
+def get_sample_verify1(conn, tbl, columns, smpls, condition1, condition2):
+    cur = conn.cursor()
+    rows = []
+    if tbl == "JOBS":
+        where = "where job_id = " + "'" + condition1 + "'"
+    elif tbl == "DEPARTMENTS":
+        where = "where department_id = " + str(condition1)
+    elif tbl == "EMPLOYEES":
+        where = "where employee_id = " + "'" + str(condition1) + "'"
+    else:
+        where = "where employee_id = " + "'" + str(condition1) + "'" + " and start_date = " + "'" + str(condition2) + "'"
+
+    sql = 'select ' + columns + ' from ' + tbl + ' ' + where
+    print(sql)
+    cur.execute(sql)
+    rows.append(cur.fetchone()) 
+    return rows
