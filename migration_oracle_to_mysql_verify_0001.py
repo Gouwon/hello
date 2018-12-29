@@ -1,4 +1,4 @@
-import etl_mysql_util as mu
+import migration_oracle_to_mysql_util_0001 as mu
 
 conn_oracle = mu.connect_oracle()
 conn_mysql = mu.connect_mysql("dooodb")

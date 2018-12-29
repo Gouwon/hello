@@ -1,4 +1,4 @@
-import etl_mysql_util as mu
+import migration_oracle_to_mysql_util_0001 as mu
 
 
 
@@ -25,7 +25,7 @@ target_tables ={"Job" : '''id varchar(45) not null,
                                 hire_date datetime not null,
                                 job varchar(45) not null,
                                 salary int default 0,
-                                commission_pct int default 0,
+                                commission_pct float(4,2) default 0,
                                 manager_id int default 0,
                                 department int default 0,
                                 primary key(id)''', 
@@ -44,10 +44,12 @@ with conn_mysql:
 
     for target_table_name in target_tables:
         print(1)
-        # sql_sp = "call sp_drop_fk_refs(" + target_table_name + ")"
-        # cur_mysql.execute(sql_sp)
+        sql_sp = "call sp_drop_fk_refs(" + '"' + target_table_name + '"' + ")"
+        print(sql_sp)
+        cur_mysql.execute(sql_sp)
         print(2)
         sql_drop = "drop table if exists " + target_table_name
+        print(sql_drop)
         cur_mysql.execute(sql_drop)
         print(3)
         sql_create = 'create table ' + target_table_name + ' (' + target_tables[target_table_name] + ')'
@@ -91,6 +93,7 @@ with conn_mysql:
             print(5)
             sql_insert = "insert into " + target_table_name + "(id, first_name, last_name, email, tel, hire_date, job, salary, commission_pct, manager_id, department) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
             print(6)
+            print(sql_insert)
             cur_mysql.executemany(sql_insert, rows)
             print(7)
         else:
@@ -128,8 +131,8 @@ with conn_mysql:
     cur_mysql.execute('''alter table JobHistory
                         add constraint f_jobhistory foreign key (job) references Job(id)''')
 
-    cur_mysql.execute('''alter table Employee
-                        add constraint f_jobhistory_department_id foreign key (manager_id) references Department(id)''')
+    cur_mysql.execute('''alter table JobHistory
+                        add constraint f_jobhistory_department_id foreign key (department) references Department(id);''')
 
 
     print("AffectedRowCount is ", cur_mysql.rowcount)
