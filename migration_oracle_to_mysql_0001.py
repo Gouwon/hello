@@ -35,6 +35,6 @@ with conn_mysql:
                         add constraint f_jobhistory_department_id foreign key (department) references Department(id);''')
 
 
-    print("AffectedRowCount is ", cur_mysql.rowcount)
+    print("Altered&AffectedRowCount is ", cur_mysql.rowcount)
 
 
