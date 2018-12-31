@@ -34,7 +34,4 @@ with conn_mysql:
     cur_mysql.execute('''alter table JobHistory
                         add constraint f_jobhistory_department_id foreign key (department) references Department(id);''')
 
-
     print("Altered&AffectedRowCount is ", cur_mysql.rowcount)
-
-
