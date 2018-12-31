@@ -71,13 +71,12 @@ def get_sample_to_verify(tbl, condition1, condition2):
 
     rows = []
     if tbl == "JOBS":
-        where = "where job_id = " + "'" + condition1 + "'"
+        where = "where job_id = " + "'" + str(condition1) + "'"
     elif tbl == "DEPARTMENTS":
         where = "where department_id = " + str(condition1)
     elif tbl == "EMPLOYEES":
         where = "where employee_id = " + "'" + str(condition1) + "'"
     else:
-        condition2
         where = "where employee_id = " + "'" + str(condition1) + "'" + " and start_date =  to_date(" + "'" +  str(condition2) + "', 'YY/MM/DD HH24:MI:SS')"
 
     columns = source_tables[tbl]    
