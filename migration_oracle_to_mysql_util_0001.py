@@ -60,8 +60,8 @@ def get_sample(dbms, tbl, n):
         sql = "select " + target_tables[tbl] +" from " + tbl + " order by rand() limit " + str(n)
         cur.execute(sql)
         rows = cur.fetchall()
-        print("Getting Sample Data from {}".format(dbms))
-        return rows
+    print("Getting Sample Data from {}".format(dbms))
+    return rows
         
 def get_sample_to_verify(tbl, condition1, condition2):    
     source_tables ={"JOBS" : "JOB_ID, JOB_TITLE, MIN_SALARY, MAX_SALARY", 
@@ -90,9 +90,7 @@ def get_sample_to_verify(tbl, condition1, condition2):
     return rows
 
 def set_data(db, target_table_name):
-
     target_to_source ={"Job" : "JOBS", "Department" : "DEPARTMENTS", "Employee" : "EMPLOYEES", "JobHistory": "JOB_HISTORY"}
-
     source_tables ={"JOBS" : "JOB_ID, JOB_TITLE, MIN_SALARY, MAX_SALARY", 
                 "DEPARTMENTS" : "DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID", 
                 "EMPLOYEES" : "EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID", 
@@ -159,7 +157,6 @@ def create_table(db, target_table_name):
                                   primary key(employee, start_date)'''}
     
     conn_mysql = connect_mysql(db)
-
     with conn_mysql:
         cur_mysql = conn_mysql.cursor()
 
