@@ -74,7 +74,7 @@ def get_sample(dbms, tbl, n = ''):
 def get_sample_to_verify(tbl, condition1, condition2):    
     source_tables ={"JOBS" : "JOB_ID, JOB_TITLE, MIN_SALARY, MAX_SALARY", 
                     "DEPARTMENTS" : "DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID", 
-                    "EMPLOYEES" : "EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID", 
+                    "EMPLOYEES" : "EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, (case when COMMISSION_PCT is null then null, else round(COMMISSION_PCT, 2) end) COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID", 
                     "JOB_HISTORY" : "EMPLOYEE_ID, START_DATE, END_DATE, JOB_ID, DEPARTMENT_ID"}
 
     rows = []
