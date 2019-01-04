@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Log-IN</title>
+    
+    <link rel="stylesheet" href="login_box.css">
+</head>
+<body>
+    <header>
+        <div>
+            Welcome to HTML+CSS+JAVA_SCRIPT WORLD!!!
+        </div>
+        <nav>
+            <div>
+                <form id="form" method="POST" onsubmit="return login_result()">
+                    <input id="user_id" placeholder="ID" type="text" value="">
+                    <input id="user_pw" placeholder="PW" type="password" value="">
+                    <button>
+                        로그인
+                    </button>
+                </form>
+            </div>
+    
+            <div class="login_result" id="login_s" >
+                성공적으로 로그인되셨습니다.
+            </div>
+            <div class="login_result" id="login_f" >
+                로그인에 실패하셨습니다.
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div>
+                <p>HTML+CSS+JAVA_SCRIPT는 어떻게 조화를 이룰까요?</p>
+                <hr>
+                <img src="http://www.cagrimmett.com/img/html-css-js.png">
+                <p>
+                    웹 페이지는 그림과 같이 HTML을 통해서 그 구조를 만들어내고, 이를 꾸미는 것은 CSS로, 동적인 기능은 JAVA_SCRIPT를 통해서 구현됩니다.
+                </p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <p>이 곳에서 HTML을 연습하세요.</p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <p>이 곳에서 CSS을 연습하세요.</p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <p>이 곳에서 JAVA_SCRIPT를 연습하세요.</p>
+            </div>
+        </section>
+    </main>
+    
+    <script src="./login_box.js" ></script>
+</body>
+</html>
