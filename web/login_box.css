@@ -1,0 +1,55 @@
+head{
+    width: 700px;
+}
+
+header{
+    padding: 15px;
+    border: solid purple 3px;
+}
+
+nav{
+    padding: 5px;
+    position: absolute;
+    right: 15px;
+    top:20px;
+    border: solid red 1px;
+}
+
+main{
+    margin: 10px;
+    border: solid blue 2px;
+}
+
+div > p:nth-child(4)
+{
+   font-weight: 100 !important; 
+}
+
+section{
+    border: solid green 1px;
+}
+
+div{
+    color: purple;
+    font-weight: 700;
+}
+
+.login_result {
+    font-size: auto;
+}
+
+#login_s {
+    color: blue;
+}
+
+#login_f{
+    color: red;
+}
+
+#login_s, #login_f{
+    display: none;
+}
+
+img{
+    width: 890px;
+}
