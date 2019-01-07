@@ -12,13 +12,14 @@
     <header>
         <div>
             Welcome to HTML+CSS+JAVA_SCRIPT WORLD!!!
+            Updated using JQUERY.
         </div>
         <nav>
             <div>
                 <form id="form" method="POST" onsubmit="return login_result()">
                     <input id="user_id" placeholder="ID" type="text" value="">
                     <input id="user_pw" placeholder="PW" type="password" value="">
-                    <button>
+                    <button type="submit">
                         로그인
                     </button>
                 </form>
@@ -58,8 +59,17 @@
                 <p>이 곳에서 JAVA_SCRIPT를 연습하세요.</p>
             </div>
         </section>
+        <section>
+                <div>
+                    <button id="getJson1">getJson()</button>
+                    <button id="getJson2">getJson2()</button>
+                    <button id="getJson3">getJson3()</button>
+                    <button id="ajax">ajax</button>
+                </div>
+            </section>
     </main>
     
-    <script src="./login_box.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="./login_box.js?ppp" ></script>
 </body>
 </html>
