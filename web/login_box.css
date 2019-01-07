@@ -4,6 +4,7 @@ head{
 
 header{
     padding: 15px;
+    height: 50px;
     border: solid purple 3px;
 }
 
@@ -32,6 +33,7 @@ section{
 div{
     color: purple;
     font-weight: 700;
+    padding: 5px;
 }
 
 .login_result {
@@ -52,4 +54,9 @@ div{
 
 img{
     width: 890px;
+}
+
+#section > div > button{
+    left: 15px;
+    top: 20px;
 }
