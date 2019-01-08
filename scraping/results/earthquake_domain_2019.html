@@ -1,0 +1,108 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta name="decorator" content="ajax" />
+<script type="text/javascript" src="/share/calendar/js/calendar.js"></script>
+<script type="text/javascript">
+//<!--
+	var cnt = 0;
+	function fn_popup_alone(img, sizeW, sizeH ){
+		var param = 'width='+sizeW+',height='+sizeH+',resize=yes,scrollbars=no,status=no';
+		remote = window.open(img,'',param);
+	}
+//-->
+
+function excel() {
+		document.frm.action = "excel_save.jsp";
+		document.frm.excel_data.value = document.getElementById("excel_body").outerHTML;
+		document.frm.submit();
+}
+</script>
+
+<style type="text/css">
+img.map_img{display: none;}
+img.map_img.map_img_view{position: absolute;display: inline-block;left: 0;width:525px;opacity:0.7;}
+img.map_view_icon{width:16px;}
+.table_develop td.tdpgt{border:none;}
+.table_develop td.tdpgt:hover{background:none;}
+.table_develop td a.pgt{font-weight:bold;font-size:13px;height: 19px;line-height: 19px;padding: 2px 5px 0px 6px;font-size: 0.9em;border-bottom: 2px solid #ccc8c8;border-right: 1px solid #c7c7c7;background-color: #d2d2d2;background: linear-gradient(#e8e7e7, #d0cfcf);background: -webkit-linear-gradient(#e8e7e7, #d0cfcf);background: -o-linear-gradient(#e8e7e7, #d0cfcf);background: -moz-linear-gradient(#e8e7e7, #d0cfcf);color: #17336e;}
+.table_develop td a.pgt.don {border-bottom: 2px solid #9097c7;border-right: 1px solid #757cab;background-color: #acb4e9;background: linear-gradient(#acb4e9, #3242b1);background: -webkit-linear-gradient(#acb4e9, #3242b1);background: -o-linear-gradient(#acb4e9, #3242b1);background: -moz-linear-gradient(#acb4e9, #3242b1);color:#dfdeea;}
+.table_develop td a.pgt:hover {border-bottom: 2px solid #9097c7;border-right: 1px solid #757cab;background-color: #acb4e9;background: linear-gradient(#acb4e9, #3242b1);background: -webkit-linear-gradient(#acb4e9, #3242b1);background: -o-linear-gradient(#acb4e9, #3242b1);background: -moz-linear-gradient(#acb4e9, #3242b1);color:#dfdeea;}
+
+.table_develop td.pdl4{padding-left:4px;}
+.table_develop td a.prev{margin-right:2px;padding-right:0 !important;background:none !important;}
+.table_develop td a.next{margin-left:2px;padding-right:0 !important;background:none !important;}
+.table_develop td a.first{margin-right:2px;padding-right:0 !important;background:none !important;}
+.table_develop td a.last{margin:0;padding-right:0 !important;background:none !important;}
+.table_develop tbody td a{display: inline-block;}
+
+</style>    
+</head>
+<body>
+
+<!-- content :Start -->
+
+	<table class="table_develop" id="excel_body"> 
+	<caption>국내 지진목록 검색결과</caption>
+	<colgroup> 
+	<col width="7%" /> 
+	<col width="15%" /> 
+	<col width="7%" /> 
+	<col width="7%" /> 
+	<col width="9%" /> 
+	<col width="9%" /> 
+	<col width="*%" /> 
+	<col width="10%" /> 
+<!-- 	<col width="28%" /> 
+	<col width="7%" /> 
+	<col width="7%" /> 
+	<col width="8%" />  -->
+	</colgroup> 
+	<thead> 
+	<tr>
+	<th scope="col" rowspan="2" class="top_line">번호</th> 
+	<th scope="col" rowspan="2" class="top_line">발생시각</th> 
+	<th scope="col" rowspan="2" class="top_line">규모</th> 
+	<th scope="col" rowspan="2" class="top_line">깊이(km)</th> 
+	<th scope="col" rowspan="2" class="top_line">위도</th> 
+	<th scope="col" rowspan="2" class="top_line">경도</th> 
+	<th scope="col" rowspan="2" class="top_line">위치</th> 
+	<!-- <th scope="col" class="top_line">파형자료</th>  -->
+	<!-- <th scope="col" rowspan="2" class="top_line">지도보기</th> -->
+	</tr> 
+	<tr> 
+<!-- 		<th scope="col">속도</th> 
+		<th scope="col">가속도</th>
+		<th scope="col">지도보기</th>  -->
+	</tr> 
+	</thead> 
+	<tbody> 
+	<tr><td>3</td><td>2019/01/02 13:12:27</td><td>2.2</td><td>5</td><td>36.77 N </td><td>128.31 E </td><td class="align_left">경북 문경시 북북동쪽 23km 지역</td></tr>
+<tr><td>2</td><td>2019/01/02 07:20:29</td><td>2.8</td><td>12</td><td>41.30 N </td><td>129.21 E </td><td class="align_left">북한 함경북도 길주 북북서쪽 40km 지역</td></tr>
+<tr><td>1</td><td>2019/01/01 06:49:51</td><td>3.1</td><td>19</td><td>36.53 N </td><td>129.66 E </td><td class="align_left">경북 영덕군 동북동쪽 29km 해역</td></tr>
+
+	</tbody> 
+	</table> 
+<!-- content :End -->
+</body>
+</html>
+
+
