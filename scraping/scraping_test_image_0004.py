@@ -40,6 +40,9 @@ def get_true_url(url):
 def get_images(url):
     from bs4 import BeautifulSoup
     import requests
+    import platform
+
+    os = platform.system()
 
     res = requests.get(url)
     soup = BeautifulSoup(res.text, 'html.parser')
@@ -56,11 +59,17 @@ def get_images(url):
     for img in imgs:
         src = img.get('src')
         print("img>>", src)
-        with open("d:/workspace/hello/scraping/results/scraping_test_image_" + getFileName(src), "wb") as file:
-            file.write(requests.get(src).content)
+        if os == "Windows":
+            with open("d:/workspace/hello/scraping/results/scraping_test_image_" + getFileName(src), "wb") as file:
+                file.write(requests.get(src).content)
+        elif os == "Darwin":
+            with open("./results/scraping_test_image_" + getFileName(src), "wb") as file:
+                file.write(requests.get(src).content)
     
 
 
-url = "https://blog.naver.com/baekmg1988/221405485574"
-origin_url = get_true_url(url)
-get_images(origin_url)
+# url = "https://blog.naver.com/baekmg1988/221405485574"
+# origin_url = get_true_url(url)
+# get_images(origin_url)
+
+
