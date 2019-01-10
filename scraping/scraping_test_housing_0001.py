@@ -1,24 +1,25 @@
 from bs4 import BeautifulSoup
 import requests
+import json
 
+url = "http://rt.molit.go.kr/new/gis/getGugunListAjax.do" #POST
 
-selector = "$('iframe').contentDocument"
+params = {
+    'menuGubun': 'A',
+    'srhType': '',
+    'gubunCode': 'LAND',
+    'sidoCode': '11'
+}
 
+headers = {
+    'Referer': 'http://rt.molit.go.kr/new/gis/srh.do?menuGubun=A&gubunCode=LAND',
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'
+}
 
-def get_iframe(url):
-    from bs4 import BeautifulSoup
-    import requests
+html = requests.post(url, params=params, headers=headers).text
+print(html)
+jsonData = json.loads(html)
+print(json.dumps(jsonData, ensure_ascii=False, indent=2))
 
-    headers = { "referer" : "http://rt.molit.go.kr/new/gis/srh.do?menuGubun=A&gubunCode=LAND"}
-
-    param = { 'menuGubun': 'A', 'p_apt_code': 20064683, 'p_house_cd': 1, 'p_acc_year': 2018 }
-
-    mem = requests.get(url, params=param, headers=headers).content
-
-    print(mem)
-    saveFile = "d:/workspace/hello/scraping/results/test.html"
-    with open(saveFile, mode="wb") as file:
-        file.write(mem)
-
-url = "http://rt.molit.go.kr/new/gis/getDanjiInfoDetail.do"
-get_iframe(url)
+for gu in jsonData["jsonList"]:
+    print(gu['NAME'], gu['CODE'])
