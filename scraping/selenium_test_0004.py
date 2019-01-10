@@ -24,5 +24,5 @@ time.sleep(2)
 
 driver.save_screenshot("./results/images/bbb.png")   # or.  driver.get_screenshot_as_file('bbb.png')
 driver.implicitly_wait(5)
-print("_________________________")
+print("complete!!")
 driver.quit()
