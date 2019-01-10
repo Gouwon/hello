@@ -14,11 +14,11 @@ options.add_argument("disable-gpu")
 options.add_argument("lang=ko_KR")
 
 if os.name == "nt":
-    options.add_argument("Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36")
+    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36")
     driver = webdriver.Chrome('C:\Program Files (x86)\chromedriver_win32/chromedriver.exe', options=options)
     # driver = webdriver.Chrome('/Users/jade/workspace/python/chromedriver', options=options)
 elif os.name == "posix":
-    options.add_argument('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36')
+    options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36')
     driver = webdriver.Chrome('/Users/mac/workspace/chromedriver', options=options)
 
 
