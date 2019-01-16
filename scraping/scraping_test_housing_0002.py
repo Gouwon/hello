@@ -107,6 +107,7 @@ def get_detailed_apartment_information(dong_name, APT_NAME, APT_CODE, session_cn
 
     html = session.get(url, params=params, headers=headers)
     jsonData = json.loads(html.text)
+    
     try:
         detailed_information_list = jsonData["result"]
     except:
