@@ -41,7 +41,7 @@ def get_music_ranking():
         #     artist_name = artist.text.strip()
         #     artists.append(artist_name)
 
-        result[contsid] = { "순  위" : ranking,
+        result[contsid] = { "순위" : ranking,
                             "노래명" : info_list[0].select_one('a').text.strip(),
                             "음악가" : ",".join(artists),
                             "앨범명" : info_list[2].select_one('a').text.strip(),
@@ -84,5 +84,29 @@ if __name__ == "__main__":
     for contsid in music_like_cnt_list:
         music_info_list[str(contsid)]['좋아요'] = music_like_cnt_list[contsid]
 
-    for contsid in music_info_list:
-        pprint(music_info_list[contsid])
+    # print(music_info_list)        
+
+    sorted_likecnt_list = sorted(music_info_list.items(), key=lambda d: d[1]['좋아요'])
+
+    min_likecnt = sorted_likecnt_list[0][1]['좋아요']
+    import csv, codecs
+
+    saveFile = './results/data/melon_top_100_list.csv'
+    with codecs.open(saveFile, 'w', 'utf-8') as ff:
+        writer = csv.writer(ff, delimiter=',', quotechar='"')
+        writer.writerow(["랭킹", "제목", "가수명", '좋아요수', '좋아요차이'])
+
+        likecnt_sum = 0
+        likeDiff_sum = 0
+        for music_info in music_info_list:
+            rank = music_info_list[music_info]["순위"]
+            title = music_info_list[music_info]["노래명"]
+            artist = music_info_list[music_info]["음악가"]
+            likecnt = music_info_list[music_info]["좋아요"]
+            likeDiff = likecnt - min_likecnt
+            likecnt_sum += likecnt
+            likeDiff_sum += likeDiff
+            writer.writerow([rank, title, artist, likecnt, likeDiff])
+        
+        writer.writerow(["계", "", "", likecnt_sum,likeDiff_sum])
+
