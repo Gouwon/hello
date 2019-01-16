@@ -88,7 +88,9 @@ if __name__ == "__main__":
 
     sorted_likecnt_list = sorted(music_info_list.items(), key=lambda d: d[1]['좋아요'])
 
-    min_likecnt = sorted_likecnt_list[0][1]['좋아요']
+
+    min_likecnt = min(x[1]['좋아요'] for x in music_info_list.items())
+    # min_likecnt = sorted_likecnt_list[0][1]['좋아요']
     import csv, codecs
 
     saveFile = './results/data/melon_top_100_list.csv'
