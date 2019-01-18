@@ -35,7 +35,7 @@ for keys in data:
     sum2 = 0
     for x in range(xs):
         sum1 += data[keys][x][x]
-        sum2 += data[keys][x][4-x]
+        sum2 += data[keys][x][xs-x]
     result = sum1 + sum2
     results[keys] = result
 
