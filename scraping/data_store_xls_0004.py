@@ -10,7 +10,7 @@
 import csv
 import codecs
 import openpyxl
-from openpyxl.chart import (Reference, BarChart, Series, ScatterChart
+from openpyxl.chart import Reference, BarChart, Series, ScatterChart
 
 ## 멜론 자켓 이미지 얻어오는 함수.
 def get_jacket():

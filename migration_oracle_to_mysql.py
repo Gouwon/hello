@@ -1,7 +1,7 @@
 import etl_mysql_util as mu
 
 conn_oracle = mu.connect_oracle()
-conn_mysql = mu.connect_mysql("dodb")
+conn_mysql = mu.connect_mysql("dooodb")
 
 
 with conn_oracle:
@@ -15,6 +15,7 @@ with conn_oracle:
 
 for row in rows:
     print(row)
+
 
 conn_mysql = mu.connect_mysql("dodb")
 
