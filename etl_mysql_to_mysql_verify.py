@@ -40,6 +40,7 @@ with conn_dodb_verify:
         sql = '''select id, name, prof, classroom from Subject where id = %s and name = %s and prof = %s and classroom = %s'''
         cur.executemany(sql, dooo_list)
         print(cur.fetchall(), cur.rowcount)
+        cur.fetchone()
 
 
 print("dooo_smpls = ", dooo_smpls)

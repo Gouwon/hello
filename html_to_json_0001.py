@@ -21,21 +21,44 @@ third_keys_tag_list = soup.select(selector3)
 # for third_keys in third_keys_tag_list:
 #     print(third_keys.text)
 
-dic = {}
-dic['모집분야'] = {}
-for i in range(5):
-    dic['모집분야'][i+5] = {}
-print(dic)
+
+selector4 = "tr > td"
+fourth_keys_tag_list = soup.select(selector4)
+
+r = []
+for fourth_keys in fourth_keys_tag_list:
+    # print(fourth_keys)
+    r.append(fourth_keys.text)
+
+print(r)
+
+# exit()
+# dic = {}
+# dic['모집분야'] = {}
+# for i in range(5):
+#     dic['모집분야'][i+5] = {}
+# print(dic)
+summary[first_keys_tag_list[0].text] = {}
 
 for i, second_keys in enumerate(second_keys_tag_list):
-    summary[first_keys_tag_list[0].text] = {}
     summary[first_keys_tag_list[0].text][second_keys.text] = {}
-    # summary[first_keys_tag_list[0].text][second_keys.text][first_keys_tag_list[1].text] = third_keys_tag_list[i].text
-    # summary[first_keys_tag_list[0].text][second_keys.text][first_keys_tag_list[2].text] = {}
-    print(summary)
+    summary[first_keys_tag_list[0].text][second_keys.text][first_keys_tag_list[1].text] = third_keys_tag_list[i].text
+    summary[first_keys_tag_list[0].text][second_keys.text][first_keys_tag_list[2].text] = {}
+    j = 2
+    for rr in r:
+        if j % 14 == 2:
+            j += 1
+            continue
+        else:
+            summary[first_keys_tag_list[0].text][second_keys.text][first_keys_tag_list[2].text][r[j]] = r[j+1]
+            j += 2
+            # print(summary)
+
+
+    # print(summary)
 
 # exit()
 
 
 
-print(summary)
+# print(summary)
