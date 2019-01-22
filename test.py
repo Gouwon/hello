@@ -422,8 +422,8 @@ from pprint import pprint
 
 import json
 
-# jsonData = json.loads(xml)
-# print(json.dumps(jsonData, ensure_ascii=False, indent=2))
+jsonData = json.loads(xml)
+print(json.dumps(jsonData, ensure_ascii=False, indent=2))
 dic = {}
 dic['모집분야'] = {}
 for i in range(5):
@@ -433,3 +433,9 @@ for i in range(5):
         # print(dic)
 
 print(dic)
+
+
+
+
+# if __name__ == "__main__":
+#     get_albuminfo("10173365")

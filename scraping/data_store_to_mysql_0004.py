@@ -27,4 +27,6 @@ for href in js_urls:
     url_no = re.findall(pattern, url)    
     urls.append(url_no)
 
+print(len(urls))
 print(type(urls[0]))
+print(urls)
