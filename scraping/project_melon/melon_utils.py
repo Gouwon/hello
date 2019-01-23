@@ -74,6 +74,7 @@ def insert_data_to_db(db, sql, lst):
         cursor.execute(sql, lst)
     
 
+
 def get_top100list():
     import re
     import datetime
@@ -91,6 +92,8 @@ def get_top100list():
     html_tags = html.select(selector)
     pattern = re.compile("'(.*)'")
 
+    like_url = "https://www.melon.com/commonlike/getSongLike.json"
+
     saveFile = './results/melon_top_100_list({}).csv'.format(n)
     print(saveFile)
     with codecs.open(saveFile, 'w', 'utf-8') as file:
@@ -103,11 +106,19 @@ def get_top100list():
             albumId = re.findall(pattern, html_tag.select_one('div.wrap a').get('href'))[0]
             albumTitle = html_tag.select_one('div.wrap a').get('title')
 
-            result = [rank, songId, title, artist, albumId, albumTitle]
-            print(rank, songId, title, artist, albumId, albumTitle)
+            params = { "contsIds" : songId }
+            like_json = get_json(like_url, method, params = params)
+            print(like_json)
+            likecnt = like_json["contsLike"][0]["SUMMCNT"]
+            print(likecnt)
+
+
+            result = [rank, songId, title, artist, likecnt, albumId, albumTitle]
+            print(rank, songId, title, artist, likecnt, albumId, albumTitle)
             print("===================")
             writer.writerow(result)
     print("+++++++++++++++++++++++++", saveFile, " saved +++++++++++++++++++++++++")
+
 
 
 if __name__ == "__main__":
