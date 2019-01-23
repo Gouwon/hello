@@ -9,16 +9,7 @@ reader = csv.reader(csvFile, delimiter=',', quotechar='"')
 sql = 'insert into MelList(SongId, AlbumId) values(%s, %s)'
 lst = []
 for row in reader:
-    # lst = [str(row[1]), str(row[4])]
-    # mu.insert_data_to_db("dooodb", sql, lst)
-    lst.append((row[1], row[4]))
-    print(lst)
-
-import pymysql
-
-conn = mu.get_conn('dooodb')
-
-with conn:
-    cur = conn.cursor()
-    cur.executemany(sql, lst)
+    lst = (row[1], row[4])
+    mu.insert_data_to_db("dooodb", sql, lst)
+    
 print("=============== MelList Insert Completed! =================")
