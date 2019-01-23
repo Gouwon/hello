@@ -8,57 +8,36 @@ first_keys_tag_list = soup.select(selector1)
 summary = {}
 summary[first_keys_tag_list[0].text] = {}
 
-
 selector2 = "tbody tr td:nth-of-type(1)[rowspan]"
 second_keys_tag_list = soup.select(selector2)
-# for second_keys in second_keys_tag_list:
-#     print(second_keys.text)
-#     summary[first_keys_tag_list[0].text][second_keys.text] = {}
-
 
 selector3 = "tbody tr td:nth-of-type(2)[rowspan]"
 third_keys_tag_list = soup.select(selector3)
-# for third_keys in third_keys_tag_list:
-#     print(third_keys.text)
-
 
 selector4 = "tr > td"
 fourth_keys_tag_list = soup.select(selector4)
 
 r = []
 for fourth_keys in fourth_keys_tag_list:
-    # print(fourth_keys)
     r.append(fourth_keys.text)
 
-print(r)
-
-# exit()
-# dic = {}
-# dic['모집분야'] = {}
-# for i in range(5):
-#     dic['모집분야'][i+5] = {}
-# print(dic)
 summary[first_keys_tag_list[0].text] = {}
 
 for i, second_keys in enumerate(second_keys_tag_list):
     summary[first_keys_tag_list[0].text][second_keys.text] = {}
     summary[first_keys_tag_list[0].text][second_keys.text][first_keys_tag_list[1].text] = third_keys_tag_list[i].text
     summary[first_keys_tag_list[0].text][second_keys.text][first_keys_tag_list[2].text] = {}
-    j = 2
+    j = 1
+    l = len(r)
     for rr in r:
-        if j % 14 == 2:
+        if j % 14 == 1 or j % 14 == 0:
             j += 1
             continue
+        elif j == l-2:
+            break
         else:
             summary[first_keys_tag_list[0].text][second_keys.text][first_keys_tag_list[2].text][r[j]] = r[j+1]
             j += 2
-            # print(summary)
 
+print(summary)
 
-    # print(summary)
-
-# exit()
-
-
-
-# print(summary)
