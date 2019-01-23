@@ -12,6 +12,7 @@ def get_conn(db):
 def get_html(url, method, params = ""):
     import requests
     from bs4 import BeautifulSoup
+    import time
 
     headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"}
 
@@ -27,6 +28,8 @@ def get_html(url, method, params = ""):
         exit()
 
     soup = BeautifulSoup(res.text, 'html.parser')
+
+    time.sleep(2)
     return soup
 
 def get_json(url, method, params = ""):
@@ -108,10 +111,7 @@ def get_top100list():
 
             params = { "contsIds" : songId }
             like_json = get_json(like_url, method, params = params)
-            print(like_json)
             likecnt = like_json["contsLike"][0]["SUMMCNT"]
-            print(likecnt)
-
 
             result = [rank, songId, title, artist, likecnt, albumId, albumTitle]
             print(rank, songId, title, artist, likecnt, albumId, albumTitle)
@@ -119,16 +119,67 @@ def get_top100list():
             writer.writerow(result)
     print("+++++++++++++++++++++++++", saveFile, " saved +++++++++++++++++++++++++")
 
+def get_albuinfo(mysql_albumId):
+    import time
+
+    url = "https://www.melon.com/album/detail.htm"
+    params = {"albumId" : mysql_albumId }
+    html = get_html(url, 'get', params=params)
+
+    selector = 'div.wrap_info div.entry'
+    html_tag = html.select_one(selector)
+
+    albumId = mysql_albumId
+    title = html_tag.select_one("#conts > div.section_info > div > div.entry > div.info > div.song_name").text.replace("앨범명", "").strip()
+    releaseDate = html_tag.select_one("#conts > div.section_info > div > div.entry > div.meta > dl > dd:nth-child(2)").text.replace(".", "")
+    publisher = html_tag.select_one("#conts > div.section_info > div > div.entry > div.meta > dl > dd:nth-child(6)").text
+    label = html_tag.select_one("#conts > div.section_info > div > div.entry > div.meta > dl > dd:nth-child(8)").text
+
+    url2 = "https://www.melon.com/album/albumGradeInfo.json"
+    params2 = { "albumId" : mysql_albumId }
+    score_json = get_json(url2, 'get', params = params2)
+    score = score_json['infoGrade']['TOTAVRGSCORE']
+
+    print("=====================")    
+    print(albumId, title, score, releaseDate, publisher, label)
+    time.sleep(2)
+    return [albumId, title, score, releaseDate, publisher, label]
 
 
-if __name__ == "__main__":
+def get_songinfo(mysql_songId, mysql_albumId):
+    import time
+
+    url = "https://www.melon.com/song/detail.htm"
+    params = {"songId" : mysql_songId }
+    html = get_html(url, 'get', params=params)
+
+    selector = 'div.wrap_info div.entry'
+    html_tag = html.select_one(selector)
+    print(html_tag)
+    songId = mysql_songId
+    title = html_tag.select_one("#downloadfrm > div > div > div.entry > div.info > div.song_name").text.replace("곡명", "").strip()
+    artist = html_tag.select_one("#downloadfrm > div > div > div.entry > div.info > div.artist > a > span:nth-child(1)").text
+    genre = html_tag.select_one("#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(6)").text
+    albumId = mysql_albumId
+
+    print("=================")
+    print(songId, title, artist, genre, albumId)
+
+    time.sleep(2)
+    return [songId, title, artist, genre, albumId]
+
+# if __name__ == "__main__":
 
     # url = "https://www.melon.com/song/detail.htm"
     # params = { "songId" : "31113240" }
     # html = get_html(url, 'get', params=params)
     # print(html)
 
-    url2 = "https://www.melon.com/album/detail.htm"
-    params2 = {"albumId" : "10223837" }
-    html2 = get_html(url2, 'get', params=params2)
-    print(html2)
+    # url2 = "https://www.melon.com/album/detail.htm"
+    # params2 = {"albumId" : "10223837" }
+    # html2 = get_html(url2, 'get', params=params2)
+    # print(html2)
+    # get_albuinfo("10223837")
+    # get_songinfo("31113240", "10173365")
+
+  
