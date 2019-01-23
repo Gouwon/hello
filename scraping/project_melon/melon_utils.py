@@ -1,6 +1,6 @@
 def get_conn(db):
     import pymysql
-    
+
     return pymysql.connect(
     host='localhost',
     user='dooo',
@@ -71,7 +71,7 @@ def insert_data_to_db(db, sql, lst):
 
     with conn:
         cursor = conn.cursor()
-        cursor.executemany(sql, lst)
+        cursor.execute(sql, lst)
     
 
 def get_top100list():
