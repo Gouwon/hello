@@ -29,7 +29,7 @@ def get_html(url, method, params = ""):
 
     soup = BeautifulSoup(res.text, 'html.parser')
 
-    time.sleep(3)
+    time.sleep(2)
     return soup
 
 def get_json(url, method, params = ""):
@@ -143,7 +143,7 @@ def get_albuinfo(mysql_albumId):
     print(albumId, title, score, releaseDate, publisher, label)
     print("<<<<<<<<<<<<<< Album {} Crawl Completed! >>>>>>>>>>>>>>>".format(title))
 
-    time.sleep(3)
+    time.sleep(2)
     return [albumId, title, score, releaseDate, publisher, label]
 
 
@@ -166,7 +166,7 @@ def get_songinfo(mysql_songId, mysql_albumId):
     print(songId, title, genre, albumId)
     print("<<<<<<<<<<<<<< {} Crawl Completed! >>>>>>>>>>>>>>>".format(title))
 
-    time.sleep(3)
+    time.sleep(2))
     return [songId, title, genre, albumId]
 
 def get_artistId(mysql_songId):
