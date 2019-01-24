@@ -31,7 +31,7 @@ with conn:
 
 print("================ MelList Read Completed! ==================")
 
-## lis에 저장된 노래들을 하나씩 Album, Song 테이블에 입력 후, MelList에 크롤링 여부 체크
+## lis에 저장된 노래들을 하나씩 Album, Song, Artist, ArtistSong 테이블에 입력 후, MelList에 크롤링 여부 체크
 for numbers in lis:
     albumId = numbers[0]
     songId = numbers[1]
@@ -45,7 +45,6 @@ for numbers in lis:
     mu.insert_data_to_db("dooodb", sql_insert_song, lst2)
 
     lst3 = mu.get_artistId(songId)
-    print(lst3)
     for lst33 in lst3:
         artistId = lst33[0]
         sql_insert_artist = "insert ignore into Artist(artistId, name) values(%s, %s)"
