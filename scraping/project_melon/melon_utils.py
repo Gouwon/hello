@@ -29,7 +29,7 @@ def get_html(url, method, params = ""):
 
     soup = BeautifulSoup(res.text, 'html.parser')
 
-    time.sleep(2)
+    time.sleep(4)
     return soup
 
 def get_json(url, method, params = ""):
@@ -115,7 +115,7 @@ def get_top100list():
 
             result = [rank, songId, title, artist, likecnt, albumId, albumTitle]
             print(rank, songId, title, artist, likecnt, albumId, albumTitle)
-            print("===================")
+            print("-------------------------------------------------------")
             writer.writerow(result)
     print("+++++++++++++++++++++++++", saveFile, " saved +++++++++++++++++++++++++")
 
@@ -140,9 +140,10 @@ def get_albuinfo(mysql_albumId):
     score_json = get_json(url2, 'get', params = params2)
     score = score_json['infoGrade']['TOTAVRGSCORE']
 
-    print("=====================")    
     print(albumId, title, score, releaseDate, publisher, label)
-    time.sleep(2)
+    print("<<<<<<<<<<<<<< Album {} Crawl Completed! >>>>>>>>>>>>>>>".format(title))
+
+    time.sleep(4)
     return [albumId, title, score, releaseDate, publisher, label]
 
 
@@ -155,17 +156,17 @@ def get_songinfo(mysql_songId, mysql_albumId):
 
     selector = 'div.wrap_info div.entry'
     html_tag = html.select_one(selector)
-    print(html_tag)
+    # print(html_tag)
     songId = mysql_songId
     title = html_tag.select_one("#downloadfrm > div > div > div.entry > div.info > div.song_name").text.replace("곡명", "").strip()
     artist = html_tag.select_one("#downloadfrm > div > div > div.entry > div.info > div.artist > a > span:nth-child(1)").text
     genre = html_tag.select_one("#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(6)").text
     albumId = mysql_albumId
 
-    print("=================")
     print(songId, title, artist, genre, albumId)
+    print("<<<<<<<<<<<<<< {} - {} Crawl Completed! >>>>>>>>>>>>>>>".format(artist, title))
 
-    time.sleep(2)
+    time.sleep(4)
     return [songId, title, artist, genre, albumId]
 
 # if __name__ == "__main__":
