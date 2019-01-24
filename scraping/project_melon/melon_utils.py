@@ -29,7 +29,7 @@ def get_html(url, method, params = ""):
 
     soup = BeautifulSoup(res.text, 'html.parser')
 
-    time.sleep(4)
+    time.sleep(3)
     return soup
 
 def get_json(url, method, params = ""):
@@ -104,7 +104,7 @@ def get_top100list():
         for html_tag in html_tags:
             rank = html_tag.select_one("span.rank").text
             songId = html_tag.get('data-song-no')
-            title = html_tag.select_one('div.ellipsis.rank01').text.strip()
+            title = html_tag.select_one('div.ellipsis.rank01 a').text.strip()
             artist = ",".join([artist_name.text for artist_name in html_tag.select('div.ellipsis.rank02 span a')])
             albumId = re.findall(pattern, html_tag.select_one('div.wrap a').get('href'))[0]
             albumTitle = html_tag.select_one('div.wrap a').get('title')
@@ -143,7 +143,7 @@ def get_albuinfo(mysql_albumId):
     print(albumId, title, score, releaseDate, publisher, label)
     print("<<<<<<<<<<<<<< Album {} Crawl Completed! >>>>>>>>>>>>>>>".format(title))
 
-    time.sleep(4)
+    time.sleep(3)
     return [albumId, title, score, releaseDate, publisher, label]
 
 
@@ -159,17 +159,40 @@ def get_songinfo(mysql_songId, mysql_albumId):
     # print(html_tag)
     songId = mysql_songId
     title = html_tag.select_one("#downloadfrm > div > div > div.entry > div.info > div.song_name").text.replace("곡명", "").strip()
-    artist = html_tag.select_one("#downloadfrm > div > div > div.entry > div.info > div.artist > a > span:nth-child(1)").text
+    # artist = html_tag.select_one("#downloadfrm > div > div > div.entry > div.info > div.artist > a > span:nth-child(1)").text
     genre = html_tag.select_one("#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(6)").text
     albumId = mysql_albumId
 
-    print(songId, title, artist, genre, albumId)
-    print("<<<<<<<<<<<<<< {} - {} Crawl Completed! >>>>>>>>>>>>>>>".format(artist, title))
+    print(songId, title, genre, albumId)
+    print("<<<<<<<<<<<<<< {} Crawl Completed! >>>>>>>>>>>>>>>".format(title))
 
-    time.sleep(4)
-    return [songId, title, artist, genre, albumId]
+    time.sleep(3)
+    return [songId, title, genre, albumId]
 
-# if __name__ == "__main__":
+def get_artistId(mysql_songId):
+    import time
+    import re
+
+    url = "https://www.melon.com/chart/"
+    method = 'get'
+    html = get_html(url, method)
+
+    selector = "tr[data-song-no='{}'] div.ellipsis.rank02 span a".format(mysql_songId)
+    html_tags = html.select(selector)
+
+    pattern = re.compile("'([0-9]*)'")
+    pattern1 = re.compile("\"(.*)\s-")
+
+    results = []
+    for html_tag in html_tags:
+        a = (re.findall(pattern, html_tag.get("href"))[0],html_tag.text)
+        results.append(a)
+    
+    # print(results)
+    return results
+
+if __name__ == "__main__":
+    get_artistId("31340985")
 
     # url = "https://www.melon.com/song/detail.htm"
     # params = { "songId" : "31113240" }
