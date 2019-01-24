@@ -29,25 +29,25 @@ print("================ MelList Read Completed! ==================")
 ## lis에 저장된 노래들을 하나씩 Album, Song 테이블에 입력 후, MelList에 크롤링 여부 체크
 for numbers in lis:
     lst = mu.get_albuinfo(numbers[0])
-    sql_insert_album = "insert into Album(albumId, title, score, releaseDate, publisher, label) values(%s, %s, %s, %s, %s, %s) on duplicate key update values"
+    sql_insert_album = "insert into Album(albumId, title, score, releaseDate, publisher, label) values(%s, %s, %s, %s, %s, %s) on duplicate key update score = values(score)"
     mu.insert_data_to_db("dooodb", sql_insert_album, lst)
-    lst2 = mu.get_songinfo(numbers[1])
-    sql_insert_song = "insert into Song(songId, title, artist, genre, albumId) values(%s, %s, %s, %s, %s) on duplicate key update values"
+    lst2 = mu.get_songinfo(numbers[1], numbers[0])
+    sql_insert_song = "insert ignore into Song(songId, title, artist, genre, albumId) values(%s, %s, %s, %s, %s)"
     mu.insert_data_to_db("dooodb", sql_insert_song, lst2)
 
     ## sql_update_mellist 실행
-    sql_update_mellist = "update table Melist set crawl = 1 where albumId = {} and songId = {}".format(numbers[0], numbers[1])
+    sql_update_mellist = "update MelList set crawl = 1 where crawl = 0 and albumId = {} and songId = {}".format(numbers[0], numbers[1])
     conn_melList = mu.get_conn('dooodb')
     with conn_melList:
         cur_melList = conn_melList.cursor()
         cur_melList.execute(sql_update_mellist)
 
-    print("<<<<<<<<<<<<<< {} - {} Crawl Completed! >>>>>>>>>>>>>>>".format(lst2[2], lst2[1]))
+    print("<<<<<<<<<<<<<< {} - {} Insert Completed! >>>>>>>>>>>>>>>".format(lst2[2], lst2[1]))
 
 print("=============== Song & Album Insert Completed! =================")
 
 ## 마지막으로 SongRank에 노래들의 순위 정보를 csv 파일을 읽어서 저장
-sql2 = 'insert into SongRank(SongId, rank, rankDate, likecnt) values(%s, %s, %s, %s) on duplicate key update'
+sql2 = 'insert into SongRank(SongId, rank, rankDate, likecnt) values(%s, %s, %s, %s)'
 reader2 = csv.reader(csvFile, delimiter=',', quotechar='"')
 
 import datetime
