@@ -29,7 +29,7 @@ def get_html(url, method, params = ""):
 
     soup = BeautifulSoup(res.text, 'html.parser')
 
-    time.sleep(2)
+    time.sleep(1)
     return soup
 
 def get_json(url, method, params = ""):
@@ -143,7 +143,7 @@ def get_albuinfo(mysql_albumId):
     print(albumId, title, score, releaseDate, publisher, label)
     print("<<<<<<<<<<<<<< Album {} Crawl Completed! >>>>>>>>>>>>>>>".format(title))
 
-    time.sleep(2)
+    time.sleep(1)
     return [albumId, title, score, releaseDate, publisher, label]
 
 
@@ -156,9 +156,12 @@ def get_songinfo(mysql_songId, mysql_albumId):
 
     selector = 'div.wrap_info div.entry'
     html_tag = html.select_one(selector)
-    # print(html_tag)
     songId = mysql_songId
-    title = html_tag.select_one("#downloadfrm > div > div > div.entry > div.info > div.song_name").text.replace("곡명", "").strip()
+    sub_title = html_tag.select_one("#downloadfrm > div > div > div.entry > div.info > div.song_name").text.replace("곡명", "").strip()
+    if "19금" in sub_title:
+        title = sub_title.replace("19금", "").strip()
+    else:
+        title = sub_title
     # artist = html_tag.select_one("#downloadfrm > div > div > div.entry > div.info > div.artist > a > span:nth-child(1)").text
     genre = html_tag.select_one("#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(6)").text
     albumId = mysql_albumId
@@ -166,7 +169,7 @@ def get_songinfo(mysql_songId, mysql_albumId):
     print(songId, title, genre, albumId)
     print("<<<<<<<<<<<<<< {} Crawl Completed! >>>>>>>>>>>>>>>".format(title))
 
-    time.sleep(2))
+    time.sleep(1)
     return [songId, title, genre, albumId]
 
 def get_artistId(mysql_songId):
@@ -188,11 +191,10 @@ def get_artistId(mysql_songId):
         a = (re.findall(pattern, html_tag.get("href"))[0],html_tag.text)
         results.append(a)
     
-    # print(results)
     return results
 
 if __name__ == "__main__":
-    get_artistId("31340985")
+    # get_artistId("31340985")
 
     # url = "https://www.melon.com/song/detail.htm"
     # params = { "songId" : "31113240" }
@@ -204,6 +206,6 @@ if __name__ == "__main__":
     # html2 = get_html(url2, 'get', params=params2)
     # print(html2)
     # get_albuinfo("10223837")
-    # get_songinfo("31113240", "10173365")
+    get_songinfo("31571110", "10244499")
 
   
