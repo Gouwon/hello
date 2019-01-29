@@ -417,25 +417,149 @@ xml ='''<table> <caption><span class="blind">모집분야별 자격요건 정보
   </tbody> 
 </table>'''
 
-from pprint import pprint
+
+
+
+html = '''
+<dl class="info_02 clfix">
+        <dt>국적</dt><dd>대한민국</dd>
+        <dt>활동유형</dt><dd>여성, 솔로</dd>
+        <dt>활동년대</dt><dd>2010</dd>
+
+        <dt>활동장르</dt>
+        <dd>Dance, Ballad, Drama</dd>
+
+        <dt>데뷔</dt>
+        <dd class="debut_song">
+            <span class="ellipsis">2016.05.05<span class="bar"></span></span>
+        </dd>
+
+        <dt>생일</dt>
+        <dd>1996.02.09</dd>
+    </dl>
+'''
+html2 = '''
+```<dl class="info_02 clfix">
+        <dt>국적</dt>
+        <dd>대한민국</dd>
+
+        <dt>활동유형</dt>
+        <dd>여성, 솔로</dd>
+
+        <dt>활동년대</dt>
+        <dd>2010</dd>
+        
+        <dt>활동장르</dt>
+        <dd>Dance, Ballad, Drama</dd>
+    
+        <dt>데뷔</dt>
+        <dd class="debut_song">
+            <span class="ellipsis">
+                2016.05.05
+                <span class="bar">
+                    TTT
+                </span>
+            </span>
+        </dd>
+        
+        <dt>생일</dt>
+        <dd>1996.02.09</dd>
+    </dl>```
+
+'''
+
+## cdic = {"debut" : , "company" : , "nation" : , "acttype" : , "actyear" : , "actgenre" : }
+def uu():
+  from bs4 import BeautifulSoup
+
+  soup = BeautifulSoup(html, 'html.parser')
+  selector = 'dl dt,dd'
+  html_tags = soup.select(selector)
+  print(len(html_tags))
+  print(html_tags)
+  cdic = {}
+  for i, html_tag in enumerate(html_tags):
+    print(i, html_tag.text)
+    print("===========")
+    if i % 2 == 0:
+      cdic[html_tag.text.strip()] = html_tags[i+1].text.strip()
+    else: continue
+  print(cdic)
+
+
+## col_names = {'국적': 'nation', '활동유형': 'act_type', '활동연대': 'act_year', '활동장르': 'act_genre', '데뷔': 'debut', '생일': 'birth'}
+def uu2():
+  from bs4 import BeautifulSoup
+
+  soup = BeautifulSoup(html2, 'html.parser')
+  selector = 'dl dt,dd'
+  html_tags = soup.select(selector)
+  print(len(html_tags))
+  cdic = {}
+  child_selector = 'dd > span'
+
+  
+  for i, html_tag in enumerate(html_tags):
+    if i % 2 == 0:
+      if len(html_tags[i + 1].select(child_selector)) == 0:
+        cdic[html_tag.text.strip()] = html_tags[i+1].text.strip()
+      else:
+        print(html_tags[i + 1].select_one(child_selector).next.strip())
+        cdic[html_tag.text.strip()] = html_tags[i + 1].select_one(child_selector).next.strip()
+    else: continue
+  print(cdic)
+
+def uu3():
+  from bs4 import BeautifulSoup
+
+  soup = BeautifulSoup(html2, 'html.parser')
+  selector = 'dl dt,dd'
+  html_tags = soup.select(selector)
+  print(len(html_tags))
+  cdic = {}
+  child_selector = 'dd > span'
+  replace_selector = 'span:nth-child(1)'
+
+  
+  for i, html_tag in enumerate(html_tags):
+    if i % 2 == 0:
+      if len(html_tags[i + 1].select(child_selector)) == 0:
+        cdic[html_tag.text.strip()] = html_tags[i+1].text.strip()
+      else:
+        print(html_tags[i + 1].select_one(child_selector).next.strip())
+        print(html_tags[i + 1].select_one(replace_selector))
+        # cdic[html_tag.text.strip()] = html_tags[i + 1].select_one(child_selector).next.strip()
+    else: continue
+  print(cdic)  
+
+# from pprint import pprint
 # pprint(xml)
 
-import json
+# import json
 
-jsonData = json.loads(xml)
-print(json.dumps(jsonData, ensure_ascii=False, indent=2))
-dic = {}
-dic['모집분야'] = {}
-for i in range(5):
-    dic['모집분야'][i+5] = {}
-    # for j in range(5):
-    #     dic['모집분야'][i+5][j] = j
-        # print(dic)
+# jsonData = json.loads(xml)
+# print(json.dumps(jsonData, ensure_ascii=False, indent=2))
+# dic = {}
+# dic['모집분야'] = {}
+# for i in range(5):
+#     dic['모집분야'][i+5] = {}
+#     # for j in range(5):
+#     #     dic['모집분야'][i+5][j] = j
+#         # print(dic)
 
-print(dic)
-
-
+# print(dic)
 
 
-# if __name__ == "__main__":
-#     get_albuminfo("10173365")
+
+
+if __name__ == "__main__":
+    # get_albuminfo("10173365")
+    # lst = [1,2,3,4,5]
+    # print(len(lst), lst)
+    # lst.pop()
+    # print(len(lst), lst)
+    # del lst[2]
+    # print(len(lst), lst)
+
+    # uu2()
+    uu3()

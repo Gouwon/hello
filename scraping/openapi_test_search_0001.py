@@ -13,7 +13,7 @@ params = {
 
 headers = {
     "X-Naver-Client-Id": "nfSbPUyZrzsu6ycI7DRr",
-    "X-Naver-Client-Secret": "UWmai2O6iy"
+    "X-Naver-Client-Secret": "oMFYO0EzLu"
 }
 
 result = requests.get(url, params=params, headers=headers).text
