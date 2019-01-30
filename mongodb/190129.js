@@ -151,3 +151,69 @@ db.test.update( {"likecnt" : 1},
                 );
 
 db.test.find();
+
+
+/*
+ *
+ *
+ *
+ */
+ 
+db.food.insert({ _id: 1, fruit: ['apple', 'banana', 'peach'] });
+db.food.insert({ _id: 2, fruit: ['apple', 'orange', 'melon'] });
+db.food.insert({ _id: 3, fruit: ['cherry', 'peach'] });
+
+db.food.find();
+
+db.food.find({ fruit: { $all: ['apple', 'banana'] } });
+db.food.find({ fruit: { $in: ['apple', 'banana'] } });
+
+
+/*
+ *
+ *  Song collection을 cursor를 이용하여, 5번째, 10번째, 15번째… 의 likecnt를 10으로 수정하시오.
+ *
+ */
+
+db.test.find();
+
+var cur = db.test.find();
+while ( cur.hasNext() ) {
+    for (var i = 1; i < 101; i++) {
+        if ( i % 5 === 0) {
+            db.test.update({"name" : "singer" + i}, {$set : {"likecnt" : 10}})
+            db.test.save({"name" : "singer" + i})
+        }
+    }
+}
+
+
+var cur = db.test.find();
+var i = 0;
+while( cur.hasNext() ){
+    i++;
+    var s = cur.next();
+    if ( i % 5 !== 0 ) continue;
+    s.likecnt = 10;
+    db.test.save(s);
+}
+
+var cur = db.test.find();
+var i = 0;
+cur.forEach((s)=> { 
+    i++;
+    if ( i % 5 === 0 ) {
+       s.likecnt = 10;
+       db.test.save(s);
+    }
+});
+
+db.test.find({"likecnt" : 10});
+
+/*
+ *
+ *  수정된 document중 5개만 출력하시오.(출력 키: name, likecnt)
+ *
+ */
+ 
+db.test.find({}, {_id : 0, "name" : 1, "likecnt" : 1}).sort({"likecnt" : -1}).limit(5)
