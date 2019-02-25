@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>This is title Tag.</title>
+
+    <style>
+        * {
+            margin: 10px;
+        }
+        header, main, footer {
+            border: solid green 2px;
+        }
+        section {
+            border: solid blue 1px;
+        }
+        article {
+            border: solid red 2px;
+            display: flex;
+            flex-direction: row;
+        }
+        div {
+            border: solid purple 1px;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <!-- navbar using bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    </nav>
+    <!-- navbar -->
+
+    <!-- header -->
+    <header>header</header>
+    <!-- header -->
+
+    <!-- main -->
+    <main>main
+        <section>section
+            <article title="heading">article1 : Text/Typography
+                <div class="container">
+                    <div class="row">
+                        <div class="left display-1">
+                            this is bootstrap .display-1.
+                            <h1>This is h1(heading1) tag. (36px)</h1>
+                            <h2>This is h2(heading2) tag. (30px)</h2>
+                            <h3>This is h3(heading3) tag. (24px)</h3>
+                            <h4>This is h4(heading4) tag. (18px)</h4>
+                            <h5>This is h5(heading5) tag. (14px)</h5>
+                            <h6>This is h6(heading6) tag. (12px)</h6>
+                        </div>
+                        <div class="right">
+                            <p>&lth1&gtThis is h1(heading1) tag.&lt/h1&gt</p>
+                            <p>&lth2&gtThis is h2(heading2) tag.&lt/h2&gt</p>
+                            <p>&lth3&gtThis is h3(heading3) tag.&lt/h3&gt</p>
+                            <p>&lth4&gtThis is h4(heading4) tag.&lt/h4&gt</p>
+                            <p>&lth5&gtThis is h5(heading5) tag.&lt/h5&gt</p>
+                            <p>&lth6&gtThis is h6(heading6) tag.&lt/h6&gt</p>
+                        </div>  
+                    </div>
+                    <div class="row">
+                        <p><h3>this part using <small>small tag</small> in h3 tag.</h3></p>
+                        <p><h3>this part using <mark>mark tag</mark> in h3 tag.</h3></p>
+                        <p><h3>this part using <abbr class="initialism" title="abbreviation">abbr</abbr> tag in h3 tag.</h3></p>
+
+                        <blockquote>
+                            <p>For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.</p>
+                            <footer>From WWF's website</footer>
+                        </blockquote>
+                        <blockquote class="blockquote-reverse">
+                            <p>For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.</p>
+                            <footer>From WWF's website</footer>
+                        </blockquote>
+                        <p>using code tag: <code>code</code>, <code>section</code>, and <code>div</code></p>
+                        <p>using kbd tag: <kbd>ctrl + p</kbd></p>
+                        <pre class="pre-scrollable">
+                        using pre tag:
+                        Text in a pre element
+                        is displayed in a fixed-width
+                        font, and it preserves
+                        both      spaces and
+                        line breaks.
+                        </pre>
+                    </div>       
+                </div>
+            </article>
+            <article title="nuordered_list">article2 : unordered list
+                <div class="container">
+                    <div class="row">
+                        <div class="left">
+                            <ul>
+                                <li>Coffee</li>
+                                <li>Tea</li>
+                                <li>Milk</li>
+                            </ul>
+                        </div>
+                        <div class="right">
+                            <table summary="this explains mark options of the unordered list.">
+                                <thead>
+                                    <tr>
+                                        <th>value</th>
+                                        <th>description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>disc</td>
+                                        <td>Sets the list item marker to a bullet (default)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>circle</td>
+                                        <td>Sets the list item marker to a circle</td>
+                                    </tr>
+                                    <tr>
+                                        <td>square</td>
+                                        <td>Sets the list item marker to a square</td>
+                                    </tr>
+                                    <tr>
+                                        <td>none</td>
+                                        <td>The list items will not be marked</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article title="ordered_list">article3 : ordered list
+                <div class="left">
+                    <ol>
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Milk</li>
+                    </ol>
+                </div>
+                <div class="right">
+                    <table summary="this explains mark options of the ordered list.">
+                        <thead>
+                            <tr>
+                                <th>type</th>
+                                <th>description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>type="1"</td>
+                                <td>The list items will be numbered with numbers (default)</td>
+                            </tr>
+                            <tr>
+                                <td>type="A"</td>
+                                <td>TThe list items will be numbered with uppercase letters</td>
+                            </tr>
+                            <tr>
+                                <td>type="a"</td>
+                                <td>The list items will be numbered with lowercase letters</td>
+                            </tr>
+                            <tr>
+                                <td>type="I"</td>
+                                <td>The list items will be numbered with uppercase roman numbers</td>
+                            </tr>
+                            <tr>
+                                <td>type="i"</td>
+                                <td>The list items will be numbered with lowercase roman numbers</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+            <article title="tooltip">article4 : tooltip
+                <div class="container">
+                    <div class="row">
+                        <div>
+                            <button type="button" class="btn btn-primary"
+                            title="this is toggle title" data-toggle="tooltip" data-placement="auto">toggle button</button>
+                        </div>                        
+                    </div>
+                </div>
+            </article>
+            <article tilte="collapse">article5 : collapse
+                <div class="container">
+                    <div class="row">
+                        <div>
+                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#div_collapse">collapsing div</button>
+                        </div>
+                        <div id="div_collapse" class="collapse">
+                            content in collapsed div.
+                        </div>                       
+                    </div>
+                </div>
+            </article>
+            <article title="modal">article6 : modal
+                <div class="container">
+                    <div class="row">
+                        <div>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Launch demo modal
+                            </button>
+                        </div>
+                        <!-- modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        this is content of modal.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                    </div>
+                </div>
+            </article>
+            <article>article7 : various input form
+                <div class="container">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">@</span>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <span class="input-group-addon" id="basic-addon2">@example.com</span>
+                    </div>
+                    <br>
+                    <!-- <label for="basic-url">Your vanity URL</label> -->
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon3">https://example.com/users/</span>
+                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        <span class="input-group-addon">.00</span>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <span class="input-group-addon">0.00</span>
+                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    </div>
+                </div>
+            </article>
+            <article>article8 : bootstrap table
+                <div class="container table-responsive">
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>default</td>
+                                <td>background color of row is plain</td>
+                                <td>def@somemail.com</td>
+                            </tr>      
+                            <tr class="success">
+                                <td>tr.success</td>
+                                <td>background color of row is green</td>
+                                <td>john@example.com</td>
+                            </tr>
+                            <tr class="danger">
+                                <td>tr.danger</td>
+                                <td>background color of row is red</td>
+                                <td>mary@example.com</td>
+                            </tr>
+                            <tr class="info">
+                                <td>tr.info</td>
+                                <td>background color of row is blue</td>
+                                <td>july@example.com</td>
+                            </tr>
+                            <tr class="warning">
+                                <td>tr.warning</td>
+                                <td>background color of row is yellow</td>
+                                <td>bo@example.com</td>
+                            </tr>
+                            <tr class="active">
+                                <td>tr.active</td>
+                                <td>background color of row is gray</td>
+                                <td>act@example.com</td>
+                            </tr>
+                        </tbody>
+                    </table>          
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>value</th>
+                                <th>description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>.table-striped</td>
+                                <td>The .table-striped class adds zebra-stripes to a table</td>
+                            </tr>
+                            <tr>
+                                <td>.table-bordered</td>
+                                <td>The .table-bordered class adds borders on all sides of the table and cells</td>
+                            </tr>
+                            <tr>
+                                <td>.table-hover</td>
+                                <td>The .table-hover class adds a hover effect (grey background color) on table rows</td>
+                            </tr>
+                            <tr>
+                                <td>.table-condensed</td>
+                                <td>The .table-condensed class makes a table more compact by cutting cell padding in half</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>            
+            </article>
+        </section>
+    </main>
+    <!-- main -->
+
+    <!-- footer -->
+    <footer>footer</footer>
+    <!-- footer -->
+
+    <!-- import jquery, popper -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- import jquery, popper -->
+
+    <!-- personal usage -->
+    <script>
+        $('[data-toggle="tooltip"]').tooltip(); 
+    </script>
+</body>
+</html>
