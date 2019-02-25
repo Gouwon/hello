@@ -532,6 +532,8 @@ def uu3():
     else: continue
   print(cdic)  
 
+  
+
 # from pprint import pprint
 # pprint(xml)
 
@@ -549,6 +551,82 @@ def uu3():
 
 # print(dic)
 
+sample1 = '''0067011990999991950051507004+68750+023550FM-12+038299999V0203301N00671220001CN9999999N9+00001+99999999999
+0043011990999991945051512004+68750+023550FM-12+038299999V0203201N00671220001CN9999999N9+00225+99999999999
+0043011990999991950051518004+68750+023550FM-12+038299999V0203201N00261220001CN9999999N9-00111+99999999999
+0043012650999991949032412004+62300+010750FM-12+048599999V0202701N00461220001CN0500001N9+01117+99999999999
+0043012650999991943032418004+62300+010750FM-12+048599999V0202701N00461220001CN0500001N9+00384+99999999999
+0043012650999991945032412004+62300+010750FM-12+048599999V0202701N00461220001CN0500001N9+00167+99999999999
+0043012650999991947032412004+62300+010750FM-12+048599999V0202701N00461220001CN0500001N9-00150+99999999999
+0043012650999991949032412004+62300+010750FM-12+048599999V0202701N00461220001CN0500001N9+00117+99999999999
+0043012650999991947032412004+62300+010750FM-12+048599999V0202701N00461220001CN0500001N9+00227+99999999999
+0043012650999991945032412004+62300+010750FM-12+048599999V0202701N00461220001CN0500001N9+01116+99999999999
+0043012650999991943032412004+62300+010750FM-12+048599999V0202701N00461220001CN0500001N9-00114+99999999999
+0043012650999991943032412004+62300+010750FM-12+048599999V0202701N00461220001CN0500001N9+00191+99999999999
+0043012650999991949032412004+62300+010750FM-12+048599999V0202701N00461220001CN0500001N9+00131+99999999999'''
+sample1_list = sample1.split('\n')
+
+def h_map():
+  seperator = [0,1,4,5,9]
+  result = []
+  for sample in sample1_list:
+    year = int(sample[15:19])
+    temperature = int(sample[87:92])
+    gubun = int(sample[92:93])
+    if gubun not in seperator:
+      continue
+    else:
+      result.append((year, temperature)) 
+
+  result.sort()
+  return result
+
+def h_reducer(lst):
+  result = {}
+  for i in lst:
+    (key, val) = i
+    if key not in result:
+      result[key] = val
+    if result[key] < val:
+      result[key] = val
+      result1 =["%s\t%s" % (i,j) for i, j in result.items()]
+  
+  ''.join(result1)
+  print(result1, type(result1))
+  return result
+
+samples = [
+    (2001, 23),
+    (2002, 7),
+    (2002, -12),
+    (2001, 21),
+    (2003, 20),
+    (2005, 13),
+    (2003, 3),
+    (2005, -2),
+    (2003, 22),
+    (2001, -3),
+]
+
+def reducer(lst, method="max"):
+  temporary = {}
+  for sample in samples.sort():
+    if sample[0] not in temporary:
+      temporary[sample[0]] = [sample[1]]
+    else:
+      temporary[sample[0]].append(sample[1])
+
+  result = {}
+  if method == "max":
+    for i in temporary.items():
+      print(i[0], max(i[1]))
+      result[i[0]] = max(i[1])
+  elif method == "min":
+    for i in temporary.items():
+      print(i[0], min(i[1]))
+      result[i[0]] = max(i[1])
+
+  return result
 
 
 
@@ -562,4 +640,32 @@ if __name__ == "__main__":
     # print(len(lst), lst)
 
     # uu2()
-    uu3()
+    # uu3()
+
+  # from collections import namedtuple
+
+  # Song = namedtuple('Song', 'songno title likecnt')
+
+  # s1 = Song(123, '만남', 100)
+  # s2 = Song(songno=222, title='강남스타일', likecnt=200)
+  # d1 = s1._asdict()
+  # d2 = s2._asdict()
+
+  # for i in d1:
+  #   print(i, d1[i])
+
+  # a = reducer()
+
+  # import csv
+  # import codecs
+  # csvFile = codecs.open("./hello/test_sample_data_0001.csv", "r", "utf-8")
+  # reader = csv.reader(csvFile, delimiter=',', quotechar='"')
+
+  # for row in reader:
+  #   print(row)
+
+  result = h_map()
+  h_reducer(result)
+
+  # if -1 < 0:
+  #   print("...")

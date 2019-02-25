@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tensile-courier-221514",
+  "private_key_id": "5574e15cd49f06deb965e63fd7fd8d9bb9bf4657",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCStOv5CusuHEBt\n0HVXejtxSSl2GMuYXSOtZkH4dlhjlKm1bEXlHl9kb/b5fnek3kI/ArJgE0vutGOm\nZ2tPLC8kr0xDFjtI72Z0682UK7nAyVewfADzLaSKBvYT21HmaGcLKwQnR4eVmuuB\nuZuL46Yx8PGFAVZ19P0H3FxeMH4EQTmdEI8Jd1MAOR2T4FX8w2SgE4J6tvdvlT62\ncl8n6aJnOYJla4nbTzllkobuOpYEB7mp+LcskG13A/3TEfK+SpGqG91BHk6nqQd4\nRIszdR3K5v++Sek/EqwB4nDGX+EVVk0sdZUQbRsodHdxNHGY0DJLOGlkdF492UOP\nZF5bO7KVAgMBAAECggEAERdYwlu+SFHsQ57cfMN1t13xoZuD5I09Qc8+8kY/R+Ki\n3srtXaLrNBVDLY/JOoDWMOcMhtrYpseHMHSt8LxSBbESbmJhp76ULhzmh1OMwWPz\nflED/1Ca8aWb93Y+lVwmXQu24SiZKBmzRBquf16XFwxd5sPgIb/X1pmafTKjC7Ws\na9wXlyVZLFBGTAs70SO5+Yd8OBpPSFFeWeU4z3LaUpescGvoCDzsXB0awce4JV2J\nX6aeaFpEYTyKFuyBOMBtkMsLfCWKxHXd8CFOlzn9hkwf1ulY7NFSOaRYhBjcH0T4\nUzO1lpPbH0o+pMoNDuampao6CG6nNL3topbGNOPQRQKBgQDCpoO9CE1Nab/sd/Gp\n6WxGlUTyQO9E/uPHD8hHedl0AOZlg2jg7jwubbHQRkG+sNTIf7EQvtbTpIJkpqD6\nzHz5833k6HMU9906JJFK+q076tFGoi6OjNTtOTM/K78e+09iiWoGNaXsVuNywEl3\n23gfdTvmt1EJQxv/iH82NYnCqwKBgQDA8go06NLVarO24d/bTnf5BElkNwNM0uno\nvPneqCPFM6lIiRPpmadbzrAIVq4J4pVCmk2dz/psRZ3i9Qe2r9yadJORCN31dBd/\nvTXTQ/5o/aLpl7mWPVkaqCQshrLbYPkVFHEX4ZpuQImtcga1tZMrETzdQHHnhmLs\nfy+zTqJfvwKBgQCnEHX3c72tWLtCQTwowlCNUCaJ6hOy2zYyrygNuNZbiz40GJKW\no8MBcmLwSKy691jZ8UbPAYyuv/6uVpnKSGJnwYXnR18muwqkkagme3rd90/BWQeu\nj89dAAAtEuYJuFbNUvWt+LO9YmH7JnCoL7UtAtjzz5j84x2Pt96/bzoa2wJ/cExv\npFveWljAQLE2mW4SZd0Y2jsqsIwRmGRlCjLSnvRyksU10cCcp9KkojXRFe/K7/jf\nM/rYxiu+uVnkI3A39a3kNYXzqejnxHFb4pqweGsnZs3oNol+UwWKCGBduVG3p40+\nRagJOiJV/51eSmRkQ6zEwAHCSf7tlLhyCuq5lwKBgQCpKKAsuEYzwRReEk67kioo\nSt8MH7fL+/D1WYTmVcE+PMXaWqVypTtaDLvMlpz2Y8dSE22wDyHl1s2hYHPpd/lq\nT51JEBvVUjwwMWWh9ZYzlz7Ug+8ZiF5IucZH2QsXw0O4mEFbdkvg7/xTYvcUyrDl\nTf0D4xy5OKFB1Pm6T+nslQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "admin-bigquery@tensile-courier-221514.iam.gserviceaccount.com",
+  "client_id": "100132541145833839950",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/admin-bigquery%40tensile-courier-221514.iam.gserviceaccount.com"
+}
