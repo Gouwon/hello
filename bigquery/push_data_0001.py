@@ -1,7 +1,8 @@
 import bigquery
-import sys
+import sys, os
 
-client = bigquery.get_client(json_key_file='bigquery.json', readonly=False)
+key_file = os.getenv("GOOGLE_APLICATION_CREDENTIALS")
+client = bigquery.get_client(json_key_file=key_file, readonly=False)
 
 DATABASE = "bqdb"
 TABLE = "Test"
