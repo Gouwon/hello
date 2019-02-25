@@ -2,6 +2,7 @@ import pymysql
 from collections import namedtuple
 
 import bigquery
+from google.cloud import bigquery as gb
 import sys
 
 from pprint import pprint
@@ -14,8 +15,6 @@ def connect_mysql(db):
         port=3306,
         db=db,
         charset='utf8')
-
-# class Song:
     
 def fn1():
     conn_doodb = connect_mysql("dooodb")
@@ -63,7 +62,6 @@ def fn3(Data):
     DATABASE = "bqdb"
     TABLE = "Songs"
     data = Data
-    # pprint(data)
     if not client.check_table(DATABASE, TABLE):
         print("Create table {0}.{1}".format(DATABASE, TABLE), file=sys.stderr)
 
@@ -87,25 +85,29 @@ def fn3(Data):
     pushResult = client.push_rows(DATABASE, TABLE, data, insert_id_key='songId')
     print("Pushed Result is", pushResult)
 
+def fn4():
+    client = gb.Client()
+
+    # Perform a query.
+    QUERY = ('select songId, title, genre, albumId, album.title as albumtitle from bqdb.Songs')
+    query_job = client.query(QUERY)  # API request
+    rows = query_job.result()        # Waits for query to finish
+
+    for row in rows:
+        print(row)
 
 if __name__ == "__main__":
     dset = fn1()
     dset_album = fn2()
 
-    i = 0
     data = []
     for d in dset:
-        d['fields'] = dset_album[0]
-        data.append(d)
-    
-    # print(type(data))
-    # for dd in data:
-    #     print(type(dd))
-    #     pprint(dd)
-    #     pprint(dd['fields'])
-    #     break
-    # pprint(data)
-    # fn3(data)
-            
-    # getData()
-    # pushData()
+        for dd in dset_album:
+            if d['albumId'] == dd['albumId']:
+                d['album'] = dd
+            else:
+                continue
+            data.append(d)
+    fn3(data)
+
+    fn4()
