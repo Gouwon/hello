@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/476062/27d1f7abc6fb46388f17c77f5a256b58
+bundleId: https://api.rpubs.com/api/v1/document/476062/27d1f7abc6fb46388f17c77f5a256b58
+url: http://rpubs.com/Gouwon/476062
+when: 1552536274.82065

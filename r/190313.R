@@ -84,10 +84,10 @@ library('ggplot2')
 head(mpg)
 
 ggplot(data=mpg, aes(x=displ)) +
-  geom_line(data=mpg %>% filter(year=='1999'), aes(y=cty, color='1999 cty')) +
-  geom_line(data=mpg %>% filter(year=='1999'), aes(y=hwy, color='1999 hwy')) +
-  geom_line(data=mpg %>% filter(year=='2008'), aes(y=cty, color='2008 cty'), size=1) +
-  geom_line(data=mpg %>% filter(year=='2008'), aes(y=hwy, color='2008 hwy'), size=1) +
+  geom_line(data=distinct(mpg %>% filter(year=='1999') %>% group_by(displ) %>% summarise(cty = mean(cty))), aes(y=cty, color='1999 cty')) +
+  geom_line(data=distinct(mpg %>% filter(year=='1999') %>% group_by(displ) %>% summarise(hwy = mean(hwy))), aes(y=hwy, color='1999 hwy')) +
+  geom_line(data=distinct(mpg %>% filter(year=='2008') %>% group_by(displ) %>% summarise(cty = mean(cty))), aes(y=cty, color='2008 cty'), size=1) +
+  geom_line(data=distinct(mpg %>% filter(year=='2008') %>% group_by(displ) %>% summarise(hwy = mean(hwy))), aes(y=hwy, color='2008 hwy'), size=1) +
   scale_x_continuous("배기량(cc)") +
   scale_y_continuous("연비(M/h)") + 
   scale_colour_manual("", breaks = c("1999 cty", "1999 hwy", '2008 cty', '2008 hwy'),
@@ -107,6 +107,8 @@ ggplot(data %>% filter(kor >= 80) %>% select(cls, gen), aes(cls)) +
                                    vjust=0.6)) +   # 글씨의 하단 맞춤(띄우기)
   scale_fill_discrete(name = "성별") +      # legend
   labs(title = '국어 우수 학생', subtitle = '(80점 이상)', x='학급', y='학생수')
+
+save(data, file = 'data/data_eng.rda')
 
 
 # 국어 성적이 95점 이상인 학생들의 점수별 밀도그래프를 그리시오.

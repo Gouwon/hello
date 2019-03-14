@@ -669,7 +669,12 @@ if __name__ == "__main__":
 
 #   # if -1 < 0:
 #   #   print("...")
-  i = 1
-  print(i)
-  x = i + 1
-  print(x)
+#   i = 1
+#   print(i)
+#   x = i + 1
+#   print(x)
+    import json
+    with open("./hello/test.json", "r") as data:
+        data1 = json.loads(data.read())
+
+    print(data1)
