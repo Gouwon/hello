@@ -3,7 +3,7 @@ from collections import namedtuple
 
 import bigquery
 from google.cloud import bigquery as gb
-import sys
+import sys, os
 
 from pprint import pprint
 
@@ -41,7 +41,7 @@ def fn2():
 
     with conn_doodb:
         cur = conn_doodb.cursor()
-        sql_select = '''select cast(id as char) as id, albumId, title, cast(releaseDate as char) as releaseDate, cast(score as char) as score, publisher, label         from Album limit 100'''
+        sql_select = '''select cast(id as char) as id, albumId, title, releaseDate, cast(score as char(10)) as score, publisher, label from Album limit 100'''
         cur.execute(sql_select)
 
         # cols = [c[0] for c in cur.description]
@@ -57,7 +57,8 @@ def fn2():
     return dset_album
 
 def fn3(Data):
-    client = bigquery.get_client(json_key_file='bigquery.json', readonly=False)
+    key_file = os.getenv("GOOGLE_APLICATION_CREDENTIALS")
+    client = bigquery.get_client(json_key_file=key_file, readonly=False)
 
     DATABASE = "bqdb"
     TABLE = "Songs"
@@ -89,7 +90,7 @@ def fn4():
     client = gb.Client()
 
     # Perform a query.
-    QUERY = ('select songId, title, genre, albumId, album.title as albumtitle from bqdb.Songs')
+    QUERY = ('select songId, title, genre, albumId, album.title from bqdb.Songs')
     query_job = client.query(QUERY)  # API request
     rows = query_job.result()        # Waits for query to finish
 

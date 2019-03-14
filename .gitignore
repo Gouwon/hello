@@ -2,3 +2,4 @@ scraping/results
 scraping/results/data
 scraping/results/images
 bigquery/*.json
+.Rproj.user
