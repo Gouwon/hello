@@ -55,7 +55,7 @@ geom_map_interactive(
   map = usmap) +
   expand_limits(x = usmap$long, y = usmap$lat) +
   scale_fill_gradient2('Rape', high = "blue", mid = "green") +
-  labs(title="USA Murder") -> gg_map
+  labs(title="USA Rape") -> gg_map
 
 ggiraph(code = print(gg_map))
 girafe(ggobj = gg_map)
