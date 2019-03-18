@@ -174,7 +174,8 @@ library(stringi)
 chodata[chodata$state=='wisconsin', ]
 tooltips = paste0(
   sprintf("<p><strong>%s</strong></p>", as.character(chodata$state)),
-  sprintf("<p><strong>%s</strong> / %s 만</p>", round(chodata$Rape), round(chodata$UrbanPop) * 10)) 
+  sprintf("<p><strong>%s</strong> / %.0f 만</p>", round(chodata$Rape), round(chodata$UrbanPop) * 10)) 
+# string::stri_escape_unicode('만') # windows only
 
 onclick = paste0('location.href=', sprintf('"http://en.wikipedia.org/wiki/%s"', as.character(chodata$state)))
 library(ggiraph)
@@ -199,18 +200,32 @@ girafe(ggobj = gg_map)
 
 library(kormaps2014)
 kdata1 = kormaps2014::tbc
+kdata1[kdata1$code==29,]
 colnames(kdata1)
-kdata1 = kdata1 %>% filter(year %in% c(2006:2015)) %>% group_by(name) %>% summarise(NewPts = sum(NewPts),code = mean(code))
-str(kdata1)
 kdata1$NewPts = ifelse(is.na(kdata1$NewPts), 0, kdata1$NewPts)
+kdata1 = kdata1 %>% filter(year %in% c(2006:2015)) %>% group_by(name) %>% summarise(총결핵발생자 = sum(NewPts), code = mean(code))
+str(kdata1)
 
 ggChoropleth(data=kdata1, 
-             aes(fill = NewPts, 
+             aes(fill = 총결핵발생자, 
                  map_id = code, 
-                 tooltip = area),
-             map = kormap1)
+                 tooltip = name),
+             title = '시도별 결핵환자수',
+             subtitle = "(2006~2015년 총 발생 건수)",
+             map = kormap1, interactive = TRUE)
 
-ggplot(kdata1, aes(data=NewPts, map_id = code)) +
-  geom_map( aes(fill = NewPts), map = kormap1) + 
+tooltips = paste0(
+  sprintf("<p><strong>%s</strong></p>", as.character(kdata1$name)),
+  sprintf("<p><strong>%.0f</strong> 명</p>", round(kdata1$총결핵발생자))) 
+# string::stri_escape_unicode('만') # windows only
+
+ggplot(kdata1, aes(data=총결핵발생자, map_id = code)) +
+  geom_map_interactive(aes(fill = 총결핵발생자,
+                           data_id = code,
+                           tooltip =tooltips), map = kormap1) + 
   expand_limits(x = kormap1$long, y = kormap1$lat) +
-  scale_fill_gradient2('NewPts', high='red')
+  scale_fill_gradient2("총결핵발생자", high='red') +
+  labs(title="시도별 결핵환자수", subtitle = "(2006~2015년 총 발생 건수)") -> gg_map1
+
+ggiraph(code = print(gg_map1))
+girafe(ggobj = gg_map1)
