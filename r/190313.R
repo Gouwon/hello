@@ -89,7 +89,7 @@ ggplot(data=mpg, aes(x=displ)) +
   geom_line(data=distinct(mpg %>% filter(year=='2008') %>% group_by(displ) %>% summarise(cty = mean(cty))), aes(y=cty, color='2008 cty'), size=1) +
   geom_line(data=distinct(mpg %>% filter(year=='2008') %>% group_by(displ) %>% summarise(hwy = mean(hwy))), aes(y=hwy, color='2008 hwy'), size=1) +
   scale_x_continuous("배기량(cc)") +
-  scale_y_continuous("연비(M/h)") + 
+  scale_y_continuous("연비(M/h)", limits = c(0, 50)) + 
   scale_colour_manual("", breaks = c("1999 cty", "1999 hwy", '2008 cty', '2008 hwy'),
                       values = c('red', 'yellow', 'blue', 'lightblue')) +
   labs(title="연도별 연비", subtitle = "굵은선은 2008년")
@@ -102,7 +102,7 @@ head(data)
 
 ggplot(data %>% filter(kor >= 80) %>% select(cls, gen), aes(cls)) +
   geom_bar(aes(fill=gen),
-           width = 0.5) +
+           width = 0.7) +
   theme(axis.text.x = element_text(angle=45,       # 글씨의 기울기
                                    vjust=0.6)) +   # 글씨의 하단 맞춤(띄우기)
   scale_fill_discrete(name = "성별") +      # legend
