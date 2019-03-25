@@ -15,7 +15,6 @@ library(ggplot2)
 theme_set(theme_gray(base_family = "AppleGothic"))
 par(family = "AppleGothic")
 load("../data/data_eng.rda")
-
 ```
 
 ----

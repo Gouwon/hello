@@ -175,7 +175,7 @@ chodata[chodata$state=='wisconsin', ]
 tooltips = paste0(
   sprintf("<p><strong>%s</strong></p>", as.character(chodata$state)),
   sprintf("<p><strong>%s</strong> / %.0f 만</p>", round(chodata$Rape), round(chodata$UrbanPop) * 10)) 
-# string::stri_escape_unicode('만') # windows only
+# unistring = stringi::stri_escape_unicode('만') # windows only
 
 onclick = paste0('location.href=', sprintf('"http://en.wikipedia.org/wiki/%s"', as.character(chodata$state)))
 library(ggiraph)
