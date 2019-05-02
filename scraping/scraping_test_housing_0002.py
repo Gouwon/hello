@@ -3,6 +3,7 @@ headers = { "Referer": "http://rt.molit.go.kr/new/gis/srh.do?menuGubun=A&gubunCo
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"}
 
 
+## 보안창 에러 시 셀레니움으로 보안창을 띄우는 함수
 def open_captcha():
     from selenium import webdriver
     import os
@@ -20,7 +21,7 @@ def open_captcha():
     driver.close()
 
 
-
+## 노원구의 5개 동을 대상으로 가지고 오는 함수
 def get_dong_code():
     import requests
     import json
@@ -47,7 +48,7 @@ def get_dong_code():
     return simplified_dong_code_list
 
 
-
+## 한 개 동마다 아파트의 코드번호를 가지고 오는 함수
 def get_apartment_code(dongCode):
     import requests
     import json
@@ -79,7 +80,7 @@ def get_apartment_code(dongCode):
     return simplified_apt_code_list
 
 
-
+## 각 아파트 코드별로 상세 정보를 가지고 오는 함수
 def get_detailed_apartment_information(dong_name, APT_NAME, APT_CODE, session_cnt, session):
     import requests
     import json
@@ -92,7 +93,8 @@ def get_detailed_apartment_information(dong_name, APT_NAME, APT_CODE, session_cn
             'p_acc_year':'2018',
             'areaCode':'',
             'priceCode':''}
-
+    
+    ## 세션을 유지할지, 새로 할당할지 판단
     if session_cnt >= 90:
         print("\n서버로부터 새로운 SESSION ID를 할당받아 사용합니다.")
         session = requests.session()
@@ -108,6 +110,7 @@ def get_detailed_apartment_information(dong_name, APT_NAME, APT_CODE, session_cn
     html = session.get(url, params=params, headers=headers)
     jsonData = json.loads(html.text)
     
+    ## 보안창으로 인한 에러 발생시, 에러 처리 부분
     try:
         detailed_information_list = jsonData["result"]
     except:
@@ -120,6 +123,7 @@ def get_detailed_apartment_information(dong_name, APT_NAME, APT_CODE, session_cn
     # print("", html.headers['Set-Cookie'])
     print("아파트 정보를 가지고 오는 중입니다.......................... ", dong_name, ". ", APT_NAME)
     
+    ## 각 동별 아파트 정보를 파일 단위로 저장
     arranged_apartment_informations = {}
     # saveFile = "./GW_Study/Crawling/results/test_____house.html"
     saveFile = "./results/test_____house____{}.html".format(dong_name)
@@ -161,7 +165,7 @@ def get_detailed_apartment_information(dong_name, APT_NAME, APT_CODE, session_cn
 
 if __name__ == "__main__":
     import requests
-
+    
     dong_names = get_dong_code()
     for dong_name in dong_names:
         apt_names = get_apartment_code(dong_names[dong_name])
