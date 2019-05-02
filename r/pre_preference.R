@@ -19,6 +19,11 @@ library(wordcloud)
 library(twitteR); library(RCurl); library(RJSONIO); library(stringr)
 library(streamR); library(ROAuth)
 library(rJava); library(KoNLP)
+library(arules); library(igraph); library(combinat)
+library(arulesViz); library(visNetwork)
+
+library(psych)
+library(gmodels)
 
 theme_set(theme_gray(base_family="AppleGothic"))
 par(family = "AppleGothic")
