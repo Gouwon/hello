@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>This is 'Typography' page.</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Bootstrap -->
+
+    <style>
+        .heading {color : dodgerblue;}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12"><h3 class="heading">1. Heading</h3></div>
+            <div class="col-md">
+                <h1>&lt;h1&gt; 36px</h1>
+                <h2>&lt;h2&gt; 30px</h2>
+                <h3>&lt;h3&gt; 24px</h3>
+                <h4>&lt;h4&gt; 18px</h4>
+                <h5>&lt;h5&gt; 14px</h5>
+                <h6>&lt;h6&gt; 12px</h6>
+                <span style="color : crimson">heading이 적용된 글꼴은 semi&hyphen;bold</span>
+            </div>
+            <div class="col-md">
+                <h1><small>&lt;h1&gt; 24px</small></h1>
+                <h2><small>&lt;h2&gt; 20px</small></h2>
+                <h3><small>&lt;h3&gt; 16px</small></h3>
+                <h4><small>&lt;h4&gt; 14px</small></h4>
+                <h5><small>&lt;h5&gt; 11px</small></h5>
+                <h6><small>&lt;h6&gt; 9px</small></h6>                                                                
+                <span style="color : crimson">&lt;small&gt; tag가 적용된 글자 크기는 원래의 65&percnt;&lpar;h1&comma;h2&comma;h3&rpar;&comma; 75&percnt;&lpar;h4&comma;h5&comma;h6&rpar;이고 색깔은 &sharp;999.</span>
+            </div>
+            <div class="col-md-12"><h3 class="heading">2. Paragraph</h3></div>
+            <div class="col-md">
+                bootstra에서의 body default font-size는 14px, 행간(line-height)은 1.42857143이다.
+                <p>&lt;p&gt; tag 사용 시, margin값은 10px이다. &lt;p&gt;는 <span style="color : crimson"><u><strong>Block element</strong></u></span>이다.</p>
+            </div>
+            <div class="col-md-12"><h3 class="heading">3. &lt;small&gt;&comma; &lt;strong&gt;&comma; &lt;em&gt; tag와&period;lead 선택자</h3></div> 
+            <div class="col-md"><small>&lt;small&gt; tag는 작은 글씨&lpar;본문 글씨의 85&percnt;&rpar;를</small><br>
+            <strong>&lt;strong&gt; tag는 문장을 강조할 때 boldtic하게 한다. 이전에는 &lt;b&gt; tag였다.</strong><br>>
+            <em>&lt;em&gt; tag는 이태릭체를 쓸 때 사용하면 &lt;i&gt; tag와 같다.</em><br>
+            <span class="lead">&period;lead 선택자를 이용하면</span> 단락의 첫 문장을 강조할 수 있다.</div>
+            <div class="col-md"><pre>&lt;small&gt; tag는 작은 글씨&lpar;본문 글씨의 85&percnt;&rpar;를&lt;/small&gt;
+&lt;strong&gt; tag는 문장을 강조할 때 boldtic하게 한다. 이전에는 &lt;b&gt; tag였다.&lt;/strong&gt;
+&lt;em&gt; tag는 이태릭체를 쓸 때 사용하면 &lt;i&gt; tag와 같다.&lt;/em&gt; 
+&lt;span class&equals;&ldquo;lead&rdquo;>&period;lead 선택자를 이용하면&lt;/span&gt; 단락의 첫 문장을 강조할 수 있다.</pre></div>
+            <div class="col-md-12"><h3 class="heading">4. Alignment</h3></div>
+            <div class="col-md">
+                <div class="row">
+                    <div class="col-md-12 text-left">text-left</div>
+                    <div class="col-md-12 text-center">text-center</div>
+                    <div class="col-md-12 text-right">text-right</div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="row">
+                    <pre>
+&lt;div class="col-md-12 text-left"&gt;text-left&lt;/div&gt;
+&lt;div class="col-md-12 text-center"&gt;text-center&lt;/div&gt;
+&lt;div class="col-md-12 text-right"&gt;text-right&lt;/div&gt;
+                    </pre>
+                </div>
+            </div>
+            <div class="col-md-12"><h3 class="heading">5. Emphasis</h3></div>
+            
+        </div>
+    </div>
+    
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Jquery -->
+    
+    <!-- Popper js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <!-- Popper js -->
+
+    <!-- Bootstrap js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Bootstrap js -->
+</body>
+</html>
