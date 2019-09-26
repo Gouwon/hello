@@ -69,9 +69,85 @@
                 </div>
             </div>
             <div class="col-md-12"><h3 class="heading">5. Emphasis</h3></div>
-            
+            <div class="col-md">
+                <span class="text-muted">class="text-muted"</span><br>
+                <span class="text-primary">class="text-primary"</span><br>
+                <span class="text-success">class="text-success"</span><br>
+                <span class="text-info">class="text-info"</span><br>
+                <span class="text-warning">class="text-warning"</span><br>
+                <span class="danger">class-"text-danger"</span>
+            </div>
+            <div class="col-md">
+                <pre>
+&lt;span class="text-muted"&gt;class="text-muted"&lt;/span&gt;
+&lt;span class="text-primary"&gt;class="text-primary"&lt;/span&gt;
+&lt;span class="text-success"&gt;class="text-success"&lt;/span&gt;
+&lt;span class="text-info"&gt;class="text-info"&lt;/span&gt;
+&lt;span class="text-warning"&gt;class="text-warning"&lt;/span&gt;
+&lt;span class="danger"&gt;class-"text-danger"&lt;/span&gt;
+                </pre>
+            </div>
+            <div class="col-md-12"><h3 class="heading">6. Abbreviation</h3></div>
+            <div class="row">
+                <div class="col-md-12">&lt;abbr&gt; tag를 이용해서 약어(줄임말)을 처리할 수 있다. &lt;abbr&gt; tag를 사용하면 약어에는 점선 밑줄이 그어진다. 단어에 마우스를 올리면 물음표가 나오면서 원래 텍스트가 나온다. 영문 약자를 처리하기 위해서는 &period;initialism 클래스 선택자가 필요하다. 본문 크기의 90&percnt; 정도로 축소되면 영문은 대문자로 변하게 된다.</div>
+                <div class="col-md-6"><p>여러분 <span style="color :brown;"><abbr title="사회주의">님</abbr></span>이란 무엇입니까?<br> 그러나 이 것은 WWW(본문) <abbr title="그냥 &lt;abbr&gt;tag">WWW</abbr> <abbr title="&period;initialism 적용시 옆에 것의 90&percnt; 크기임." class="initialism">WWW</abbr>의 세계에서는 필수요소일 뿐이다.</p></div>
+                <div class="col-md-6"><pre>여러분 &lt;abbr title&equals;&ldquo;사회주의&rdquo;&gt;님&lt;/abbr&gt;이란 무엇입니까?
+그러나 이 것은 WWW(본문) &lt;abbr title&equals&ldquo;그냥 &lt;abbr&gt;tag&rdquo;&gt;WWW&lt;/abbr&gt; &lt;abbr title&equals;&ldquo;&period;initialism 적용시 옆에 것의 90&percnt; 크기임.&rdquo; class&equals;&ldquo;initialism&rdquo;&gt;WWW&lt;/abbr&gt;
+                </pre></div>
+            </div>
+            <div class="col-md-12"><h3 class="heading">7. Address</h3></div>
+
+            <div class="col-md-12"><h3 class="heading">8. Quote</h3></div>
+            <div class="row">
+                    <div class="col-md-6">
+                            <p>
+                                <blockquote>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                </blockquote>
+                            </p>
+                        </div>
+                        <div class="col-md-6"><pre>&lt;blockquote&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.&lt;/p&gt;
+&lt;/blockquote&gt;
+                        </pre></div>
+            </div>
+            <div class="col-md-12"><h3 class="heading">9. List</h3></div>
+                <div class="col-md" style="border-style: solid; border-color: aquamarine;">
+                    unordered list
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+
+                    unordered list with no style
+                    <ul class="list-unstyled">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+
+                    unordered list in horizontal way
+                    <ul class="list-inline">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+
+                    ordered list
+                    <ol>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ol>
+                </div>
+                <div class="col-md" style="border-style: solid; border-color: aquamarine;">
+
+                </div>
         </div>
     </div>
+
+    <h1 style="color : red; text-align: center;">!unorderd list .list-inline 적용 안 되는 것에 대해서 해결 방법을 찾아보자!</h1>
     
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
