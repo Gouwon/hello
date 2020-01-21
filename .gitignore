@@ -1,7 +1,1 @@
-scraping/results
-scraping/results/data
-scraping/results/images
-bigquery/*.json
-.Rproj.user
-r/apikey
-ml/data
+.
