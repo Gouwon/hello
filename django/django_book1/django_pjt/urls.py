@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 import django_app   #NOQA
 import django_rest  #NOQA
-from programmers_test import urls as p_urls
 from django.conf.urls import (handler403, handler404, handler500)
+
+from programmers_test import urls as p_urls
 from programmers_test.views import (error403, error404, error500)
+from books.views import HomeView
 
 
 urlpatterns = [
@@ -28,6 +30,8 @@ urlpatterns = [
     path('sss/', include('django_rest.urls')),
     re_path(r'^product\/', include((p_urls.extra_patterns, 'programmers_test')), name='product'),
     re_path(r'^products', include((p_urls.urlpatterns, 'programmers_test')), name='products'),
+    path('books/', include('books.urls')),
+    path('', HomeView.as_view(), name='home'),
 ]
 
 # defaults.page_not_found(request, exception, template_name='404.html')

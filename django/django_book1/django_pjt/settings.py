@@ -15,6 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+print('\n\n\n <<<<<<<<< BASE_DIR ', BASE_DIR)
+print('\n\n\n TEMPLATES ', os.path.join(BASE_DIR, 'templates'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -23,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'js*of!63%r&thz)#kht4-r5=pznd5auven=j2gzir+i$2cen84'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -37,16 +39,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'django_rest.apps.DjangoRestConfig',    # RESTful 추가
-    'django_app.apps.DjangoAppConfig',  # 추가
-    'programmers_test.apps.ProgrammersTestConfig',  # 추가
+    # 'django_rest.apps.DjangoRestConfig',    # RESTful 추가
+    # 'django_app.apps.DjangoAppConfig',  # 추가
+    # 'programmers_test.apps.ProgrammersTestConfig',  # 추가
+    # 'books.apps.BooksConfig',
+    'django_rest',
+    'django_app',
+    'programmers_test',
+    'books',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -58,7 +65,7 @@ ROOT_URLCONF = 'django_pjt.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

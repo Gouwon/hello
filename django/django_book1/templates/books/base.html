@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'admin/css/base.css' %}" />
+    <title>This is BASE</title>
+</head>
+<body>
+    <h1>books/base.html</h1>
+    <div id="sidebar">
+        {% block sidebar %}
+        <ul>
+            <li><a href="/">Project_Home</a></li>
+            <li><a href="/admin/">Admin</a></li>
+        </ul>
+        {% endblock sidebar %}
+        <br />
+    </div>
+    <div id="content">
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+</html>
