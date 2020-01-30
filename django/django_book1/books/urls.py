@@ -7,7 +7,7 @@ app_name = 'books'
 
 urlpatterns = [
     path(
-        '', views.BooksModelView.as_view(), name='bindex'
+        '', views.BooksModelView.as_view(), name='index'
     ),
     path(
         'book/', views.BookList.as_view(), name='book_list'

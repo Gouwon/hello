@@ -17,6 +17,7 @@ class HomeView(generic.TemplateView):
             if 'site-packages' not in app.path:
                 dictVerbose[app.label] = app.verbose_name
         context['verbose_dict'] = dictVerbose
+        print('\n\n\n HomeView.get_context_data() context >>>>> ', context)
         return context
 
 class BooksModelView(generic.TemplateView):

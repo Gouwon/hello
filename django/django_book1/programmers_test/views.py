@@ -30,7 +30,7 @@ def resonpse_in_json(f):
     return decorated_function
 
 # Create your views here.
-def pindex(request):
+def index(request):
     return render(request, 'programmers_test/index.html')
 
 @resonpse_in_json

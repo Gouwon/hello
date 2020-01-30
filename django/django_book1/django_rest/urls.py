@@ -9,7 +9,7 @@ router.register(r'vvv/', views.ItemViewSet)
 # router.register(r'vvv/', views.ItemView.as_view())
 
 urlpatterns = [
-    path(r'xxx', views.ItemView.as_view()),
+    path(r'xxx', views.ItemView.as_view(), name='index'),
     url(r'^', include(router.urls), name='basic'),
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

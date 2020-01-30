@@ -35,7 +35,7 @@ def find_templates(template_name):
     return directory + '/' + template_name
 
 @route
-def dindex():
+def index():
     latest_question_list = Question.objects.all().order_by('-pub_date')[:5]
     context = {'latest_question_list': latest_question_list}
     return find_templates('index.html'), context

@@ -6,6 +6,8 @@ if(os.environ.get('MYSQL_ROOT_HOST', None) == None):
     os.system('source ~/workspace/hello/django/export.sh')
     print('\n\n\n os.environ >>>>> ', os.environ)
 
+DEBUG = False
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

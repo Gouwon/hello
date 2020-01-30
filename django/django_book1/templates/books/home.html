@@ -7,15 +7,23 @@
 {% block content %}
 <h2>shkim Django Applications</h2>
 <ul>
+<li><a href="{% url 'programmers_test:details' id=17 %}">TEST</a></li>
+<li><a href="{% url 'books:index' %}">TEST1</a></li>
+<li><a href="{% url 'django_app:index' %}">TEST2</a></li>
+<li><a href="{% url 'django_rest:index' %}">TEST3</a></li>
+<li><a href="{% url 'programmers_test:index' %}">TEST4</a></li>
+</ul>
+
+<ul>
     {% for appname in app_list %}
-        {% with appname|add:':'|add:'index' as urlvar %}
+        {% with appname|add:':index' as urlvar %}
         <li><a href="{% url urlvar %}">{{ appname }}</a></li>
         {% endwith %}
     {% endfor %}
+</ul>
+<ul>
     {% for key, value in verbose_dict.items %}
-        {% with appname|add:':'|add:'index' as urlvar %}
-        <li><a href="{% url key|add:':index' %}">{{ value }}</a></li>
-    {% endwith %}
-{% endfor %}
+    <li><a href="{% url key|add:':index' %}">{{ value }}</a></li>
+    {% endfor %}
 </ul>
 {% endblock content %}

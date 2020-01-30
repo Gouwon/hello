@@ -22,7 +22,8 @@ print('\n\n\n TEMPLATES ', os.path.join(BASE_DIR, 'templates'))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'js*of!63%r&thz)#kht4-r5=pznd5auven=j2gzir+i$2cen84'
+# SECRET_KEY = 'js*of!63%r&thz)#kht4-r5=pznd5auven=j2gzir+i$2cen84'
+SECRET_KEY = os.environ.get('SECRET_KEY', None)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,14 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    # 'django_rest.apps.DjangoRestConfig',    # RESTful 추가
-    # 'django_app.apps.DjangoAppConfig',  # 추가
-    # 'programmers_test.apps.ProgrammersTestConfig',  # 추가
-    # 'books.apps.BooksConfig',
-    'django_rest',
-    'django_app',
-    'programmers_test',
-    'books',
+    'django_rest.apps.DjangoRestConfig',    # RESTful 추가
+    'django_app.apps.DjangoAppConfig',  # 추가
+    'programmers_test.apps.ProgrammersTestConfig',  # 추가
+    'books.apps.BooksConfig',
+    # 'django_rest',
+    # 'django_app',
+    # 'programmers_test',
+    # 'books',
 ]
 
 MIDDLEWARE = [
@@ -163,3 +164,18 @@ REST_FRAMEWORK = {
      'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 50
 }
+
+
+# for deployment
+# checklist => python manage.py check --deploy
+CSRF_COOKIE_SECURE = True
+
+SESSION_COOKIE_SECURE = True
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+SECURE_BROWSER_XSS_FILTER = True
+
+SECURE_SSL_REDIRECT = True
+
+X_FRAME_OPTIONS = 'DENY'
