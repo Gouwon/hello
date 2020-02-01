@@ -68,6 +68,9 @@ class Item(models.Model):
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     ingredients = models.ManyToManyField(Ingredient)
+
+    class Meta:
+        ordering = ['-id']
     
     def __str__(self):
         return self.name

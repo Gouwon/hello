@@ -3,13 +3,10 @@ from django.urls import (path, include, re_path,)
 from django.conf.urls import url
 from . import views
 
+
 app_name = 'django_rest'
-router = routers.DefaultRouter()
-router.register(r'vvv/', views.ItemViewSet)
-# router.register(r'vvv/', views.ItemView.as_view())
 
 urlpatterns = [
-    path(r'xxx', views.ItemView.as_view(), name='index'),
-    url(r'^', include(router.urls), name='basic'),
-    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('snippets/', views.snippet_list),
+    path('snippets/<int:pk>/', views.snippet_detail),
 ]
