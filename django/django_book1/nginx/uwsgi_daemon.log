@@ -170,3 +170,287 @@ spawned uWSGI worker 2 (pid: 50303, cores: 1)
 spawned uWSGI worker 3 (pid: 50304, cores: 1)
 spawned uWSGI worker 4 (pid: 50305, cores: 1)
 spawned uWSGI worker 5 (pid: 50306, cores: 1)
+*** Starting uWSGI 2.0.18 (64bit) on [Sat Feb  1 14:17:07 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 11.0.0 (clang-1100.0.33.17) on 31 January 2020 06:03:55
+os: Darwin-18.5.0 Darwin Kernel Version 18.5.0: Mon Mar 11 20:40:32 PDT 2019; root:xnu-4903.251.3~3/RELEASE_X86_64
+nodename: macui-MacBook-Pro.local
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /private/etc/uwsgi/vassals
+detected binary path: /Users/mac/workspace/hello/django/env/bin/uwsgi
+chdir() to /Users/mac/workspace/hello/django/django_book1
+your processes number limit is 709
+your memory page size is 4096 bytes
+detected max file descriptor number: 4864
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address 8001 fd 3
+Python version: 3.7.1 (v3.7.1:260ec2c36a, Oct 20 2018, 03:13:28)  [Clang 6.0 (clang-600.0.57)]
+PEP 405 virtualenv detected: /Users/mac/workspace/hello/django/env
+Set PythonHome to /Users/mac/workspace/hello/django/env
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7fc6fc501740
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437328 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+
+
+
+ <<<<<<<<< BASE_DIR  /Users/mac/workspace/hello/django/django_book1
+
+
+
+ TEMPLATES  /Users/mac/workspace/hello/django/django_book1/templates
+
+
+
+ os.environ >>>>>  environ({'TERM': 'xterm-256color', 'SSH_AUTH_SOCK': '/private/tmp/com.apple.launchd.xDAIOU5sZM/Listeners', '__CF_USER_TEXT_ENCODING': '0x1F5:0x3:0x33', 'PATH': '/Users/mac/workspace/hello/django/env/bin:/usr/local/share/oracle/instantclient_11_2:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/bin/mysql', 'LANG': 'ko_KR.UTF-8', 'PS1': '(env) \\h:\\W \\u\\$ ', 'HOME': '/Users/mac', 'COLORFGBG': '7;0', 'DISPLAY': '/private/tmp/com.apple.launchd.NcS2ma5zwF/org.macosforge.xquartz:0', 'COLORTERM': 'truecolor', 'MAIL': '/var/mail/root', 'LOGNAME': 'root', 'USER': 'root', 'USERNAME': 'root', 'SHELL': '/bin/sh', 'SUDO_COMMAND': '/Users/mac/workspace/hello/django/env/bin/uwsgi --emperor /etc/uwsgi/vassals/ --uid mac', 'SUDO_USER': 'mac', 'SUDO_UID': '501', 'SUDO_GID': '20', 'UWSGI_ORIGINAL_PROC_NAME': 'uwsgi', 'UWSGI_EMPEROR_FD': '6', 'UWSGI_RELOADS': '0', 'DJANGO_SETTINGS_MODULE': 'django_pjt.settings_production'})
+Traceback (most recent call last):
+  File "./django_pjt/wsgi.py", line 17, in <module>
+    application = get_wsgi_application()
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/__init__.py", line 19, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/conf/__init__.py", line 79, in __getattr__
+    self._setup(name)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/conf/__init__.py", line 66, in _setup
+    self._wrapped = Settings(settings_module)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/conf/__init__.py", line 157, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "./django_pjt/settings_production.py", line 14, in <module>
+    'HOST': os.environ['MYSQL_ROOT_HOST'],
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/os.py", line 678, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'MYSQL_ROOT_HOST'
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 55628)
+spawned uWSGI worker 1 (pid: 55630, cores: 1)
+spawned uWSGI worker 2 (pid: 55631, cores: 1)
+spawned uWSGI worker 3 (pid: 55632, cores: 1)
+spawned uWSGI worker 4 (pid: 55633, cores: 1)
+spawned uWSGI worker 5 (pid: 55634, cores: 1)
+SIGINT/SIGQUIT received...killing workers...
+Sat Feb  1 14:17:16 2020 - received message 0 from emperor
+worker 5 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 1 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket 8001 removed.
+*** Starting uWSGI 2.0.18 (64bit) on [Sat Feb  1 14:18:57 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 11.0.0 (clang-1100.0.33.17) on 31 January 2020 06:03:55
+os: Darwin-18.5.0 Darwin Kernel Version 18.5.0: Mon Mar 11 20:40:32 PDT 2019; root:xnu-4903.251.3~3/RELEASE_X86_64
+nodename: macui-MacBook-Pro.local
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /private/etc/uwsgi/vassals
+detected binary path: /Users/mac/workspace/hello/django/env/bin/uwsgi
+chdir() to /Users/mac/workspace/hello/django/django_book1
+your processes number limit is 709
+your memory page size is 4096 bytes
+detected max file descriptor number: 4864
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address 8001 fd 3
+Python version: 3.7.1 (v3.7.1:260ec2c36a, Oct 20 2018, 03:13:28)  [Clang 6.0 (clang-600.0.57)]
+PEP 405 virtualenv detected: /Users/mac/workspace/hello/django/env
+Set PythonHome to /Users/mac/workspace/hello/django/env
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7ff35e4049a0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437328 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+
+
+
+ <<<<<<<<< BASE_DIR  /Users/mac/workspace/hello/django/django_book1
+
+
+
+ TEMPLATES  /Users/mac/workspace/hello/django/django_book1/templates
+
+
+
+ os.environ >>>>>  environ({'TERM': 'xterm-256color', 'SSH_AUTH_SOCK': '/private/tmp/com.apple.launchd.xDAIOU5sZM/Listeners', '__CF_USER_TEXT_ENCODING': '0x1F5:0x3:0x33', 'PATH': '/Users/mac/workspace/hello/django/env/bin:/usr/local/share/oracle/instantclient_11_2:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/bin/mysql', 'LANG': 'ko_KR.UTF-8', 'PS1': '(env) \\h:\\W \\u\\$ ', 'HOME': '/Users/mac', 'COLORFGBG': '7;0', 'DISPLAY': '/private/tmp/com.apple.launchd.NcS2ma5zwF/org.macosforge.xquartz:0', 'COLORTERM': 'truecolor', 'MAIL': '/var/mail/root', 'LOGNAME': 'root', 'USER': 'root', 'USERNAME': 'root', 'SHELL': '/bin/sh', 'SUDO_COMMAND': '/Users/mac/workspace/hello/django/env/bin/uwsgi --emperor /etc/uwsgi/vassals/ --uid mac', 'SUDO_USER': 'mac', 'SUDO_UID': '501', 'SUDO_GID': '20', 'UWSGI_ORIGINAL_PROC_NAME': 'uwsgi', 'UWSGI_EMPEROR_FD': '6', 'UWSGI_RELOADS': '0', 'DJANGO_SETTINGS_MODULE': 'django_pjt.settings_production'})
+Traceback (most recent call last):
+  File "./django_pjt/wsgi.py", line 17, in <module>
+    application = get_wsgi_application()
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/__init__.py", line 19, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/conf/__init__.py", line 79, in __getattr__
+    self._setup(name)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/conf/__init__.py", line 66, in _setup
+    self._wrapped = Settings(settings_module)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/conf/__init__.py", line 157, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "./django_pjt/settings_production.py", line 14, in <module>
+    'HOST': os.environ['MYSQL_ROOT_HOST'],
+  File "/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/os.py", line 678, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'MYSQL_ROOT_HOST'
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 55641)
+spawned uWSGI worker 1 (pid: 55643, cores: 1)
+spawned uWSGI worker 2 (pid: 55644, cores: 1)
+spawned uWSGI worker 3 (pid: 55645, cores: 1)
+spawned uWSGI worker 4 (pid: 55646, cores: 1)
+spawned uWSGI worker 5 (pid: 55647, cores: 1)
+SIGINT/SIGQUIT received...killing workers...
+Sat Feb  1 14:23:05 2020 - received message 0 from emperor
+worker 5 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 1 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket 8001 removed.
+*** Starting uWSGI 2.0.18 (64bit) on [Sat Feb  1 14:23:59 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 11.0.0 (clang-1100.0.33.17) on 31 January 2020 06:03:55
+os: Darwin-18.5.0 Darwin Kernel Version 18.5.0: Mon Mar 11 20:40:32 PDT 2019; root:xnu-4903.251.3~3/RELEASE_X86_64
+nodename: macui-MacBook-Pro.local
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /private/etc/uwsgi/vassals
+detected binary path: /Users/mac/workspace/hello/django/env/bin/uwsgi
+chdir() to /Users/mac/workspace/hello/django/django_book1
+your processes number limit is 709
+your memory page size is 4096 bytes
+detected max file descriptor number: 4864
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address 8001 fd 3
+Python version: 3.7.1 (v3.7.1:260ec2c36a, Oct 20 2018, 03:13:28)  [Clang 6.0 (clang-600.0.57)]
+PEP 405 virtualenv detected: /Users/mac/workspace/hello/django/env
+Set PythonHome to /Users/mac/workspace/hello/django/env
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7ff458f034d0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437328 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+
+
+
+ <<<<<<<<< BASE_DIR  /Users/mac/workspace/hello/django/django_book1
+
+
+
+ TEMPLATES  /Users/mac/workspace/hello/django/django_book1/templates
+Traceback (most recent call last):
+  File "./django_pjt/wsgi.py", line 17, in <module>
+    application = get_wsgi_application()
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/__init__.py", line 19, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/conf/__init__.py", line 79, in __getattr__
+    self._setup(name)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/conf/__init__.py", line 66, in _setup
+    self._wrapped = Settings(settings_module)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/conf/__init__.py", line 176, in __init__
+    raise ImproperlyConfigured("The SECRET_KEY setting must not be empty.")
+django.core.exceptions.ImproperlyConfigured: The SECRET_KEY setting must not be empty.
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 55719)
+spawned uWSGI worker 1 (pid: 55720, cores: 1)
+spawned uWSGI worker 2 (pid: 55721, cores: 1)
+spawned uWSGI worker 3 (pid: 55722, cores: 1)
+spawned uWSGI worker 4 (pid: 55723, cores: 1)
+spawned uWSGI worker 5 (pid: 55724, cores: 1)
+SIGINT/SIGQUIT received...killing workers...
+Sat Feb  1 14:27:46 2020 - received message 0 from emperor
+worker 5 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 1 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket 8001 removed.
+*** Starting uWSGI 2.0.18 (64bit) on [Sat Feb  1 14:29:33 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 11.0.0 (clang-1100.0.33.17) on 31 January 2020 06:03:55
+os: Darwin-18.5.0 Darwin Kernel Version 18.5.0: Mon Mar 11 20:40:32 PDT 2019; root:xnu-4903.251.3~3/RELEASE_X86_64
+nodename: macui-MacBook-Pro.local
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /private/etc/uwsgi/vassals
+detected binary path: /Users/mac/workspace/hello/django/env/bin/uwsgi
+chdir() to /Users/mac/workspace/hello/django/django_book1
+your processes number limit is 709
+your memory page size is 4096 bytes
+detected max file descriptor number: 4864
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address 8001 fd 3
+Python version: 3.7.1 (v3.7.1:260ec2c36a, Oct 20 2018, 03:13:28)  [Clang 6.0 (clang-600.0.57)]
+PEP 405 virtualenv detected: /Users/mac/workspace/hello/django/env
+Set PythonHome to /Users/mac/workspace/hello/django/env
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7fb900d01f50
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437328 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+
+
+
+ <<<<<<<<< BASE_DIR  /Users/mac/workspace/hello/django/django_book1
+
+
+
+ TEMPLATES  /Users/mac/workspace/hello/django/django_book1/templates
+Traceback (most recent call last):
+  File "./django_pjt/wsgi.py", line 17, in <module>
+    application = get_wsgi_application()
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/__init__.py", line 19, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/conf/__init__.py", line 79, in __getattr__
+    self._setup(name)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/conf/__init__.py", line 66, in _setup
+    self._wrapped = Settings(settings_module)
+  File "/Users/mac/workspace/hello/django/env/lib/python3.7/site-packages/django/conf/__init__.py", line 176, in __init__
+    raise ImproperlyConfigured("The SECRET_KEY setting must not be empty.")
+django.core.exceptions.ImproperlyConfigured: The SECRET_KEY setting must not be empty.
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 55861)
+spawned uWSGI worker 1 (pid: 55862, cores: 1)
+spawned uWSGI worker 2 (pid: 55863, cores: 1)
+spawned uWSGI worker 3 (pid: 55864, cores: 1)
+spawned uWSGI worker 4 (pid: 55865, cores: 1)
+spawned uWSGI worker 5 (pid: 55866, cores: 1)
+SIGINT/SIGQUIT received...killing workers...
+Sat Feb  1 14:34:37 2020 - received message 0 from emperor
+worker 5 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 1 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket 8001 removed.
