@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django_app.apps.DjangoAppConfig',  # 추가
     'programmers_test.apps.ProgrammersTestConfig',  # 추가
     'books.apps.BooksConfig',
+    'bookmark.apps.BookmarkConfig',
+    'blog.apps.BlogConfig',
     # 'django_rest',
     # 'django_app',
     # 'programmers_test',
@@ -164,6 +166,10 @@ REST_FRAMEWORK = {
      'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 50
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 
 # for deployment

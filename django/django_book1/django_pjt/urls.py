@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-import django_app   #NOQA
-import django_rest  #NOQA
 from django.conf.urls import (handler403, handler404, handler500)
 
+import django_app   #NOQA
+import django_rest  #NOQA
 from programmers_test import urls as p_urls
 from programmers_test.views import (error403, error404, error500)
 from books.views import HomeView
+import bookmark
+import blog
 
 
 urlpatterns = [
@@ -32,6 +34,8 @@ urlpatterns = [
     re_path(r'^products', include((p_urls.urlpatterns, 'programmers_test')), name='products'),
     path('books/', include('books.urls')),
     path('', HomeView.as_view(), name='home'),
+    path('bookmark/', include('bookmark.urls')),
+    path('blog/', include('blog.urls')),
 ]
 
 # defaults.page_not_found(request, exception, template_name='404.html')
