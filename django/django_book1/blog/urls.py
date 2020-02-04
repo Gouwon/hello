@@ -31,4 +31,11 @@ urlpatterns = [
         'archive/today/', views.PostTodayArchiveView.as_view(), 
         name='post_today_archive'
     ),
+    path(
+        'tag/', views.TagCloudTemplateView.as_view(), name='tag_cloud'
+    ),
+    path(
+        'tag/<str:tag>/', views.TaggedObjectListView.as_view(), 
+        name='tagged_object_list'
+    )
 ]

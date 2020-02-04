@@ -35,3 +35,17 @@ class PostTodayArchiveView(generic.TodayArchiveView):
     model = Post
     date_field = 'modify_dt'
 
+class TagCloudTemplateView(generic.TemplateView):
+    template_name = 'taggit/taggit_cloud.html'
+
+class TaggedObjectListView(generic.ListView):
+    template_name = 'taggit/taggit_post_list.html'
+    model = Post
+
+    def get_queryset(self):
+        return Post.objects.filter(tags__name=self.kwargs.get('tag'))
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tagname'] = self.kwargs['tag']
+        return context
