@@ -1,5 +1,7 @@
 from functools import wraps
 
+from rest_framework import generics
+
 from django.shortcuts import render
 from django.views import generic
 from django.http import (JsonResponse, QueryDict)
@@ -7,6 +9,11 @@ from django.db.models import (Sum, Max)
 from django.views.decorators.csrf import csrf_exempt
 from programmers_test.models import (Item, Ingredient, Gender, Category)
 
+from .serializers import ItemSerializer
+
+class ItemListAPIView(generics.ListAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer    
 
 def resonpse_in_json(f):
     @wraps(f)

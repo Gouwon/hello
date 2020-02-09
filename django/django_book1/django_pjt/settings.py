@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +24,15 @@ print('\n\n\n TEMPLATES ', os.path.join(BASE_DIR, 'templates'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'js*of!63%r&thz)#kht4-r5=pznd5auven=j2gzir+i$2cen84'
-SECRET_KEY = os.environ.get('SECRET_KEY', None)
+# SECRET_KEY = os.environ.get('SECRET_KEY', None)
+SECRET_KEY_FILE_NAME = 'secret_key.json'
+SECRET_KEY_FILE_LOCATOIN = os.path.join(
+    os.path.join(os.path.join(BASE_DIR, os.pardir), SECRET_KEY_FILE_NAME)
+)
+with open(SECRET_KEY_FILE_LOCATOIN) as f:
+    json_data = json.load(f)
+
+SECRET_KEY = json_data['production']['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

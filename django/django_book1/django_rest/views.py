@@ -1,6 +1,8 @@
-from rest_framework import (status, mixins, generics, permissions, renderers)
+from rest_framework import (
+    status, mixins, generics, permissions, renderers, viewsets
+)
 from rest_framework.parsers import JSONParser
-from rest_framework.decorators import (api_view, APIView)
+from rest_framework.decorators import (api_view, APIView, action)
 from rest_framework.reverse import reverse
 from rest_framework.response import Response
 
@@ -27,8 +29,12 @@ from .permissions import IsOwnerOrReadOnly
 def api_root(request, format=None):
     return Response(
         {
-            'users': reverse('django_rest:user_list', request=request, format=format),
-            'snippets': reverse('django_rest:snippet_list', request=request, format=format)
+            'users': reverse(
+                'django_rest:user_list', request=request, format=format
+            ),
+            'snippets': reverse(
+                'django_rest:snippet_list', request=request, format=format
+            )
         }
     )
 
@@ -52,8 +58,10 @@ def snippet_list(request, format=None):
 
     if request.method == 'GET':
         snippets = Snippet.objects.all()
-        # serializer = SnippetModelSerializer(snippets, many=True)
-        serializer = SnippetHTMLModelSerializer(snippets, many=True)
+        serializer = SnippetModelSerializer(snippets, many=True)
+        # serializer = SnippetHTMLModelSerializer(
+        #     snippets, many=True, context={'request': request}
+        # )
         # return serializer.data
         return Response(serializer.data)
     
@@ -61,7 +69,9 @@ def snippet_list(request, format=None):
         # data = JSONParser().parse(request)
         # serializer = SnippetModelSerializer(data=data)
         # serializer = SnippetModelSerializer(data=request.data)
-        serializer = SnippetHTMLModelSerializer(data=request.data)
+        serializer = SnippetHTMLModelSerializer(
+            data=request.data, context={'request': request}
+        )
 
         if serializer.is_valid():
             serializer.save()
@@ -85,16 +95,16 @@ def snippet_detail(request, pk, format=None):
         return Response(status=status.HTTP_400_BAD_REQUEST)
     
     if request.method == 'GET':
-        # serializer = SnippetModelSerializer(snippet)
-        serializer = SnippetHTMLModelSerializer(snippet)
+        serializer = SnippetModelSerializer(snippet)
+        # serializer = SnippetHTMLModelSerializer(snippet)
         # return serializer.data
         return Response(serializer.data)
     
     elif request.method == 'PUT':
         # data = JSONParser().parse(request)
         # serializer = SnippetModelSerializer(snippet, data=data)
-        # serializer = SnippetModelSerializer(snippet, data=request.data)
-        serializer = SnippetHTMLModelSerializer(snippet, data=request.data)
+        serializer = SnippetModelSerializer(snippet, data=request.data)
+        # serializer = SnippetHTMLModelSerializer(snippet, data=request.data)
         if serializer.is_valid():
             serializer.save()
             # return serializer.data
@@ -193,6 +203,7 @@ class SnippetListMixin(generics.ListCreateAPIView):
     queryset = Snippet.objects.all()
     # serializer_class = SnippetModelSerializer
     serializer_class = SnippetHTMLModelSerializer
+    print('\n\n\n SnippetListMixinSnippetListMixin >>>>> ', serializer_class)
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly, 
         IsOwnerOrReadOnly, 
@@ -217,3 +228,33 @@ class UserList(generics.ListAPIView):
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    this viewset automatically provides list and detail actions
+    """
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class SnippetViewSet(viewsets.ModelViewSet):
+    """
+    this viewset automatically provides list, create, retrieve, update, and 
+    destroy actions.
+    additionally adding an extra `highlight` action.
+    """
+
+    queryset = Snippet.objects.all()
+    serializer_class = SnippetHTMLModelSerializer
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerOrReadOnly
+    ]
+
+    @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
+    def highlight(self, request, *args, **kwargs):
+        snippet = self.get_object()
+        return Response(snippet.highlisted)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)

@@ -1,4 +1,7 @@
-from django.urls import path
+from rest_framework.routers import DefaultRouter
+
+from django.urls import (path, include)
+
 from . import views
 
 
@@ -9,5 +12,10 @@ extra_patterns = [
 ]
 
 urlpatterns = [
-    path('', views.ItemListView.as_view(), name='lists'),
+    path('', views.ItemListAPIView.as_view(), name='lists'),
 ]
+
+router = DefaultRouter()
+router.register(r'', views.ItemListAPIView)
+
+urlpatterns.append(path('', include(router.urls)))

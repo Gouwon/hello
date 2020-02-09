@@ -7,10 +7,14 @@ from .models import (Snippet, LANGUAGE_CHOICES, STYLE_CHOICES)
 
 class SnippetSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    title = serializers.CharField(
+        required=False, allow_blank=True, max_length=100
+    )
     code = serializers.CharField(style={'base_template': 'textarea.html'})
     linenos = serializers.BooleanField(required=False)
-    language = serializers.ChoiceField(choices=LANGUAGE_CHOICES, default='python')
+    language = serializers.ChoiceField(
+        choices=LANGUAGE_CHOICES, default='python'
+    )
     style = serializers.ChoiceField(choices=STYLE_CHOICES, default='friendly')
     owner = serializers.ReadOnlyField(source='owner.username')
 
@@ -22,7 +26,8 @@ class SnippetSerializer(serializers.Serializer):
 
     def updata(self, instance, validated_data):
         """
-        update and return an existing 'Snippet' instance, given the validated data.
+        update and return an existing 'Snippet' instance, 
+        given the validated data.
         """
         for key, value in validated_data.items():
             attr = getattr(instance, key)
@@ -46,7 +51,9 @@ class SnippetModelSerializer(serializers.ModelSerializer):
         ]
 
 class UserSerializer(serializers.ModelSerializer):
-    snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Snippet.objects.all())
+    snippets = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=Snippet.objects.all()
+    )
 
     class Meta:
         model = User
@@ -59,7 +66,10 @@ class UserSerializer(serializers.ModelSerializer):
 class SnippetHTMLModelSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     highlight = serializers.HyperlinkedIdentityField(
-        view_name='snippet_highlight', format='html'
+        view_name='django_rest:snippet_highlight', format='html'
+    )
+    url = serializers.HyperlinkedIdentityField(
+        view_name='django_rest:snippet_detail', format='html'
     )
 
     class Meta:
@@ -71,7 +81,7 @@ class SnippetHTMLModelSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserHTMLModelSerializer(serializers.HyperlinkedModelSerializer):
     snippets =serializers.HyperlinkedRelatedField(
-        many=True, view_name='snippet_detail', read_only=True
+        many=True, view_name='django_rest:snippet_detail', read_only=True
     )
 
     class Meta:

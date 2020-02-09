@@ -1,0 +1,51 @@
+SIGINT/SIGQUIT received...killing workers...
+Mon Feb 10 12:35:38 2020 - received message 0 from emperor
+worker 5 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 1 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket 8001 removed.
+*** Starting uWSGI 2.0.18 (64bit) on [Mon Feb 10 12:36:20 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 11.0.0 (clang-1100.0.33.17) on 31 January 2020 06:03:55
+os: Darwin-18.5.0 Darwin Kernel Version 18.5.0: Mon Mar 11 20:40:32 PDT 2019; root:xnu-4903.251.3~3/RELEASE_X86_64
+nodename: macui-MacBook-Pro.local
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /Users/mac/workspace/hello/django/django_book1
+detected binary path: /Users/mac/workspace/hello/django/env/bin/uwsgi
+chdir() to /Users/mac/workspace/hello/django/django_book1
+your processes number limit is 709
+your memory page size is 4096 bytes
+detected max file descriptor number: 4864
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address 8001 fd 3
+Python version: 3.7.1 (v3.7.1:260ec2c36a, Oct 20 2018, 03:13:28)  [Clang 6.0 (clang-600.0.57)]
+PEP 405 virtualenv detected: /Users/mac/workspace/hello/django/env
+Set PythonHome to /Users/mac/workspace/hello/django/env
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7fc32a607f60
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437328 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+
+
+
+ <<<<<<<<< BASE_DIR  /Users/mac/workspace/hello/django/django_book1
+
+
+
+ TEMPLATES  /Users/mac/workspace/hello/django/django_book1/templates
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x7fc32a607f60 pid: 73081 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 73081)
+spawned uWSGI worker 1 (pid: 73082, cores: 1)
+spawned uWSGI worker 2 (pid: 73083, cores: 1)
+spawned uWSGI worker 3 (pid: 73084, cores: 1)
+spawned uWSGI worker 4 (pid: 73085, cores: 1)
+spawned uWSGI worker 5 (pid: 73086, cores: 1)
