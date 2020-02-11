@@ -1,0 +1,11 @@
+__pycache__
+*.pyc
+start_django.sh
+export.sh
+data
+fixtures
+*.json
+env
+venv
+static
+staticfiles

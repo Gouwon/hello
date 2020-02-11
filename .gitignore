@@ -1,1 +1,10 @@
 .
+ml/data/mnist.pkl
+ml/data/train.csv
+ml/data
+*.csv
+*.jpg
+*.png
+r/apikey/twitter.R
+r/apikey
+r/.Rproj.user
