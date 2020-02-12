@@ -8,3 +8,4 @@ ml/data
 r/apikey/twitter.R
 r/apikey
 r/.Rproj.user
+*.pyc

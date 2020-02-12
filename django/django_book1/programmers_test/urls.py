@@ -15,7 +15,7 @@ urlpatterns = [
     path('', views.ItemListAPIView.as_view(), name='lists'),
 ]
 
-router = DefaultRouter()
-router.register(r'', views.ItemListAPIView)
+# router = DefaultRouter()
+# router.register(r'', views.ItemListAPIView)
 
-urlpatterns.append(path('', include(router.urls)))
+# urlpatterns.append(path('', include(router.urls)))

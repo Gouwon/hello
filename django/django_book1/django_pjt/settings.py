@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'books.apps.BooksConfig',
     'bookmark.apps.BookmarkConfig',
     'blog.apps.BlogConfig',
+    'taggit.apps.TaggitAppConfig',
+    'taggit_templatetags2',
     # 'django_rest',
     # 'django_app',
     # 'programmers_test',
@@ -179,7 +181,8 @@ REST_FRAMEWORK = {
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
+TAGGIT_CASE_INSENSITIVE = True
+TAGGIT_LIMIT = 50
 
 # for deployment
 # checklist => python manage.py check --deploy

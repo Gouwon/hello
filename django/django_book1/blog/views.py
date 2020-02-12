@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views import generic
+from django.db.models import Q
 
 from .models import Post
+from .forms import PostSearchForm
 
 
 # Create your views here.
@@ -49,3 +51,21 @@ class TaggedObjectListView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['tagname'] = self.kwargs['tag']
         return context
+
+class SearchFormView(generic.FormView):
+    form_class = PostSearchForm
+    template_name = 'blog/post_search.html'
+
+    def form_valid(self, form):
+        search = form.cleaned_data['search']
+        post_list = Post.objects.filter(
+            Q(title__icontains=search) | Q(description__icontains=search) | 
+            Q(content__icontains=search)
+        ).distinct()
+
+        context = {}
+        context['form'] = form
+        context['search_term'] = search
+        context['object_list'] = post_list
+
+        return render(self.request, self.template_name, context)
