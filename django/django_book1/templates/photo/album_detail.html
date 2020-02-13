@@ -1,0 +1,46 @@
+{% extends '../books/base.html' %}
+
+{% block title %}
+<title>Album Detail HTML</title>
+{% endblock %}
+
+{% block custom_css %}
+<style>
+    .thumbnail {
+        border: 5px solid #ccc;
+    }
+
+    hr {
+        margin: 0 0 20px 0;
+    }
+
+    img {
+        width: 100%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="mt-5">
+    <span class="h2">{{ object.name }}</span>
+    <span class="h5 font-italic">{{ object.description }}</span>
+</div>
+
+<hr>
+
+<div class="row">
+    {% for photo in object.photo_set.all %}
+    <div class="col-md-3 md-5">
+        <div class="thumbnail">
+            <a href="{{ photo.get_absolute_url }}">
+                <img src="{{ photo.image.thumb_url }}" alt="" />
+            </a>
+        </div>
+        <ul>
+            <li class="font-italic">{{ photo.title }}</li>
+            <li class="font-italic">{{ photo.upload_dt|date:'Y-m-d' }}</li>
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

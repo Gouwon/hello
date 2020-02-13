@@ -26,6 +26,8 @@ from programmers_test.views import (error403, error404, error500)
 from books.views import HomeView
 import bookmark
 import blog
+import photo
+from .views import (UserCreateView, UserCreateDoneTemplateView)
 
 
 urlpatterns = [
@@ -39,6 +41,17 @@ urlpatterns = [
     path('bookmark/', include('bookmark.urls')),
     path('blog/', include('blog.urls')),
     path('api-auth/', include('rest_framework.urls')),  # for adding login to the browsable api
+    path('photo/', include('photo.urls')),
+    path(
+        'accounts/', include('django.contrib.auth.urls')
+    ),
+    path(
+        'accounts/register/', UserCreateView.as_view(), name='register'
+    ),
+    path(
+        'accounts/register/done/', UserCreateDoneTemplateView.as_view(),
+        name='register_done'
+    ), 
 ]
 
 # defaults.page_not_found(request, exception, template_name='404.html')
