@@ -41,3 +41,7 @@ class Photo(models.Model):
     
     def get_absolute_url(self):
         return reverse('photo:photo_detail', args=(self.id, ))
+
+class Publication(models.Model):
+    title = models.CharField(max_length=30)
+    albums = models.ManyToManyField(Album)

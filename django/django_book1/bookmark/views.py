@@ -36,7 +36,7 @@ class BookmarkUpdateView(OwnerOnlyMixin, generic.UpdateView):
     fields = [
         'title', 'url', 
     ]
-    suceess_url = reverse_lazy('bookmark:index')
+    success_url = reverse_lazy('bookmark:index')
 
 class BookmarkDeleteView(OwnerOnlyMixin, generic.DeleteView):
     model = Bookmark
