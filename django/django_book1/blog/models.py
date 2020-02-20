@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 from taggit.managers import TaggableManager
 
@@ -23,6 +25,10 @@ class Post(models.Model):
         verbose_name='MODIFY DATE', auto_now=True
     )
     tags = TaggableManager(blank=True)
+    owner = models.ForeignKey(
+        to=User, on_delete=models.CASCADE, verbose_name='OWNER', blank=True, 
+        null=True
+    )
     
     class Meta:
         verbose_name = 'post'
@@ -32,6 +38,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title, allow_unicode=True)
+        self.slug = (self.slug).replace('-', '_')
+        return super().save(*args, **kwargs)
     
     def get_absolute_url(self):
         return reverse('blog:detail', args=(self.slug,))
