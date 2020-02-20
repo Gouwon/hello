@@ -55,8 +55,10 @@ INSTALLED_APPS = [
     'books.apps.BooksConfig',
     'bookmark.apps.BookmarkConfig',
     'blog.apps.BlogConfig',
+    'photo.apps.PhotoConfig',
     'taggit.apps.TaggitAppConfig',
     'taggit_templatetags2',
+    'widget_tweaks',    # form decorating
     # 'django_rest',
     # 'django_app',
     # 'programmers_test',
@@ -141,6 +143,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

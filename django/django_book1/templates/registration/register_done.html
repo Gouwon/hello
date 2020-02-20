@@ -1,0 +1,17 @@
+{% extends '../books/base.html' %}
+
+{% block title %}
+    <title>Register Done HTML</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Registration Completed Successfully</h1>
+
+    <br />
+
+    <p>Thank you for registering.</p>
+
+    <p class="font-italic">
+        <a href="{% url 'login' %}">Log in</a>
+    </p>
+{% endblock %}

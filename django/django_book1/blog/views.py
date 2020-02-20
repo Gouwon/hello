@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.views import generic
 from django.db.models import Q
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Post
 from .forms import PostSearchForm
+from django_pjt.views import OwnerOnlyMixin
 
 
 # Create your views here.
@@ -69,3 +72,37 @@ class SearchFormView(generic.FormView):
         context['object_list'] = post_list
 
         return render(self.request, self.template_name, context)
+
+class PostCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Post
+    fields = [
+        'title', 'slug', 'description', 'content', 'tags', 
+    ]
+    initial = {
+        'slug': 'auto-filling-do-not-input', 
+    }   # custom message using at Post create view html
+    # fields = [
+    #     'title', 'description', 'content', 'tags', 
+    # ]   # dealing with slug field in another way. don't display slug field.
+    success_url = reverse_lazy('blog:index')
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+class PostChangeListView(LoginRequiredMixin, generic.ListView):
+    template_name = 'blog/post_change_list.html'
+
+    def get_queryset(self):
+        return Post.objects.filter(owner=self.request.user)
+
+class PostUpdateView(OwnerOnlyMixin, generic.UpdateView):
+    model = Post
+    fields = [
+        'title', 'slug', 'description', 'content', 'tags', 
+    ]
+    success_url = reverse_lazy('blog:index')
+
+class PostDeleteView(OwnerOnlyMixin, generic.DeleteView):
+    model = Post
+    success_url = reverse_lazy('blog:index')

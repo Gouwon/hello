@@ -31,48 +31,95 @@
         {% endblock sidebar %}
         <br />
     </div> -->
+    
+    <nav class="navbar navbar-expand navbar-light bg-primary fixed-top flex-column flex-md-row bd-navbar">
+    <span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic">Django Python Web Programming</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active mx-1 btn btn-primary">
+          <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item mx-1 btn btn-primary">
+            <a class="nav-link" href="{% url 'bookmark:index' %}">Bookmark</a>
+        </li>
+        <li class="nav-item mx-1 btn btn-primary">
+            <a class="nav-link" href="{% url 'blog:index' %}">Blog</a>
+        </li>
+        <li class="nav-item mx-1 btn btn-primary">
+            <a class="nav-link" href="{% url 'photo:index' %}">Photo</a>
+        </li>
+        <li class="nav-item dropdown mx-1 btn btn-primary">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            Add
+          </a>
+          <div class="dropdown-menu">
+            <a href="{% url 'bookmark:add' %}" class="dropdown-item">Bookmark</a>
+            <a href="{% url 'blog:add' %}" class="dropdown-item">Post</a>
+            <div class="dropdown-divider"></div>
+            <a href="" class="dropdown-item">Album</a>
+            <a href="" class="dropdown-item">Photo</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown mx-1 btn btn-primary">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            Change
+          </a>
+          <div class="dropdown-menu">
+            <a href="{% url 'bookmark:change' %}" class="dropdown-item">Bookmark</a>
+            <a href="{% url 'blog:change' %}" class="dropdown-item">Post</a>
+            <div class="dropdown-divider"></div>
+            <a href="" class="dropdown-item">Album</a>
+            <a href="" class="dropdown-item">Photo</a>
+          </div>
+        </li>
+        <li class="nav-item mx-1 dropdown btn btn-primary">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Util
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'blog:post_archive' %}">Archive</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'blog:search' %}">Search</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0"> {% csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+      </form>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
-        <span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic">Django Python Web Programming</span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active mx-1 btn btn-primary">
-              <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item mx-1 btn btn-primary">
-                <a class="nav-link" href="{% url 'bookmark:index' %}">Bookmark</a>
-            </li>
-            <li class="nav-item mx-1 btn btn-primary">
-                <a class="nav-link" href="{% url 'blog:index' %}">Blog</a>
-            </li>
-            <li class="nav-item mx-1 btn btn-primary">
-                <a class="nav-link" href="#">Photo</a>
-            </li>
+      <ul class="navbar-nav ml-5 mr-5">
+        <li class="nav-item dropdown mx-1 btn btn-primary">
+          {% if user.is_active %}
+            <a href="#" class="nav-link dropdown-toggle text-white" data-toggle="dropdown">
+              <i class="fas fa-user"></i>
+              &ensp; {% firstof user.get_short_name user.get_username %}&ensp;
+            </a>
+            <div class="dropdown-menu">
+              <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+              <a href="{% url 'password_change' %}" class="dropdown-item">Change Password</a>
+            </div>
+          {% else %}
+            <a href="#" class="nav-link dropdown-toggle text-white" data-toggle="dropdown">
+              <i class="fas fa-user"></i>
+              &ensp;Anonymous&ensp;
+            </a>
+            <div class="dropdown-menu">
+              <a href="{% url 'login' %}" class="dropdown-item">Login</a>
+              <a href="{% url 'register' %}" class="dropdown-item">Register</a>
+            </div>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+    </nav>
 
-            <li class="nav-item mx-1 dropdown btn btn-primary">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Util
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'blog:post_archive' %}">Archive</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'blog:search' %}">Search</a>
-              </div>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0"> {% csrf_token %}
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
-          </form>
-        </div>
-      </nav>
-
-    <div id="container content bg-warning">
+    <div id="container content">
         {% block content %}
         <h1>books/base.html</h1>
         {% endblock content %}
