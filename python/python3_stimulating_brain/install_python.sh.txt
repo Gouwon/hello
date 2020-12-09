@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# install requirements
+sudo yum update
+sudo yum -y gcc openssl-devel bzip2-devel libffi-devel
+
+# download python
+cd /usr/src
+sudo wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
+sudo tar xzf Python-3.7.3.tgz
+
+# install python
+cd Python-3.7.3
+sudo ./configure --enable-optimizations
+sudo make altinstall
+
